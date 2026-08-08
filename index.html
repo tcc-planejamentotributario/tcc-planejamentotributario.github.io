@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TCC Grupo 5 — Central</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cacau:#2E1B12;
+    --cacau-70:#5A4034;
+    --papel:#FDFAF4;
+    --papel-2:#F3EADD;
+    --framboesa:#C6205A;
+    --menta:#1F7A5C;
+    --linha:#DCCFBC;
+    --rosa:#F2B8CB;
+    --areia:#D6A98F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--papel-2);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    color:var(--cacau);
+    padding:16px 12px 70px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto}
+
+  /* ---------------- topo ---------------- */
+  header{background:var(--cacau);color:var(--papel);border-radius:14px;padding:22px 20px}
+  .eyebrow{
+    font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--areia);margin-bottom:8px;
+  }
+  h1{font-size:25px;font-weight:900;line-height:1.15;letter-spacing:-.02em}
+  h1 em{font-style:normal;color:var(--rosa)}
+  .prazos{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+  .prazo{background:rgba(255,255,255,.09);border-radius:10px;padding:10px 13px;flex:1;min-width:140px}
+  .prazo b{display:block;font-family:'Roboto Mono',monospace;font-size:18px;color:var(--rosa)}
+  .prazo small{font-size:11.5px;color:#E4D3C6;line-height:1.35;display:block;margin-top:3px}
+
+  .barra{margin-top:16px}
+  .barra-topo{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .barra-topo span{font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--areia)}
+  .barra-topo b{font-family:'Roboto Mono',monospace;font-size:14px;color:var(--rosa)}
+  .trilho{height:8px;background:rgba(255,255,255,.14);border-radius:99px;overflow:hidden}
+  .preenche{height:100%;width:0;background:var(--rosa);border-radius:99px;transition:width .3s ease}
+
+  /* ---------------- abas ---------------- */
+  nav{
+    position:sticky;top:0;z-index:20;margin:14px -12px 0;padding:10px 12px;
+    background:var(--papel-2);
+  }
+  .abas{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .abas::-webkit-scrollbar{display:none}
+  .aba{
+    flex-shrink:0;border:1.5px solid var(--linha);background:var(--papel);
+    color:var(--cacau-70);font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:700;
+    padding:9px 14px;border-radius:99px;cursor:pointer;white-space:nowrap;
+    transition:all .15s ease;
+  }
+  .aba:hover{border-color:var(--cacau)}
+  .aba[aria-selected="true"]{background:var(--cacau);color:var(--papel);border-color:var(--cacau)}
+  .aba:focus-visible{outline:3px solid var(--framboesa);outline-offset:2px}
+
+  .painel{display:none;animation:sobe .25s ease}
+  .painel.on{display:block}
+  @keyframes sobe{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  h2{
+    font-size:12.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+    margin:26px 0 12px;color:var(--cacau-70);display:flex;align-items:center;gap:10px;
+  }
+  h2::after{content:"";flex:1;height:2px;background:var(--linha)}
+  .intro{font-size:14.5px;line-height:1.55;color:var(--cacau-70);margin:16px 0 4px}
+  .intro strong{color:var(--cacau)}
+
+  /* ---------------- listas base ---------------- */
+  .bloco{background:var(--papel);border-radius:13px;border:1px solid var(--linha);padding:4px 17px}
+  .bloco.forte{border:2px solid var(--cacau)}
+  .bloco li{list-style:none;padding:13px 0;border-bottom:1px dashed var(--linha)}
+  .bloco li:last-child{border-bottom:none}
+  .flex{display:flex;gap:12px;align-items:flex-start}
+  .data{
+    font-family:'Roboto Mono',monospace;font-weight:700;font-size:11.5px;
+    color:var(--framboesa);white-space:nowrap;min-width:78px;padding-top:2px;
+  }
+  .txt{font-size:14.5px;line-height:1.45;font-weight:700}
+  .txt em{font-style:normal;font-weight:500;color:var(--cacau-70);font-size:13.2px;display:block;margin-top:3px;line-height:1.5}
+  .quando{font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;color:var(--framboesa);display:block;margin-top:5px}
+
+  /* ---------------- checkbox ---------------- */
+  .cx{
+    appearance:none;-webkit-appearance:none;
+    width:18px;height:18px;border:2px solid var(--cacau);border-radius:5px;
+    flex-shrink:0;margin-top:2px;cursor:pointer;position:relative;background:transparent;
+  }
+  .cx:checked{background:var(--menta);border-color:var(--menta)}
+  .cx:checked::after{
+    content:"";position:absolute;left:4.5px;top:1px;width:5px;height:10px;
+    border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg);
+  }
+  .cx:focus-visible{outline:3px solid var(--framboesa);outline-offset:2px}
+  .cx:checked ~ .txt{opacity:.45;text-decoration:line-through}
+
+  /* ---------------- cards de pessoa ---------------- */
+  .grid{display:grid;gap:15px}
+  @media(min-width:660px){.grid{grid-template-columns:1fr 1fr}}
+  .card{background:var(--papel);border-radius:12px;overflow:hidden;border:1px solid var(--linha);display:flex;flex-direction:column}
+  .card-top{background:var(--cacau);color:var(--papel);padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .card-top h3{font-size:17px;font-weight:900;letter-spacing:-.01em}
+  .card-top span{font-family:'Roboto Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--areia);text-align:right;line-height:1.35}
+  .card ul{list-style:none;padding:3px 16px 13px}
+  .card li{padding:11px 0;border-bottom:1px dashed var(--linha)}
+  .card li:last-child{border-bottom:none}
+  .urgente .card-top{background:var(--framboesa)}
+  .urgente .card-top span{color:#FFD9E5}
+
+  /* ---------------- problemas ---------------- */
+  .prob{background:var(--papel);border:1px solid var(--linha);border-left:5px solid var(--framboesa);border-radius:10px;padding:15px 17px;margin-bottom:11px}
+  .prob.tec{border-left-color:var(--cacau)}
+  .prob h4{font-size:15px;font-weight:900;line-height:1.35;margin-bottom:6px}
+  .prob p{font-size:13.6px;line-height:1.55;color:var(--cacau-70)}
+  .prob p + p{margin-top:8px}
+  .num{
+    font-family:'Roboto Mono',monospace;font-size:11px;color:var(--framboesa);
+    font-weight:700;margin-right:7px;
+  }
+  .tec .num{color:var(--cacau-70)}
+  .quem{
+    display:inline-block;font-family:'Roboto Mono',monospace;font-size:10px;
+    letter-spacing:.06em;text-transform:uppercase;background:var(--papel-2);
+    color:var(--cacau-70);padding:3px 8px;border-radius:99px;margin-left:6px;vertical-align:middle;
+  }
+  .cita{
+    background:var(--papel-2);border-radius:8px;padding:11px 13px;margin-top:9px;
+    font-size:13.2px;line-height:1.5;color:var(--cacau);border-left:3px solid var(--areia);
+  }
+
+  /* ---------------- avaliação ---------------- */
+  .pessoa{background:var(--papel);border:1px solid var(--linha);border-radius:12px;padding:17px 18px;margin-bottom:13px}
+  .pessoa-topo{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+  .pessoa h3{font-size:18px;font-weight:900;letter-spacing:-.01em}
+  .tag{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px;background:var(--cacau);color:var(--papel)}
+  .tag.al{background:var(--framboesa)}
+  .tag.ok{background:var(--menta)}
+  .lead{font-size:14px;font-weight:700;color:var(--framboesa);margin-bottom:9px;line-height:1.4}
+  .pessoa p{font-size:13.6px;line-height:1.6;color:var(--cacau-70)}
+  .pessoa p + p{margin-top:8px}
+  .pessoa p b{color:var(--cacau)}
+  .papel{
+    margin-top:11px;padding-top:11px;border-top:1px dashed var(--linha);
+    font-size:13px;color:var(--cacau);
+  }
+  .papel b{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--cacau-70);display:block;margin-bottom:3px}
+
+  /* ---------------- tabela ---------------- */
+  .tab-wrap{background:var(--papel);border:1px solid var(--linha);border-radius:12px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{
+    background:var(--cacau);color:var(--papel);text-align:left;padding:11px 13px;
+    font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  }
+  tbody td{padding:11px 13px;border-bottom:1px dashed var(--linha);line-height:1.45;vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody td:first-child{font-weight:700}
+  .mono{font-family:'Roboto Mono',monospace;font-size:11.5px;white-space:nowrap}
+  .falta{color:var(--framboesa);font-weight:700}
+  .feito{color:var(--menta);font-weight:700}
+
+  /* ---------------- fase ---------------- */
+  .fase{
+    display:inline-block;font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;
+    letter-spacing:.08em;background:var(--cacau);color:var(--papel);
+    padding:4px 10px;border-radius:99px;margin-bottom:10px;
+  }
+  .critica{color:var(--framboesa);font-weight:700;font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.06em}
+
+  footer{margin-top:30px;text-align:center;font-size:11.5px;color:var(--cacau-70);line-height:1.6}
+
+  /* ---------------- marcações compartilhadas ---------------- */
+  [hidden]{display:none !important}
+  .barra.fina{margin-top:9px}
+  .barra.fina .trilho{height:5px}
+  .preenche.meu{background:var(--areia)}
+  .rodape-barra{
+    display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;margin-top:13px;
+    font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.05em;
+  }
+  .rodape-barra .aviso{flex:1;min-width:180px;color:#C9B4A4;letter-spacing:.01em;line-height:1.5}
+  .rodape-barra .aviso b{color:var(--rosa);font-weight:700}
+  .acao-txt{
+    background:none;border:none;padding:5px 1px;cursor:pointer;
+    font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.05em;
+    color:var(--rosa);text-decoration:underline;text-underline-offset:3px;
+    transition:color .15s cubic-bezier(.22,1,.36,1),transform .12s cubic-bezier(.22,1,.36,1);
+  }
+  .acao-txt:hover{color:var(--papel)}
+  .acao-txt:active{transform:scale(.97)}
+  .acao-txt:focus-visible{outline:3px solid var(--rosa);outline-offset:2px;border-radius:4px}
+
+  /* quem marcou cada tarefa */
+  li.flex:has(.cx){cursor:pointer}
+  .marca{
+    flex-shrink:0;align-self:flex-start;margin-top:3px;
+    font-family:'Roboto Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.04em;
+    background:var(--menta);color:#fff;padding:3px 8px;border-radius:99px;white-space:nowrap;
+    animation:surge .2s cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes surge{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:none}}
+
+  /* portão de identificação */
+  .portao{
+    position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+    padding:20px;background:rgba(46,27,18,.97);animation:entra .22s cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes entra{from{opacity:0}to{opacity:1}}
+  .portao-cartao{
+    background:var(--papel);border-radius:16px;padding:24px 22px;max-width:420px;width:100%;
+    animation:sobe-cartao .26s cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes sobe-cartao{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+  .portao-cartao .eyebrow{color:var(--cacau-70)}
+  .portao-cartao h2{margin:0 0 10px;font-size:22px;letter-spacing:-.02em;text-transform:none;color:var(--cacau)}
+  .portao-cartao h2::after{display:none}
+  .portao-txt{font-size:13.6px;line-height:1.55;color:var(--cacau-70);margin-bottom:16px}
+  .nomes{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+  .nome{
+    min-height:46px;border:1.5px solid var(--linha);background:var(--papel-2);color:var(--cacau);
+    font-family:'Archivo',sans-serif;font-size:14.5px;font-weight:700;border-radius:10px;cursor:pointer;
+    transition:transform .13s cubic-bezier(.22,1,.36,1),border-color .13s ease,background .13s ease;
+  }
+  .nome:hover{border-color:var(--cacau);background:var(--papel)}
+  .nome:active{transform:scale(.97)}
+  .nome:focus-visible{outline:3px solid var(--framboesa);outline-offset:2px}
+  .portao .acao-txt{color:var(--cacau-70)}
+  .portao .acao-txt:hover{color:var(--cacau)}
+
+  @media print{
+    body{background:#fff;padding:0}
+    nav,.portao,.rodape-barra,.barra.fina{display:none !important}
+    .painel{display:block !important;page-break-before:always}
+    .card,.bloco,.prob,.pessoa{break-inside:avoid}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Etec Fernando Prestes · Grupo 5 · Casa do Brigadeiro</div>
+  <h1>Central do TCC<br><em>tudo que falta, em um lugar só</em></h1>
+  <div class="prazos">
+    <div class="prazo"><b>19/08</b><small>Parte teórica com a empresa identificada</small></div>
+    <div class="prazo"><b>15/09</b><small>Teórica e prática prontas</small></div>
+    <div class="prazo"><b>11 dias</b><small>É o que sobra a partir de hoje, 08/08</small></div>
+  </div>
+  <div class="barra">
+    <div class="barra-topo"><span>O grupo já concluiu</span><b id="contador">0 / 0</b></div>
+    <div class="trilho"><div class="preenche" id="preenche"></div></div>
+  </div>
+  <div class="barra fina" id="barra-minha" hidden>
+    <div class="barra-topo"><span id="rotulo-minha">As suas no Plano</span><b id="contador-meu">0 / 4</b></div>
+    <div class="trilho"><div class="preenche meu" id="preenche-meu"></div></div>
+  </div>
+  <div class="rodape-barra">
+    <span class="aviso" id="aviso">Carregando as marcações do grupo…</span>
+    <button class="acao-txt" id="btn-trocar" hidden>trocar de pessoa</button>
+    <button class="acao-txt" id="btn-limpar" hidden>limpar as minhas</button>
+  </div>
+</header>
+
+<nav>
+  <div class="abas" role="tablist">
+    <button class="aba" role="tab" aria-selected="true" data-alvo="plano">Plano</button>
+    <button class="aba" role="tab" aria-selected="false" data-alvo="problemas">Problemas</button>
+    <button class="aba" role="tab" aria-selected="false" data-alvo="conexao">Conexão</button>
+    <button class="aba" role="tab" aria-selected="false" data-alvo="pessoas">Cada um</button>
+    <button class="aba" role="tab" aria-selected="false" data-alvo="cronograma">Cronograma</button>
+    <button class="aba" role="tab" aria-selected="false" data-alvo="checklist">Checklist ABNT</button>
+    <button class="aba" role="tab" aria-selected="false" data-alvo="empresa">Empresa</button>
+    <button class="aba" role="tab" aria-selected="false" data-alvo="autoria">Quem fez o quê</button>
+  </div>
+</nav>
+
+<!-- ==================== PLANO ==================== -->
+<section class="painel on" id="plano">
+  <p class="intro">O que precisa acontecer até a entrega de <strong>19 de agosto</strong>. Marque conforme for terminando.</p>
+
+  <h2>Todo mundo</h2>
+  <ul class="bloco forte">
+    <li class="flex"><input type="checkbox" class="cx" data-id="plano-todo-01" aria-label="Reunião do grupo"><span class="data">SÁB 09/08</span><div class="txt">Reunião do grupo<em>Definir quem escreve o Resumo e as Considerações Finais — ninguém está com essas duas ainda. E fechar que a Yasmin é quem posta o arquivo.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="plano-todo-02" aria-label="Prazo final de texto, 22h"><span class="data">QUI 14/08</span><div class="txt">Prazo final de texto, 22h<em>Todo mundo posta a sua parte no drive. Depois disso só dá tempo de juntar.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="plano-todo-03" aria-label="Cada um lê a parte de outro"><span class="data">SEG 17/08</span><div class="txt">Cada um lê a parte de outro<em>Procurando três coisas: citação sem fonte, texto repetido e frase informal.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="plano-todo-04" aria-label="Entregar"><span class="data">TER 18/08</span><div class="txt">Entregar<em>Um dia antes do prazo. Em junho vocês postaram o arquivo errado — não dá para repetir.</em></div></li>
+  </ul>
+
+  <h2>Cada um</h2>
+  <div class="grid">
+
+    <div class="card urgente">
+      <div class="card-top"><h3>Nathan</h3><span>Pesquisa 2<br>atrasada</span></div>
+      <ul>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-nathan-01" aria-label="Escrever a Pesquisa 2"><div class="txt">Escrever a Pesquisa 2<em>Tema: elisão fiscal, ICMS-ST e tributação monofásica de PIS/COFINS no varejo. Fecha com a segregação de receitas no Simples.</em><span class="quando">até qui 13/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-nathan-02" aria-label="Arrumar a citação do CTN"><div class="txt">Arrumar a citação do CTN<em>Você citou o artigo 113 entre aspas sem dizer de onde veio. Põe (BRASIL, 1966) depois e a Lei 5.172/1966 nas referências.</em><span class="quando">ter 12/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-nathan-03" aria-label="Juntar os 3 primeiros parágrafos"><div class="txt">Juntar os 3 primeiros parágrafos<em>Os três dizem a mesma coisa com palavras diferentes. Vira um só.</em><span class="quando">ter 12/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-nathan-04" aria-label="Achar a fonte do caso McDonald's"><div class="txt">Achar a fonte do caso McDonald's<em>Notícia da CNN não sustenta os números 38,97% e 11,78%. Ou acha o acórdão do CARF, ou tira os percentuais.</em><span class="quando">qua 13/08</span></div></li>
+      </ul>
+    </div>
+
+    <div class="card urgente">
+      <div class="card-top"><h3>Yasmin</h3><span>Pesquisa 2<br>atrasada</span></div>
+      <ul>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-yasmin-01" aria-label="Escrever a Pesquisa 2"><div class="txt">Escrever a Pesquisa 2<em>Tema: formação de preço no varejo — markup, margem de contribuição e ponto de equilíbrio.</em><span class="quando">até qui 13/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-yasmin-02" aria-label="Trocar a sua seção pela versão da Victória"><div class="txt">Trocar a sua seção pela versão da Victória<em>Ela reescreveu a sua parte em 23/06, com IBPT e Fabretti, e essa versão nunca entrou no documento.</em><span class="quando">ter 12/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-yasmin-03" aria-label="Juntar tudo num arquivo só"><div class="txt">Juntar tudo num arquivo só<em>Tirar os marcadores com nome de aluno, padronizar o tempo verbal e cortar o que se repete.</em><span class="quando">15 e 16/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-yasmin-04" aria-label="Escrever o Resumo"><div class="txt">Escrever o Resumo<em>150 a 250 palavras + palavras-chave. O trabalho não tem.</em><span class="quando">dom 16/08</span></div></li>
+      </ul>
+    </div>
+
+    <div class="card urgente">
+      <div class="card-top"><h3>Calebe</h3><span>Pesquisa 2<br>atrasada</span></div>
+      <ul>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-calebe-01" aria-label="Escrever a Pesquisa 2"><div class="txt">Escrever a Pesquisa 2<em>Tema: estoque de perecíveis — PEPS, UEPS e custo médio, e perdas por vencimento. Encaixa perfeito numa doceria.</em><span class="quando">até qui 13/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-calebe-02" aria-label="Falar com a empresa"><div class="txt">Falar com a empresa<em>Pedir contrato social, cartão CNPJ, PGDAS-D e DAS dos últimos 12 meses. Levar o termo de autorização para assinar.</em><span class="quando">seg 11/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-calebe-03" aria-label="Confirmar o nome da empresa"><div class="txt">Confirmar o nome da empresa<em>O grupo já usou dois nomes diferentes. Abre o cartão do CNPJ 25.126.655/0001-31 e define o que é razão social.</em><span class="quando">seg 11/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-calebe-04" aria-label="Escrever a seção da empresa"><div class="txt">Escrever a seção da empresa<em>CNPJ, CNAE, porte, regime, anexo, faturamento, funcionários e o que vende. Hoje a empresa some depois da metodologia.</em><span class="quando">dom 16/08</span></div></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><h3>Victória</h3><span>Em dia<br>revisão</span></div>
+      <ul>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-victoria-01" aria-label="Corrigir 3 erros da sua seção 6"><div class="txt">Corrigir 3 erros da sua seção 6<em>1) A CSLL do comércio é 12%, não 8%. 2) Quem define Lucro Real obrigatório é a Lei 9.718/98, não o CFC. 3) O Decreto 3.000/1999 foi revogado — usa o 9.580/2018, como você já fez na 6.1.</em><span class="quando">seg 11/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-victoria-02" aria-label="Conferir o livro do Garcia"><div class="txt">Conferir o livro do Garcia<em>No texto está 2021, na lista está 2015. Você mesma avisou o grupo que o chat inventa livro.</em><span class="quando">ter 12/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-victoria-03" aria-label="Colocar a Reforma Tributária no TCC"><div class="txt">Colocar a Reforma Tributária no TCC<em>Seu material de 04/08 está pronto e fora do trabalho. É o que vai diferenciar o grupo.</em><span class="quando">qui 14/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-victoria-04" aria-label="Revisar as referências"><div class="txt">Revisar as referências<em>Hoje são três listas separadas. Vira uma só, em ordem alfabética.</em><span class="quando">ter 18/08</span></div></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><h3>Laura</h3><span>Em dia<br>reescrever</span></div>
+      <ul>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-laura-01" aria-label="Reescrever a sua parte 8.1"><div class="txt">Reescrever a sua parte 8.1<em>Hoje é uma lista de definições de duas linhas, sem nenhuma citação. Precisa virar texto corrido.</em><span class="quando">até qui 13/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-laura-02" aria-label="Trocar as fontes"><div class="txt">Trocar as fontes<em>Serasa, Caixa e InfinitePay são site de banco e blog. Usa dois livros: Assaf Neto, Gitman, Hoji ou Zdanowicz.</em><span class="quando">ter 12/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-laura-03" aria-label="Completar o fluxo de caixa"><div class="txt">Completar o fluxo de caixa<em>Falta explicar as três atividades (operacional, investimento e financiamento) e método direto x indireto.</em><span class="quando">qua 13/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-laura-04" aria-label="Cobrar o prazo de quinta"><div class="txt">Cobrar o prazo de quinta<em>Conferir quem postou até as 22h e chamar quem faltar.</em><span class="quando">qui 14/08</span></div></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><h3>João Pedro</h3><span>Em dia<br>tabelas</span></div>
+      <ul>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-joaopedro-01" aria-label="Montar as tabelas do trabalho"><div class="txt">Montar as tabelas do trabalho<em>Anexo I com as 6 faixas e um quadro comparando os 3 regimes. O TCC não tem nenhuma tabela ou gráfico até agora.</em><span class="quando">até qua 13/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-joaopedro-02" aria-label="Cortar a repetição"><div class="txt">Cortar a repetição<em>Custos fixos e variáveis aparecem duas vezes na sua seção. Deixa só uma.</em><span class="quando">seg 11/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-joaopedro-03" aria-label="Tirar a lista de referências do meio"><div class="txt">Tirar a lista de referências do meio<em>Ela tem que ir para a lista única do final, junto com as outras.</em><span class="quando">ter 12/08</span></div></li>
+        <li class="flex"><input type="checkbox" class="cx" data-id="plano-joaopedro-04" aria-label="Resolver Viceconti e CPC 16"><div class="txt">Resolver Viceconti e CPC 16<em>Estão nas referências mas não aparecem no texto. Ou cita, ou tira.</em><span class="quando">ter 12/08</span></div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== PROBLEMAS ==================== -->
+<section class="painel" id="problemas">
+  <p class="intro">Os <strong>14 problemas críticos</strong> do trabalho e os <strong>11 erros técnicos</strong> de conteúdo. Os técnicos são os que um professor de contabilidade pega na hora.</p>
+
+  <h2>Problemas críticos</h2>
+
+  <div class="prob"><h4><span class="num">01</span>O documento entregue não é a versão mais atual do grupo</h4>
+    <p>Três coisas prontas ficaram de fora: a Victória reescreveu a seção 9 em 23/06 com IBPT e Fabretti e essa versão nunca entrou; o material da Reforma Tributária de 04/08 está fora; e a parte 8.1 da Laura entrou crua, do jeito que foi mandada no grupo.</p>
+    <p>Vocês estão produzindo e perdendo trabalho no caminho. Não é falta de esforço — é falta de um lugar único onde o documento vive.</p></div>
+
+  <div class="prob"><h4><span class="num">02</span>Ninguém é dono do arquivo final</h4>
+    <p>Yasmin monta, Calebe converte para o modelo, Victória revisa. Em 23/06 o resultado foi o arquivo errado postado no Classroom. Faltando 11 dias, uma pessoa precisa apertar o botão — e é a Yasmin.</p></div>
+
+  <div class="prob"><h4><span class="num">03</span>Marcadores internos dentro do texto</h4>
+    <p>"Pesquisa 2 - Regimes Especiais - Nathan Elias" e mais dois. São bilhetes internos que sobraram no corpo do trabalho. A banca lê isso como grupo que não conversou.</p></div>
+
+  <div class="prob"><h4><span class="num">04</span>Três listas de referências, nenhuma completa</h4>
+    <p>Uma no meio da seção 7, uma geral bagunçada e uma boa no final. Tem que virar uma só, alfabética, em NBR 6023. Erro de digitação para corrigir: "FAOTRES CONDICIONANTES" vira FATORES. E o CTN está listado como "Presidência da República Casa Civil" — o certo é BRASIL. Lei nº 5.172/1966.</p></div>
+
+  <div class="prob"><h4><span class="num">05</span>Citações que não existem na lista</h4>
+    <p>Garrison, Noreen e Brewer (2013), Padoveze (2012) e InfinitePay (2023) aparecem no texto e não nas referências. Viceconti e o CPC 16 estão nas referências e não no texto. A banca confere isso.</p></div>
+
+  <div class="prob"><h4><span class="num">06</span>A empresa some do trabalho</h4>
+    <p>Casa do Brigadeiro aparece no título, introdução, justificativa, objetivos e metodologia — e depois some por 15 páginas. Falta a seção de Caracterização da Empresa. Vocês têm o CNPJ desde 23/06 e ele nunca virou texto.</p></div>
+
+  <div class="prob"><h4><span class="num">07</span>Zero tabelas e gráficos</h4>
+    <p>Num TCC de contabilidade isso pesa. Ganhos fáceis: tabela do Anexo I com as seis faixas, quadro comparativo dos três regimes e a estrutura do demonstrativo de fluxo de caixa.</p></div>
+
+  <div class="prob"><h4><span class="num">08</span>Falta o que é obrigatório</h4>
+    <p>Não tem resumo, palavras-chave, folha de aprovação, lista de tabelas, considerações finais nem apêndices (roteiro de entrevista e termo de autorização). Confiram o manual da Etec, que prevalece sobre qualquer regra geral.</p></div>
+
+  <div class="prob"><h4><span class="num">09</span>Sumário desatualizado</h4>
+    <p>Não tem a 6.1, as páginas não batem com o texto e os títulos estão inconsistentes: "7 CUSTOS" sem ponto, "7.1 Terminologia Contábil Básica" em caixa mista, e um subtítulo sem numeração nenhuma.</p></div>
+
+  <div class="prob"><h4><span class="num">10</span>Redundância entre as seções 5, 6, 6.1 e 9</h4>
+    <p>Quatro seções explicando escolha de regime e impacto na competitividade. A seção 9 é quase repetição do que já foi dito antes.</p></div>
+
+  <div class="prob"><h4><span class="num">11</span>Tempo verbal misturado</h4>
+    <p>Introdução e justificativa estão no passado — "constituiu", "tornou-se", "justificou-se", "o estudo buscou demonstrar" — como se o trabalho já tivesse acabado. A metodologia está no futuro. Padronizem: teoria no presente, metodologia no futuro.</p></div>
+
+  <div class="prob"><h4><span class="num">12</span>A questão-problema já assume a resposta</h4>
+    <p>"Como a ausência de planejamento tributário impacta negativamente..." parte do princípio de que existe ausência e que ela é negativa, antes de coletar qualquer dado. A banca ataca isso.</p>
+    <div class="cita">De que forma a implantação de um planejamento tributário integrado ao controle de fluxo de caixa pode contribuir para a redução de custos e para a eficiência financeira da Casa do Brigadeiro Comércio de Doces Sorocaba Ltda.?</div></div>
+
+  <div class="prob"><h4><span class="num">13</span>A metodologia não bate com o que vocês vão fazer</h4>
+    <p>Está escrito "abordagem qualitativa", mas vocês vão simular regimes e projetar caixa com número. O correto é quali-quantitativa.</p></div>
+
+  <div class="prob"><h4><span class="num">14</span>Risco de plágio por parágrafo sem citação</h4>
+    <p>Vários parágrafos técnicos continuam sem fonte. E vocês já foram avisados: a avaliação que a Victória rodou em 16/06 apontou isso como risco grave de reprovação, e não foi corrigido.</p></div>
+
+  <h2>Erros técnicos de conteúdo</h2>
+
+  <div class="prob tec"><h4><span class="num">T1</span>A base da CSLL está errada<span class="quem">Victória · seção 6</span></h4>
+    <p>O texto aplica 8% para IRPJ e CSLL. No comércio, a presunção da CSLL é <b>12%</b> (Lei 9.249/95, art. 20). Os 8% valem só para o IRPJ. É erro conceitual claro.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T2</span>Atribuição errada ao CFC<span class="quem">Victória · seção 6</span></h4>
+    <p>"Conforme as diretrizes do CFC, [o Lucro Real é] obrigatório para empresas com faturamento superior a R$ 78 milhões." O CFC não define isso. A base é a Lei nº 9.718/1998, art. 14.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T3</span>Lei revogada usada como base<span class="quem">Victória · seção 6</span></h4>
+    <p>As alíquotas de presunção estão fundamentadas em (BRASIL, 1999), o Decreto 3.000/1999, que não vale mais. O certo é o Decreto 9.580/2018 — que ela mesma usou corretamente na 6.1.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T4</span>A referência do Garcia não fecha<span class="quem">referências</span></h4>
+    <p>No texto: Garcia (2021). Na lista: GARCIA, Edino Ribeiro. Contabilidade tributária. Atlas, 2015. Título e ano diferentes. A Yasmin avisou o grupo em 23/06 exatamente sobre isso — o chat sugere livros que ninguém conseguiu verificar. Mesma checagem vale para o Manual do CFC (2023).</p></div>
+
+  <div class="prob tec"><h4><span class="num">T5</span>Citação direta sem fonte<span class="quem">Nathan · seção 5</span></h4>
+    <p>O trecho do art. 113 do CTN está entre aspas sem indicação de origem. Falta (BRASIL, 1966) logo depois.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T6</span>Caso McDonald's sem lastro<span class="quem">Nathan · seção 5</span></h4>
+    <p>Os percentuais 38,97% e 11,78% se apoiam em CNN e num portal de notícias. Ou acha o acórdão do CARF, ou tira os números. Também: "onde houve a reclassificação" — "onde" é só para lugar. E "tributaria especifica" está sem acento.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T7</span>Fontes que não sustentam TCC<span class="quem">Laura · seção 8</span></h4>
+    <p>Caixa Econômica, Serasa e InfinitePay. Faltam livros: Assaf Neto, Gitman, Hoji ou Zdanowicz.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T8</span>Duas frases problemáticas<span class="quem">Laura · seção 8</span></h4>
+    <p>"o monitoramento adequado de um contador evita o endividamento" está confusa. E "escolha do regime mais adequado, como Simples Nacional ou Lucro Real" — para uma microempresa de doces a comparação real é Simples x Lucro Presumido.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T9</span>A 8.1 é glossário, não texto<span class="quem">Laura · seção 8.1</span></h4>
+    <p>Sete definições de duas linhas cada, sem uma única citação. E é justamente o centro do produto final de vocês.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T10</span>Nenhum número na seção<span class="quem">Calebe · seção 10</span></h4>
+    <p>"Muitas microempresas encerram suas atividades" não prova nada. Precisa do percentual do relatório Sobrevivência das Empresas no Brasil, do Sebrae, com o ano.</p></div>
+
+  <div class="prob tec"><h4><span class="num">T11</span>Repetição interna<span class="quem">João Pedro · seção 7</span></h4>
+    <p>Custos fixos e variáveis são explicados no início da seção e de novo em "Comportamento dos Custos no Comércio". É a mesma explicação duas vezes.</p></div>
+</section>
+
+<!-- ==================== CONEXÃO ==================== -->
+<section class="painel" id="conexao">
+  <p class="intro">Cada um escreveu a sua parte sozinho e o texto foi colado no trabalho. O resultado é que <strong>as seções não conversam entre si</strong> — e em quatro pontos elas chegam a se contradizer. Esta aba mostra onde, e traz as frases prontas para costurar.</p>
+
+  <div class="prob"><h4>A causa de tudo: ninguém sabe o que a empresa é</h4>
+    <p>Não existe a seção de Caracterização da Empresa. Sem ela, cada autor precisou <b>supor</b> o que é a Casa do Brigadeiro para escrever a sua parte — e cada um supôs uma coisa diferente. Escrever essa seção não resolve só o item da lista: resolve a maior parte das contradições abaixo de uma vez só.</p></div>
+
+  <h2>As 4 contradições</h2>
+
+  <div class="prob"><h4><span class="num">C1</span>A empresa é comércio ou é atividade híbrida?</h4>
+    <p><b>Seção 6</b> diz que a confeitaria é atividade híbrida, que engloba venda de mercadoria e atendimento no local, e por isso trata das duas presunções, 8% e 32%.</p>
+    <p><b>Seção 6.1</b> diz que a empresa é comércio varejista, deve ficar no Anexo I e ser tributada sobre 8%, <b>"nunca sobre os 32% destinados à prestação de serviços"</b>.</p>
+    <p>São duas seções coladas uma na outra, da mesma autora, dizendo coisas opostas. É a primeira pergunta que a banca faz. Só o cartão CNPJ resolve: se o CNAE for de comércio varejista, a 6 se alinha à 6.1; se houver CNAE de serviço, a 6.1 precisa admitir a dualidade.<span class="quem">Victória</span></p></div>
+
+  <div class="prob"><h4><span class="num">C2</span>Duas bases legais diferentes para a mesma regra</h4>
+    <p><b>Seção 6</b> fundamenta as presunções no Decreto 3.000/1999. <b>Seção 6.1</b> fundamenta as mesmas presunções no Decreto 9.580/2018. O 9.580 revogou o 3.000 — então o trabalho cita uma lei válida e uma revogada, em páginas seguidas, para dizer a mesma coisa.<span class="quem">Victória</span></p></div>
+
+  <div class="prob"><h4><span class="num">C3</span>Qual comparação de regimes o TCC vai fazer?</h4>
+    <p><b>Seção 8</b> diz que o fluxo de caixa ajuda a escolher o regime, "como Simples Nacional ou Lucro Real".</p>
+    <p><b>Seção 6.1</b> já tinha estabelecido que o Lucro Real "raramente é adotado" por microempresas e que a alternativa real é o Lucro Presumido.</p>
+    <p>A prática de vocês vai comparar Simples × Presumido. A seção 8 aponta para outro lugar.<span class="quem">Laura</span></p></div>
+
+  <div class="prob"><h4><span class="num">C4</span>A seção 9 recomeça o trabalho do zero</h4>
+    <p><b>Seção 9</b> escreve "As empresas podem optar por regimes como Simples Nacional, Lucro Presumido ou Lucro Real" — três seções depois de a Victória ter explicado isso em profundidade, com artigo de lei. O leitor sente que o texto esqueceu o que já tinha dito.<span class="quem">Yasmin</span></p></div>
+
+  <h2>Promessas que o trabalho não cumpre</h2>
+  <p class="intro">Duas seções prometem conceitos que nunca aparecem. Isso se resolve sozinho quando as pesquisas pendentes entrarem — <strong>desde que entrem na posição certa</strong>.</p>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="conexao-promessas-01" aria-label="A seção 7 promete margem de contribuição e ponto de equilíbrio"><div class="txt">A seção 7 promete margem de contribuição e ponto de equilíbrio<em>Ela termina dizendo que classificar custos "permite calcular a margem de contribuição e determinar o ponto de equilíbrio" — e nenhum dos dois é explicado no trabalho. É a Pesquisa 2 da Yasmin. Ela precisa vir logo depois da seção 7, não em outro lugar.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="conexao-promessas-02" aria-label="A seção 9 fala de substituição tributária sem ela ter sido explicada"><div class="txt">A seção 9 fala de substituição tributária sem ela ter sido explicada<em>Cita ICMS, IPI e substituição tributária como se o leitor já soubesse o que é. É a Pesquisa 2 do Nathan. Ela precisa vir antes da seção 9, junto do bloco tributário.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="conexao-promessas-03" aria-label="O exemplo do McDonald's fica solto"><div class="txt">O exemplo do McDonald's fica solto<em>A reclassificação de um produto doce, de sorvete para sobremesa láctea, é o exemplo perfeito para uma doceria — e some depois da seção 5. Vale retomar uma linha dele quando falarem do enquadramento da Casa do Brigadeiro.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="conexao-promessas-04" aria-label="Regime de caixa x competência não encontra o Simples Nacional"><div class="txt">Regime de caixa x competência não encontra o Simples Nacional<em>A Laura define os dois regimes no abstrato. A conexão que falta: no Simples Nacional a ME pode optar pelo regime de caixa para reconhecer receita. É a ponte natural entre a parte financeira e a tributária, e ninguém fez.</em></div></li>
+  </ul>
+
+  <h2>Frases de costura, prontas para colar</h2>
+  <p class="intro">Uma frase no fim de cada seção, apontando para a próxima. É o que transforma seis textos em um trabalho só.</p>
+
+  <ul class="bloco">
+    <li><div class="txt">Da seção 5 para a 6 <span class="quando">Nathan → Victória</span></div>
+      <div class="cita">Compreendidos os conceitos de obrigação tributária e de elisão fiscal, cabe examinar o instrumento por meio do qual essa elisão se concretiza no cotidiano das microempresas: a escolha do regime tributário.</div></li>
+
+    <li><div class="txt">Da seção 6.1 para a 7 <span class="quando">Victória → João Pedro</span></div>
+      <div class="cita">Definido o regime tributário e a forma como ele incide sobre a receita bruta, resta compreender a outra metade da equação do resultado: os custos que a empresa suporta antes mesmo da incidência dos tributos.</div></li>
+
+    <li><div class="txt">Da seção 7 para a 8 <span class="quando">João Pedro → Laura</span></div>
+      <div class="cita">A classificação dos custos descreve o comportamento dos gastos segundo o regime de competência. Para a gestão diária de uma microempresa, importa igualmente saber em que momento esses valores efetivamente entram e saem do caixa.</div></li>
+
+    <li><div class="txt">Da seção 8 para a 9 <span class="quando">Laura → Yasmin</span></div>
+      <div class="cita">Tanto o controle de custos quanto o acompanhamento do fluxo de caixa dependem de registro contábil confiável. Cabe examinar, portanto, o papel do profissional responsável por produzir e interpretar essas informações.</div></li>
+
+    <li><div class="txt">Abertura da 9, para não recomeçar do zero <span class="quando">Yasmin</span></div>
+      <div class="cita">Conforme exposto na seção anterior sobre regimes tributários, a decisão entre Simples Nacional e Lucro Presumido não é definitiva: ela deve ser reavaliada sempre que o faturamento, a margem ou a estrutura de custos se alterarem. É nessa reavaliação periódica que a contabilidade assume função estratégica.</div></li>
+
+    <li><div class="txt">Fechamento de cada seção, ligando à empresa <span class="quando">todos</span></div>
+      <div class="cita">A Victória já faz isso no fim da 6.1, quando escreve que é esse arcabouço que sustentará a análise do risco de regime da microempresa estudada. Copiem o método: <b>toda seção termina com uma frase citando a Casa do Brigadeiro.</b> Seis frases resolvem o problema de a empresa sumir do trabalho.</div></li>
+  </ul>
+
+  <h2>Palavras que mudam de nome no meio do texto</h2>
+  <p class="intro">A mesma coisa recebe quatro nomes diferentes. Escolham um de cada e usem só ele.</p>
+  <div class="tab-wrap">
+    <table>
+      <thead><tr><th>Como aparece hoje</th><th>Onde</th><th>Padronizar como</th></tr></thead>
+      <tbody>
+        <tr><td>encargo tributário</td><td class="mono">seção 5</td><td rowspan="4"><b>carga tributária</b><br><span style="font-weight:400;color:var(--cacau-70)">é o termo do título do TCC</span></td></tr>
+        <tr><td>carga tributária</td><td class="mono">seções 6, 10</td></tr>
+        <tr><td>despesas tributárias</td><td class="mono">seção 7</td></tr>
+        <tr><td>custos fiscais</td><td class="mono">seção 9</td></tr>
+        <tr><td>microempresa · ME · pequenos negócios · micro e pequenas empresas</td><td class="mono">todas</td><td><b>microempresa (ME)</b><br><span style="font-weight:400;color:var(--cacau-70)">definir na primeira vez e abreviar depois</span></td></tr>
+        <tr><td>confeitaria · loja de doces · comércio varejista de alimentos</td><td class="mono">6, 7, 10</td><td><b>comércio varejista de doces</b><br><span style="font-weight:400;color:var(--cacau-70)">alinhar com o CNAE do cartão CNPJ</span></td></tr>
+        <tr><td>enquadramento · regime · classificação fiscal</td><td class="mono">6, 6.1, 9</td><td><b>regime tributário</b> para o regime<br><b>enquadramento</b> só para ME/EPP</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Ordem sugerida das seções</h2>
+  <p class="intro">Hoje o trabalho vai do detalhe tributário para o contexto geral — ou seja, ao contrário. A seção 10, que explica por que o tema importa, está no fim. Sugestão de ordem, já com as três pesquisas que faltam encaixadas:</p>
+  <div class="tab-wrap">
+    <table>
+      <thead><tr><th>Ordem nova</th><th>Seção</th><th>Autor</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">1</td><td>Realidade econômica das microempresas <span class="feito">(era a 10)</span></td><td>Calebe</td></tr>
+        <tr><td class="mono">2</td><td>Fundamentos do planejamento tributário</td><td>Nathan</td></tr>
+        <tr><td class="mono">3</td><td>Regimes tributários e enquadramento <span class="feito">(6 e 6.1 fundidas)</span></td><td>Victória</td></tr>
+        <tr><td class="mono">4</td><td>Elisão, ICMS-ST e monofásico <span class="falta">(a escrever)</span></td><td>Nathan</td></tr>
+        <tr><td class="mono">5</td><td>Custos empresariais e terminologia</td><td>João Pedro</td></tr>
+        <tr><td class="mono">6</td><td>Formação do preço de venda <span class="falta">(a escrever)</span></td><td>Yasmin</td></tr>
+        <tr><td class="mono">7</td><td>Gestão de estoque de perecíveis <span class="falta">(a escrever)</span></td><td>Calebe</td></tr>
+        <tr><td class="mono">8</td><td>Gestão financeira e fluxo de caixa</td><td>Laura</td></tr>
+        <tr><td class="mono">9</td><td>Papel da contabilidade <span class="feito">(fecha o referencial)</span></td><td>Yasmin</td></tr>
+        <tr><td class="mono">10</td><td>Reforma tributária <span class="feito">(pronto, só inserir)</span></td><td>Victória</td></tr>
+        <tr><td class="mono">11</td><td>Caracterização da empresa <span class="falta">(a escrever)</span></td><td>Calebe</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="intro">A lógica é de funil: por que microempresa quebra → como o planejamento tributário responde a isso → qual regime → quanto custa produzir → por quanto vender → como não perder no estoque → como controlar o caixa → quem faz tudo isso → o que muda com a reforma → e finalmente a empresa estudada.</p>
+
+  <h2>Quem faz a costura</h2>
+  <div class="prob"><h4>Uma pessoa lê o trabalho inteiro de uma vez, em voz alta</h4>
+    <p>Não dá para costurar seis textos sem alguém que tenha lido os seis seguidos. A pessoa natural é a <b>Victória</b> — é ela que já revisa os textos dos outros e a única que escreveu conectando com a empresa. A <b>Yasmin</b> monta o arquivo; a Victória lê o resultado inteiro no dia 17 e aponta onde ainda pula.</p>
+    <p>Ler em voz alta não é figura de linguagem: é assim que se percebe uma seção que recomeça do zero.</p></div>
+</section>
+
+<!-- ==================== PESSOAS ==================== -->
+<section class="painel" id="pessoas">
+  <p class="intro">Avaliação de cada um: o que entregou, o que faz bem e o que precisa mudar. Reconstruído a partir das mensagens do grupo entre <strong>17/05 e 08/08</strong>.</p>
+
+  <div class="pessoa">
+    <div class="pessoa-topo"><h3>Victória Caroline</h3><span class="tag ok">Em dia</span></div>
+    <p class="lead">A mais completa do grupo.</p>
+    <p>Entregou as duas pesquisas, e a <b>6.1 é o melhor texto do TCC com folga</b>: cita lei com artigo e data, constrói argumento (obrigação de dar × obrigação de fazer), amarra Constituição → LC 123 → Lei 9.249 → RIR/2018 e fecha conectando com a empresa. Fora isso, roda as avaliações críticas dos textos dos outros, produz as listas em ABNT e já reescreveu a seção da Yasmin numa versão melhor.</p>
+    <p><b>Melhorar:</b> a seção 6, escrita antes, tem os três erros técnicos T1, T2 e T3 — ironicamente ela mesma corrigiu quase todos ao escrever a 6.1 três semanas depois. Parágrafos longos demais, alguns com 15 linhas. E ela produz material que não chega ao documento final: precisa entregar já formatado e cobrar a inserção.</p>
+    <div class="papel"><b>Papel no grupo</b>Revisora técnica e responsável pelas referências.</div>
+  </div>
+
+  <div class="pessoa">
+    <div class="pessoa-topo"><h3>Yasmin Pereira</h3><span class="tag al">Pesquisa 2 atrasada</span></div>
+    <p class="lead">A coordenadora — é ela que segura o grupo.</p>
+    <p>Dividiu as pesquisas, cobra prazo, monta o TCC, escreveu a mensagem para a professora explicando a entrega. E foi ela quem levantou o ponto mais maduro da conversa toda: alertou o grupo para conferir as fontes porque o chat estava sugerindo livros pagos que ninguém conseguia verificar. Isso é postura acadêmica de verdade.</p>
+    <p><b>Melhorar:</b> a seção 9 dela repete as seções 5 e 6 e precisa encolher uns 40%. E tem um ponto delicado: em 06/08 ela cobrou Calebe e Nathan, mas a Pesquisa 2 dela também está pendente. Quem coordena precisa estar em dia, senão perde autoridade para cobrar.</p>
+    <div class="papel"><b>Papel no grupo</b>Dona do documento final. É ela que aperta o botão de entregar.</div>
+  </div>
+
+  <div class="pessoa">
+    <div class="pessoa-topo"><h3>João Pedro</h3><span class="tag ok">Em dia</span></div>
+    <p class="lead">O mais constante.</p>
+    <p>Entregou as duas pesquisas no prazo, texto limpo, boa progressão (conceito → classificação → terminologia → métodos de custeio), Martins usado de forma consistente. A ligação com loja de doces — "compra das mercadorias, embalagens, fretes de aquisição" — é dele, e é um dos poucos momentos em que o trabalho aterrissa no negócio real.</p>
+    <p><b>Melhorar:</b> chega atrasado nas discussões e se perde ("tava dormindo, tô perdido"). Isso já custou uma entrega errada. E o texto tem a repetição interna e a lista de referências solta no meio do trabalho.</p>
+    <div class="papel"><b>Papel no grupo</b>Tabelas e quadros — trabalho concreto, com prazo claro, que o TCC não tem nenhum.</div>
+  </div>
+
+  <div class="pessoa">
+    <div class="pessoa-topo"><h3>Nathan Elias</h3><span class="tag al">Pesquisa 2 atrasada</span></div>
+    <p class="lead">Bom conceitualmente, atrasado na entrega.</p>
+    <p>A distinção elisão × evasão está correta e o caso McDonald's é um bom gancho didático. E ele é o mais autocrítico do grupo: entregou perguntando se a citação estava certa. A dúvida estava correta — a citação do CTN está mesmo sem fonte.</p>
+    <p><b>Melhorar:</b> os três parágrafos iniciais dizem a mesma coisa. Acentuação e "onde" mal empregado. E a Pesquisa 2 não saiu — hoje às 18h ele ainda perguntava se precisava entregar. O tema dele, ICMS-ST e monofásico, é dos mais úteis para uma doceria que vende bebida.</p>
+    <div class="papel"><b>Papel no grupo</b>Fundamentos tributários e, na fase de apresentação, o banco de perguntas da banca.</div>
+  </div>
+
+  <div class="pessoa">
+    <div class="pessoa-topo"><h3>Laura Roque</h3><span class="tag">Reescrever</span></div>
+    <p class="lead">Cobra bem, escreve pouco.</p>
+    <p>Foi ela quem achou a primeira empresa para o grupo e é quem lembra os prazos — "entregar até amanhã às 14h", "15 de setembro ele quer pronto". Num grupo de seis, isso tem valor real.</p>
+    <p><b>Melhorar:</b> é a parte mais fraca do trabalho, e é justamente o centro do produto final de vocês — a ferramenta de fluxo de caixa prometida na metodologia. A 8.1 são definições soltas sem citação e as fontes são site de banco e blog de fintech. Precisa de reescrita completa até 13/08.</p>
+    <div class="papel"><b>Papel no grupo</b>Dona da planilha de fluxo de caixa na Fase 2.</div>
+  </div>
+
+  <div class="pessoa">
+    <div class="pessoa-topo"><h3>Daniel Calebe</h3><span class="tag al">Pesquisa 2 atrasada</span></div>
+    <p class="lead">O operacional.</p>
+    <p>Achou o CNPJ, converteu as pesquisas para o modelo do professor, anexou os dois arquivos quando deu confusão. É quem resolve problema prático. O foco dele na mortalidade das microempresas e nos desafios do empreendedor — falta de tempo, mistura de finança pessoal com a da empresa — dá uma justificativa social boa para o TCC.</p>
+    <p><b>Melhorar:</b> o texto não tem um único número. E a Pesquisa 2 está pendente. Como é ele quem tem o contato do CNPJ, é o candidato natural para a ponte com a empresa — que é o maior risco de vocês.</p>
+    <div class="papel"><b>Papel no grupo</b>Contato com a empresa e a seção de Caracterização da Empresa.</div>
+  </div>
+</section>
+
+<!-- ==================== CRONOGRAMA ==================== -->
+<section class="painel" id="cronograma">
+  <p class="intro">As três fases até a apresentação. O maior risco não é a teoria: <strong>é a empresa</strong>. Sem os documentos em mãos até 23/08, a entrega de 15/09 não acontece.</p>
+
+  <h2>Fase 1 — até 19/08</h2>
+  <div class="fase">Entrega da parte teórica</div>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-01" aria-label="Reunião de alinhamento"><span class="data">SÁB 09/08</span><div class="txt">Reunião de alinhamento<em>Definir papéis fixos, distribuir correções e fechar quem contata a empresa. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-02" aria-label="Contato formal com a empresa"><span class="data">SEG 11/08</span><div class="txt">Contato formal com a empresa<em>Calebe · Pedir os documentos e levar o termo de autorização. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-03" aria-label="Redação das 3 pesquisas pendentes"><span class="data">09 A 14/08</span><div class="txt">Redação das 3 pesquisas pendentes<em>Nathan, Yasmin e Calebe escrevem. Os demais corrigem os próprios textos. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-04" aria-label="Deadline interno de texto"><span class="data">QUI 14/08</span><div class="txt">Deadline interno de texto<em>Laura cobra · Tudo no drive até as 22h. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-05" aria-label="Montagem do documento único"><span class="data">15 E 16/08</span><div class="txt">Montagem do documento único<em>Yasmin · Cortar redundância entre 5, 6 e 9, padronizar tempo verbal, remover marcadores. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-06" aria-label="Caracterização da Empresa"><span class="data">DOM 16/08</span><div class="txt">Caracterização da Empresa<em>Calebe · Razão social, CNPJ, CNAE, porte, regime, anexo, faturamento e mix de produtos.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-07" aria-label="Resumo e palavras-chave"><span class="data">DOM 16/08</span><div class="txt">Resumo e palavras-chave<em>Yasmin · 150 a 250 palavras. Conferir se a Etec exige abstract.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-08" aria-label="Revisão cruzada"><span class="data">SEG 17/08</span><div class="txt">Revisão cruzada<em>Cada um lê a seção de outro procurando citação sem fonte, repetição e tom informal.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-09" aria-label="Revisão ABNT final"><span class="data">TER 18/08</span><div class="txt">Revisão ABNT final<em>Victória · Rodar a aba Checklist inteira e unificar as três listas de referências. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase1-10" aria-label="ENTREGA 1"><span class="data">TER 18/08</span><div class="txt">ENTREGA 1<em>Yasmin posta no Classroom à noite, com um dia de folga. <span class="critica">CRÍTICA</span></em></div></li>
+  </ul>
+
+  <h2>Fase 2 — até 15/09</h2>
+  <div class="fase">Teórica e prática prontas</div>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase2-01" aria-label="Coleta de dados da empresa"><span class="data">20 A 23/08</span><div class="txt">Coleta de dados da empresa<em>Calebe · Receber os documentos e entrevistar o proprietário. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase2-02" aria-label="Tabulação dos 12 meses"><span class="data">24 A 30/08</span><div class="txt">Tabulação dos 12 meses<em>Laura · Base de receitas, despesas e tributos mês a mês. Construir a planilha de fluxo de caixa. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase2-03" aria-label="Levantamento de custos reais"><span class="data">24 A 30/08</span><div class="txt">Levantamento de custos reais<em>João Pedro · Custo das mercadorias, taxas de cartão e despesas fixas.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase2-04" aria-label="Simulações tributárias"><span class="data">31/08 A 06/09</span><div class="txt">Simulações tributárias<em>Victória · Simples Anexo I atual x Lucro Presumido x cenário de crescimento. Margem de contribuição e ponto de equilíbrio. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase2-05" aria-label="Resultados e conclusão"><span class="data">07 A 11/09</span><div class="txt">Resultados e conclusão<em>Yasmin · Análise dos resultados, considerações finais e gráficos. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase2-06" aria-label="Revisão e apêndices"><span class="data">12 A 14/09</span><div class="txt">Revisão e apêndices<em>Victória · Formatação, roteiro de entrevista, termo de autorização e sumário atualizado.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase2-07" aria-label="ENTREGA 2"><span class="data">SEG 14/09</span><div class="txt">ENTREGA 2<em>Um dia antes do prazo. <span class="critica">CRÍTICA</span></em></div></li>
+  </ul>
+
+  <h2>Fase 3 — setembro a novembro</h2>
+  <div class="fase">Apresentação e banca</div>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase3-01" aria-label="Montagem dos slides"><span class="data">22 A 30/09</span><div class="txt">Montagem dos slides<em>Victória · Máximo 15 slides, uma ideia por slide, sem parágrafo. Gráfico em vez de tabela cheia.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase3-02" aria-label="3 ensaios cronometrados"><span class="data">OUTUBRO</span><div class="txt">3 ensaios cronometrados<em>Definir quem fala o quê e o tempo de cada um. Ensaiar de pé e em voz alta.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase3-03" aria-label="Banco de perguntas da banca"><span class="data">OUTUBRO</span><div class="txt">Banco de perguntas da banca<em>Nathan · 20 perguntas prováveis, com resposta de até 1 minuto cada.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="cronograma-fase3-04" aria-label="Ensaio final com os orientadores"><span class="data">NOVEMBRO</span><div class="txt">Ensaio final com os orientadores<em>Simulado completo com Claudinei e Regina, com feedback antes da apresentação real.</em></div></li>
+  </ul>
+</section>
+
+<!-- ==================== CHECKLIST ==================== -->
+<section class="painel" id="checklist">
+  <p class="intro">Rodar inteira no dia <strong>18/08</strong> e de novo no dia <strong>14/09</strong>. O manual da Etec Fernando Prestes prevalece sobre qualquer regra geral daqui — confiram ele antes.</p>
+
+  <h2>Estrutura</h2>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-01" aria-label="Capa com instituição, autores, título, cidade e ano"><div class="txt">Capa com instituição, autores, título, cidade e ano<em class="feito">Já existe</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-02" aria-label="Folha de rosto com natureza do trabalho e orientador"><div class="txt">Folha de rosto com natureza do trabalho e orientador<em class="feito">Já existe</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-03" aria-label="Folha de aprovação"><div class="txt">Folha de aprovação<em class="falta">Não existe</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-04" aria-label="Resumo de 150 a 250 palavras + palavras-chave"><div class="txt">Resumo de 150 a 250 palavras + palavras-chave<em class="falta">Não existe · Yasmin</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-05" aria-label="Lista de tabelas e ilustrações"><div class="txt">Lista de tabelas e ilustrações<em class="falta">Não existe — não há nenhuma tabela · João Pedro</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-06" aria-label="Sumário com títulos e páginas corretos"><div class="txt">Sumário com títulos e páginas corretos<em class="falta">Desatualizado — falta a 6.1 e as páginas estão erradas</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-07" aria-label="Considerações finais"><div class="txt">Considerações finais<em class="falta">Não existe — definir quem escreve</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-estrutura-08" aria-label="Apêndices: roteiro de entrevista e termo de autorização"><div class="txt">Apêndices: roteiro de entrevista e termo de autorização<em class="falta">Não existe · Calebe</em></div></li>
+  </ul>
+
+  <h2>Formatação</h2>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-formatacao-01" aria-label="Fonte Arial ou Times 12, entrelinha 1,5, texto justificado"><div class="txt">Fonte Arial ou Times 12, entrelinha 1,5, texto justificado<em>Conferir no arquivo final</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-formatacao-02" aria-label="Margens 3cm à esquerda e em cima, 2cm à direita e embaixo"><div class="txt">Margens 3cm à esquerda e em cima, 2cm à direita e embaixo<em>Conferir no arquivo final</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-formatacao-03" aria-label="Paginação no canto superior direito"><div class="txt">Paginação no canto superior direito<em class="falta">Hoje aparece embaixo</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-formatacao-04" aria-label="Títulos de seção numerados e padronizados"><div class="txt">Títulos de seção numerados e padronizados<em class="falta">Inconsistente — "7 CUSTOS" sem ponto, subtítulo sem número</em></div></li>
+  </ul>
+
+  <h2>Texto</h2>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-texto-01" aria-label="Teoria no presente"><div class="txt">Teoria no presente<em class="falta">Errado — introdução e justificativa estão no passado</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-texto-02" aria-label="Metodologia no futuro"><div class="txt">Metodologia no futuro<em class="feito">Correto</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-texto-03" aria-label="Linguagem impessoal, sem &quot;você&quot;, &quot;seu&quot; ou &quot;a gente&quot;"><div class="txt">Linguagem impessoal, sem "você", "seu" ou "a gente"<em>Conferir a seção 8 · Laura</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-texto-04" aria-label="Sem marcadores internos com nome de aluno no corpo"><div class="txt">Sem marcadores internos com nome de aluno no corpo<em class="falta">Errado — 3 marcadores no texto</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-texto-05" aria-label="Sem repetição de conteúdo entre seções"><div class="txt">Sem repetição de conteúdo entre seções<em class="falta">Errado — seções 5, 6, 6.1 e 9 se sobrepõem</em></div></li>
+  </ul>
+
+  <h2>Citações</h2>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-citacoes-01" aria-label="Toda citação do texto aparece nas referências"><div class="txt">Toda citação do texto aparece nas referências<em class="falta">Errado — Garrison, Padoveze e InfinitePay faltam</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-citacoes-02" aria-label="Toda referência listada é citada no texto"><div class="txt">Toda referência listada é citada no texto<em class="falta">Errado — Viceconti e CPC 16 não são citados · João Pedro</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-citacoes-03" aria-label="Citação direta curta entre aspas com autor, ano e página"><div class="txt">Citação direta curta entre aspas com autor, ano e página<em class="falta">O CTN está sem fonte · Nathan</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-citacoes-04" aria-label="Citação longa (+3 linhas) recuada 4cm, fonte 10, sem aspas"><div class="txt">Citação longa (+3 linhas) recuada 4cm, fonte 10, sem aspas<em>Conferir</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-citacoes-05" aria-label="Todo parágrafo técnico tem fonte"><div class="txt">Todo parágrafo técnico tem fonte<em class="falta">Errado — vários parágrafos sem fonte. É risco de plágio.</em></div></li>
+  </ul>
+
+  <h2>Referências</h2>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-referencias-01" aria-label="Lista única, alfabética, ao final do trabalho"><div class="txt">Lista única, alfabética, ao final do trabalho<em class="falta">Errado — existem 3 listas separadas</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-referencias-02" aria-label="Fonte online com &quot;Disponível em:&quot; e &quot;Acesso em: DD mês AAAA&quot;"><div class="txt">Fonte online com "Disponível em:" e "Acesso em: DD mês AAAA"<em class="falta">Errado — falta em todas as fontes web</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-referencias-03" aria-label="Nenhuma URL solta, sem autor nem título"><div class="txt">Nenhuma URL solta, sem autor nem título<em class="falta">Errado — 5 URLs cruas no final</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-referencias-04" aria-label="Legislação no formato BRASIL. Lei nº..., de data. Título."><div class="txt">Legislação no formato BRASIL. Lei nº..., de data. Título.<em>Parcialmente correto</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-referencias-05" aria-label="Cada livro citado foi conferido e existe de verdade"><div class="txt">Cada livro citado foi conferido e existe de verdade<em class="falta">Conferir Garcia 2021 e Manual do CFC 2023 · Victória</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-referencias-06" aria-label="Erro de digitação corrigido: FAOTRES vira FATORES"><div class="txt">Erro de digitação corrigido: FAOTRES vira FATORES<em class="falta">Errado</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-referencias-07" aria-label="CTN referenciado como BRASIL. Lei 5.172/1966"><div class="txt">CTN referenciado como BRASIL. Lei 5.172/1966<em class="falta">Errado — está como "Presidência da República"</em></div></li>
+  </ul>
+
+  <h2>Conteúdo</h2>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-conteudo-01" aria-label="A empresa aparece ao longo do referencial teórico"><div class="txt">A empresa aparece ao longo do referencial teórico<em class="falta">Errado — some depois da metodologia · Calebe</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-conteudo-02" aria-label="Questão-problema sem viés confirmatório"><div class="txt">Questão-problema sem viés confirmatório<em class="falta">Hoje já assume a conclusão</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-conteudo-03" aria-label="Abordagem declarada bate com o método real"><div class="txt">Abordagem declarada bate com o método real<em class="falta">Errado — diz qualitativa mas fará simulação numérica</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-conteudo-04" aria-label="Base de cálculo da CSLL no Lucro Presumido correta (12%)"><div class="txt">Base de cálculo da CSLL no Lucro Presumido correta (12%)<em class="falta">Errado — o texto usa 8% para os dois · Victória</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-conteudo-05" aria-label="Obrigatoriedade do Lucro Real com base legal correta"><div class="txt">Obrigatoriedade do Lucro Real com base legal correta<em class="falta">Errado — atribuída ao CFC · Victória</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-conteudo-06" aria-label="Decreto do IR atualizado: 9.580/2018, não 3.000/1999"><div class="txt">Decreto do IR atualizado: 9.580/2018, não 3.000/1999<em class="falta">Errado na seção 6 · Victória</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="checklist-conteudo-07" aria-label="Tudo prometido na metodologia foi cumprido"><div class="txt">Tudo prometido na metodologia foi cumprido<em>Pendente — só na Fase 2</em></div></li>
+  </ul>
+</section>
+
+<!-- ==================== EMPRESA ==================== -->
+<section class="painel" id="empresa">
+  <p class="intro"><strong>Casa do Brigadeiro Comércio de Doces Sorocaba Ltda.</strong> · CNPJ 25.126.655/0001-31<br>Sem estes documentos em mãos até <strong>23/08</strong>, a entrega de 15/09 não acontece. Fluxo de caixa e comparação de regimes exigem 12 meses de dado real.</p>
+
+  <h2>Documentos a pedir</h2>
+  <ul class="bloco">
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-01" aria-label="Contrato social e alterações"><div class="txt">Contrato social e alterações<em>Confirmar razão social, sócios e objeto social. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-02" aria-label="Cartão CNPJ atualizado"><div class="txt">Cartão CNPJ atualizado<em>CNAE principal e secundários, porte e data de abertura. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-03" aria-label="Extratos do PGDAS-D · 12 meses"><div class="txt">Extratos do PGDAS-D · 12 meses<em>Traz o RBT12 e a alíquota efetiva mês a mês. É a base da simulação. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-04" aria-label="Guias DAS pagas · 12 meses"><div class="txt">Guias DAS pagas · 12 meses<em>Valor real de tributo recolhido por mês. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-05" aria-label="Controle de despesas ou extrato bancário · 12 meses"><div class="txt">Controle de despesas ou extrato bancário · 12 meses<em>Para montar o fluxo de caixa real. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-06" aria-label="Relação de custo das mercadorias · 12 meses"><div class="txt">Relação de custo das mercadorias · 12 meses<em>Para calcular CMV, margem de contribuição e ponto de equilíbrio. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-07" aria-label="Taxas da máquina de cartão"><div class="txt">Taxas da máquina de cartão<em>Custo variável relevante em confeitaria.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-08" aria-label="Folha de pagamento e número de funcionários"><div class="txt">Folha de pagamento e número de funcionários<em>Compõe o custo fixo e permite simular a CPP no Lucro Presumido.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-09" aria-label="DEFIS mais recente"><div class="txt">DEFIS mais recente<em>Confirmar o faturamento anual declarado.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-10" aria-label="Notas fiscais de entrada e saída, em amostra"><div class="txt">Notas fiscais de entrada e saída, em amostra<em>Identificar ICMS-ST e produtos monofásicos — conecta com a pesquisa do Nathan.</em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-11" aria-label="Termo de autorização assinado"><div class="txt">Termo de autorização assinado<em>Obrigatório para usar o nome da empresa no TCC. Vira apêndice. <span class="critica">CRÍTICA</span></em></div></li>
+    <li class="flex"><input type="checkbox" class="cx" data-id="empresa-documentos-12" aria-label="Roteiro de entrevista aplicado"><div class="txt">Roteiro de entrevista aplicado<em>Registro da coleta qualitativa. Vira apêndice.</em></div></li>
+  </ul>
+
+  <h2>Atenção</h2>
+  <div class="prob"><h4>O grupo já usou dois nomes diferentes para a empresa</h4>
+    <p>Numa avaliação anterior aparece "Maria Paula Brigadeiro Café e Doces na Vila" e no CNPJ está "Casa do Brigadeiro Comércio de Doces Sorocaba Ltda". Alguém precisa abrir o cartão CNPJ e definir o que é razão social e o que é nome fantasia, antes de 19/08. Se a banca achar dois nomes, é problema.</p></div>
+  <div class="prob tec"><h4>Confirmar a Reforma Tributária com o orientador</h4>
+    <p>Vocês estão em 2026, ano de transição do IBS e da CBS, e as regras mudam rápido. Peçam ao Claudinei ou à Regina para confirmar o estágio atual antes de escrever a seção.</p></div>
+</section>
+
+<!-- ==================== AUTORIA ==================== -->
+<section class="painel" id="autoria">
+  <p class="intro">Quem escreveu cada seção, reconstruído pelas mensagens do grupo. Os marcadores que estão no PDF <strong>não são assinatura</strong> — são lembretes da Pesquisa 2 que ainda falta.</p>
+
+  <h2>O que já está no trabalho</h2>
+  <div class="tab-wrap">
+    <table>
+      <thead><tr><th>Seção</th><th>Autor</th><th>Entregue</th></tr></thead>
+      <tbody>
+        <tr><td>5. Fundamentos do Planejamento Tributário</td><td>Nathan Elias</td><td class="mono">23/06</td></tr>
+        <tr><td>6. Regimes Tributários no Brasil</td><td>Victória Caroline</td><td class="mono">23/06</td></tr>
+        <tr><td>6.1 Teoria da Tributação e Enquadramento</td><td>Victória Caroline</td><td class="mono">14/07</td></tr>
+        <tr><td>7. Custos Empresariais</td><td>João Pedro</td><td class="mono">23/06</td></tr>
+        <tr><td>7.1 Terminologia Contábil Básica</td><td>João Pedro</td><td class="mono">06/07</td></tr>
+        <tr><td>8. Gestão Financeira / Fluxo de Caixa</td><td>Laura Roque</td><td class="mono">23/06</td></tr>
+        <tr><td>8.1 Regime de caixa e conceitos</td><td>Laura Roque</td><td class="mono">04/08</td></tr>
+        <tr><td>9. Papel da Contabilidade</td><td>Yasmin Pereira</td><td class="mono">23/06</td></tr>
+        <tr><td>10. Realidade Econômica das MEs</td><td>Daniel Calebe</td><td class="mono">antes de 16/06</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>O que falta escrever</h2>
+  <div class="tab-wrap">
+    <table>
+      <thead><tr><th>O que é</th><th>Quem</th><th>Situação</th></tr></thead>
+      <tbody>
+        <tr><td>Pesquisa 2 — Elisão, ICMS-ST e monofásico</td><td>Nathan Elias</td><td class="falta">Falta</td></tr>
+        <tr><td>Pesquisa 2 — Formação do preço de venda</td><td>Yasmin Pereira</td><td class="falta">Falta</td></tr>
+        <tr><td>Pesquisa 2 — Estoque de perecíveis</td><td>Daniel Calebe</td><td class="falta">Falta</td></tr>
+        <tr><td>Caracterização da Empresa</td><td>Daniel Calebe</td><td class="falta">Falta</td></tr>
+        <tr><td>Resumo e palavras-chave</td><td>Yasmin Pereira</td><td class="falta">Falta</td></tr>
+        <tr><td>Considerações finais</td><td>a definir</td><td class="falta">Falta</td></tr>
+        <tr><td>Reforma Tributária</td><td>Victória Caroline</td><td class="feito">Pronto — só inserir</td></tr>
+        <tr><td>Versão melhorada da seção 9</td><td>Victória Caroline</td><td class="feito">Pronto — só inserir</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  Análise feita a partir do PDF do TCC e das mensagens do grupo entre 05/03 e 08/08/2026.<br>
+  As marcações são compartilhadas: todo mundo do grupo vê o que já foi feito, e qualquer um pode
+  marcar ou desmarcar qualquer tarefa.
+</footer>
+
+</div>
+
+<div class="portao" id="portao" hidden>
+  <div class="portao-cartao">
+    <div class="eyebrow">Central do TCC · Grupo 5</div>
+    <h2>Quem é você?</h2>
+    <p class="portao-txt">Serve só para o grupo saber quem marcou cada tarefa. Sem senha e sem
+      cadastro — a escolha fica guardada neste aparelho.</p>
+    <div class="nomes" id="nomes"></div>
+    <button class="acao-txt" id="btn-olhar">só quero olhar por enquanto</button>
+  </div>
+</div>
+
+<script>
+  /* ---------- abas (independente de rede) ---------- */
+  const abas = document.querySelectorAll('.aba');
+  const paineis = document.querySelectorAll('.painel');
+  abas.forEach(aba => {
+    aba.addEventListener('click', () => {
+      abas.forEach(a => a.setAttribute('aria-selected', 'false'));
+      aba.setAttribute('aria-selected', 'true');
+      paineis.forEach(p => p.classList.remove('on'));
+      document.getElementById(aba.dataset.alvo).classList.add('on');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  });
+</script>
+
+<script type="module">
+  /* ================================================================
+     MARCAÇÕES COMPARTILHADAS
+     Cole abaixo os dois valores do painel do Supabase
+     (Project Settings → API). Sem eles a página funciona igual,
+     mas cada marcação fica só no aparelho de quem marcou.
+     ================================================================ */
+  const SUPABASE_URL      = '';
+  const SUPABASE_ANON_KEY = '';
+
+  const PESSOAS = [
+    {nome:'Victória',   chave:'victoria',  curto:'Victória'},
+    {nome:'Yasmin',     chave:'yasmin',    curto:'Yasmin'},
+    {nome:'João Pedro', chave:'joaopedro', curto:'João P.'},
+    {nome:'Nathan',     chave:'nathan',    curto:'Nathan'},
+    {nome:'Laura',      chave:'laura',     curto:'Laura'},
+    {nome:'Calebe',     chave:'calebe',    curto:'Calebe'},
+  ];
+  const K_EU = 'tcc5.eu', K_CACHE = 'tcc5.cache';
+
+  const caixas   = [...document.querySelectorAll('.cx')];
+  const contador = document.getElementById('contador');
+  const preenche = document.getElementById('preenche');
+  const barraMinha = document.getElementById('barra-minha');
+  const rotuloMinha = document.getElementById('rotulo-minha');
+  const contadorMeu = document.getElementById('contador-meu');
+  const preencheMeu = document.getElementById('preenche-meu');
+  const aviso    = document.getElementById('aviso');
+  const portao   = document.getElementById('portao');
+  const btnTrocar = document.getElementById('btn-trocar');
+  const btnLimpar = document.getElementById('btn-limpar');
+
+  /* tarefa -> nome de quem marcou */
+  let estado = new Map();
+  let eu = PESSOAS.find(p => p.nome === localStorage.getItem(K_EU)) || null;
+  let sb = null;
+
+  /* ---------- cache local: abre instantâneo e sobrevive sem rede ---------- */
+  const lerCache = () => {
+    try { return new Map(Object.entries(JSON.parse(localStorage.getItem(K_CACHE) || '{}'))); }
+    catch { return new Map(); }
+  };
+  const salvarCache = () =>
+    localStorage.setItem(K_CACHE, JSON.stringify(Object.fromEntries(estado)));
+
+  /* ---------- pintura ---------- */
+  function pintar(){
+    for (const cx of caixas){
+      const dono = estado.get(cx.dataset.id) || null;
+      cx.checked = dono !== null;
+      let selo = cx.parentElement.querySelector('.marca');
+      if (dono){
+        const curto = (PESSOAS.find(p => p.nome === dono) || {curto:dono}).curto;
+        if (!selo){
+          selo = document.createElement('span');
+          selo.className = 'marca';
+          cx.parentElement.appendChild(selo);
+        }
+        if (selo.textContent !== curto) selo.textContent = curto;
+      } else if (selo) selo.remove();
+    }
+    /* conta só o que existe na página hoje — id antigo no cache não infla o total */
+    const feitas = caixas.filter(c => estado.has(c.dataset.id)).length;
+    contador.textContent = `${feitas} / ${caixas.length}`;
+    preenche.style.width = `${feitas / caixas.length * 100}%`;
+
+    if (eu){
+      const minhas = caixas.filter(c => c.dataset.id.startsWith(`plano-${eu.chave}-`));
+      const prontas = minhas.filter(c => estado.has(c.dataset.id)).length;
+      rotuloMinha.textContent = `${eu.nome} · no Plano`;
+      contadorMeu.textContent = `${prontas} / ${minhas.length}`;
+      preencheMeu.style.width = minhas.length ? `${prontas / minhas.length * 100}%` : '0%';
+      barraMinha.hidden = minhas.length === 0;
+    } else barraMinha.hidden = true;
+
+    btnTrocar.hidden = !eu;
+    btnLimpar.hidden = !eu || ![...estado.values()].includes(eu.nome);
+  }
+
+  function dizer(txt){ aviso.innerHTML = txt; }
+  function avisoPadrao(){
+    if (!sb) return dizer('<b>Sem sincronização:</b> as marcações estão sendo salvas só neste aparelho — o grupo não vê.');
+    dizer(eu
+      ? `Você é <b>${eu.nome}</b>. A marcação é do grupo inteiro: todo mundo vê e qualquer um pode desmarcar.`
+      : 'Marcação compartilhada com o grupo. Toque em uma tarefa para dizer quem é você.');
+  }
+
+  /* ---------- gravação ---------- */
+  async function alternar(id, marcar){
+    const antes = estado.has(id) ? estado.get(id) : null;
+    if (marcar) estado.set(id, eu.nome); else estado.delete(id);
+    salvarCache(); pintar();
+    if (!sb) return;
+    const { error } = marcar
+      ? await sb.from('marcacoes').upsert({tarefa:id, pessoa:eu.nome, criado_em:new Date().toISOString()})
+      : await sb.from('marcacoes').delete().eq('tarefa', id);
+    if (error){
+      if (antes === null) estado.delete(id); else estado.set(id, antes);
+      salvarCache(); pintar();
+      dizer('<b>Não deu para salvar</b> — confira a conexão e tente de novo.');
+    } else avisoPadrao();
+  }
+
+  /* clique na linha inteira (alvo de toque decente no celular) */
+  for (const cx of caixas){
+    cx.addEventListener('click', ev => ev.stopPropagation());
+    cx.addEventListener('change', () => {
+      if (!eu){ cx.checked = !cx.checked; abrirPortao(); return; }
+      alternar(cx.dataset.id, cx.checked);
+    });
+    cx.parentElement.addEventListener('click', ev => {
+      if (ev.target.closest('a,button')) return;
+      if (!eu) return abrirPortao();
+      alternar(cx.dataset.id, !estado.has(cx.dataset.id));
+    });
+  }
+
+  /* ---------- portão de identificação ---------- */
+  const listaNomes = document.getElementById('nomes');
+  for (const p of PESSOAS){
+    const b = document.createElement('button');
+    b.className = 'nome'; b.type = 'button'; b.textContent = p.nome;
+    b.addEventListener('click', () => {
+      eu = p; localStorage.setItem(K_EU, p.nome);
+      portao.hidden = true; avisoPadrao(); pintar();
+    });
+    listaNomes.appendChild(b);
+  }
+  function abrirPortao(){ portao.hidden = false; listaNomes.querySelector('.nome').focus(); }
+  document.getElementById('btn-olhar').addEventListener('click', () => { portao.hidden = true; avisoPadrao(); });
+  btnTrocar.addEventListener('click', abrirPortao);
+  btnLimpar.addEventListener('click', async () => {
+    const minhas = [...estado.entries()].filter(([, dono]) => dono === eu.nome).map(([id]) => id);
+    if (!minhas.length) return;
+    if (!confirm(`Isto desmarca as ${minhas.length} tarefas que você marcou. O grupo vai ver elas voltarem para "não feito". Continuar?`)) return;
+    minhas.forEach(id => estado.delete(id));
+    salvarCache(); pintar();
+    if (sb){
+      const { error } = await sb.from('marcacoes').delete().in('tarefa', minhas);
+      if (error) dizer('<b>Não deu para limpar no servidor</b> — recarregue a página.');
+    }
+  });
+
+  /* ---------- início ---------- */
+  estado = lerCache();
+  pintar();
+
+  try {
+    if (SUPABASE_URL && SUPABASE_ANON_KEY){
+      const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+      sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      const { data, error } = await sb.from('marcacoes').select('tarefa,pessoa');
+      if (error) throw error;
+      estado = new Map(data.map(l => [l.tarefa, l.pessoa]));
+      salvarCache(); pintar();
+      sb.channel('marcacoes')
+        .on('postgres_changes', {event:'*', schema:'public', table:'marcacoes'}, ev => {
+          if (ev.eventType === 'DELETE') estado.delete(ev.old.tarefa);
+          else estado.set(ev.new.tarefa, ev.new.pessoa);
+          salvarCache(); pintar();
+        })
+        .subscribe();
+    }
+  } catch (e){
+    sb = null;
+    console.warn('marcações em modo local:', e);
+  }
+
+  avisoPadrao();
+  if (!eu) portao.hidden = false;
+</script>
+</body>
+</html>
