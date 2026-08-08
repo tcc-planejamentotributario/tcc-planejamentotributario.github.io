@@ -3,7 +3,7 @@
 Página única com tudo que falta no TCC: plano por pessoa, problemas, cronograma,
 checklist ABNT, documentos a pedir para a empresa e quem escreveu cada seção.
 
-**No ar:** https://vitoriacarol744-coder.github.io/tcc-central/
+**No ar:** https://tcc-planejamentotributario.github.io/
 
 ## Como atualizar o conteúdo
 
