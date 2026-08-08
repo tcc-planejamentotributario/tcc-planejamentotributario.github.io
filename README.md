@@ -27,6 +27,8 @@ Cada checkbox tem um `data-id` fixo, tipo `plano-nathan-02`. É por ele que a ma
 São compartilhadas: todo mundo do grupo vê o que já foi feito e quem marcou.
 Qualquer um pode marcar ou desmarcar qualquer tarefa — não tem senha.
 
-O arquivo `_supabase.sql` cria a tabela que guarda isso. Enquanto as chaves não
-estiverem preenchidas no topo do script do `index.html`, a página funciona igual,
-mas cada marcação fica só no aparelho de quem marcou.
+A sincronização está ligada: quando alguém marca, aparece no celular dos outros
+sem precisar recarregar. O arquivo `_supabase.sql` é o que criou a tabela.
+
+Se a internet cair, a página continua funcionando com a última versão que ela
+tinha, e volta a sincronizar quando a conexão voltar.
