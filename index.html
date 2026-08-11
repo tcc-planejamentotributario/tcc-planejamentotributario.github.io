@@ -203,9 +203,65 @@ footer{
   border-top:1px solid var(--linha);padding:16px 0 40px;margin-top:10px;
   font-size:11.5px;color:var(--cacau-70);
 }
+
+/* ============ marcação compartilhada ============ */
+[hidden]{display:none!important}
+.ident{
+  display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;margin-top:11px;
+  font-size:11.5px;line-height:1.5;color:#C9B4A4;
+}
+.ident b{color:var(--rosa)}
+.identbtn{
+  background:none;border:none;padding:4px 1px;cursor:pointer;
+  font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.05em;
+  color:var(--rosa);text-decoration:underline;text-underline-offset:3px;
+  transition:color .15s cubic-bezier(.22,1,.36,1),transform .12s cubic-bezier(.22,1,.36,1);
+}
+.identbtn:hover{color:#fff}
+.identbtn:active{transform:scale(.97)}
+.identbtn:focus-visible{outline:2px solid var(--rosa);outline-offset:2px;border-radius:4px}
+.tag.quem{background:var(--menta,#1F7A5C);color:#fff;border-color:transparent}
+.chk .tag.quem{margin-left:8px;vertical-align:middle}
+
+.portao{
+  position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+  padding:20px;background:rgba(46,27,18,.97);animation:pentra .22s cubic-bezier(.22,1,.36,1);
+}
+@keyframes pentra{from{opacity:0}to{opacity:1}}
+.portao-cartao{
+  background:var(--papel);border-radius:16px;padding:24px 22px;max-width:420px;width:100%;
+  animation:psobe .26s cubic-bezier(.22,1,.36,1);
+}
+@keyframes psobe{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.portao-cartao .eyebrow{color:var(--cacau-70)}
+.portao-cartao h2{margin:0 0 10px;font-size:22px;font-weight:900;letter-spacing:-.02em;color:var(--cacau)}
+.portao-txt{font-size:13.5px;line-height:1.55;color:var(--cacau-70);margin-bottom:16px}
+.nomes{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.nome{
+  min-height:46px;border:1.5px solid var(--linha);background:var(--papel-2);color:var(--cacau);
+  font-family:'Archivo',sans-serif;font-size:14.5px;font-weight:700;border-radius:10px;cursor:pointer;
+  transition:transform .13s cubic-bezier(.22,1,.36,1),border-color .13s ease,background .13s ease;
+}
+.nome:hover{border-color:var(--cacau);background:var(--papel)}
+.nome:active{transform:scale(.97)}
+.nome:focus-visible{outline:3px solid var(--framboesa);outline-offset:2px}
+.portao .identbtn{color:var(--cacau-70)}
+.portao .identbtn:hover{color:var(--cacau)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+
+<div class="portao" id="portao" hidden>
+  <div class="portao-cartao">
+    <div class="eyebrow">Central do TCC · Grupo 5</div>
+    <h2>Quem é você?</h2>
+    <p class="portao-txt">Serve só para o grupo saber quem corrigiu o quê. Sem senha e sem
+      cadastro — a escolha fica guardada neste aparelho.</p>
+    <div class="nomes" id="nomes"></div>
+    <button class="identbtn" id="btnOlhar" type="button">só quero olhar por enquanto</button>
+  </div>
+</div>
 
 <div class="wrap">
   <div class="hero">
@@ -220,6 +276,10 @@ footer{
     <div class="prog">
       <div class="lbl"><span>Erros corrigidos pelo grupo</span><b id="progTxt">0 / 0</b></div>
       <div class="trilho"><i id="progBar" style="width:0%"></i></div>
+    </div>
+    <div class="ident">
+      <span id="identTxt">Carregando as marcações do grupo…</span>
+      <button class="identbtn" id="btnTrocar" hidden>trocar de pessoa</button>
     </div>
   </div>
 </div>
@@ -277,7 +337,7 @@ footer{
 <!-- ============ ERROS ============ -->
 <section id="erros">
   <h2 class="sec">Erros — tudo de todo mundo, num lugar só</h2>
-  <p class="lead">Cada item é um erro apontado em revisão. Marque a caixinha quando corrigir — fica salvo no seu navegador. Filtre por pessoa ou por tipo de erro.</p>
+  <p class="lead">Cada item é um erro apontado em revisão. Marque a caixinha quando corrigir — <b>o grupo inteiro vê na hora</b>, com o nome de quem marcou. Filtre por pessoa ou por tipo de erro.</p>
 
   <div class="toolbar"><span class="tblabel">Pessoa</span><span id="fPessoa"></span></div>
   <div class="toolbar"><span class="tblabel">Tipo</span><span id="fTipo"></span></div>
@@ -469,7 +529,8 @@ footer{
 
 <footer>
   Central do TCC — Grupo 5 · Etec Fernando Prestes, Sorocaba · Curso Técnico em Contabilidade<br>
-  Atualizado em 11/08/2026 · Base: MODELO OFICIAL TCC editado 09/08 + revisão do grupo de 10/08 + MODELO DE PROJETO DE TCC (PTCC ABNT)
+  Atualizado em 11/08/2026 · Base: MODELO OFICIAL TCC editado 09/08 + revisão do grupo de 10/08 + MODELO DE PROJETO DE TCC (PTCC ABNT)<br>
+  As marcações são compartilhadas: todo mundo vê o que já foi corrigido, e qualquer um pode marcar ou desmarcar.
 </footer>
 
 </div>
@@ -486,8 +547,28 @@ var S=(function(){
     keys:function(){try{return ok?Object.keys(window.localStorage):Object.keys(mem);}catch(e){return Object.keys(mem);}}
   };
 })();
-function isDone(id){return S.get('tcc5:'+id)==='1';}
-function setDone(id,v){if(v)S.set('tcc5:'+id,'1');else S.del('tcc5:'+id);}
+
+/* ---- marcação compartilhada: id -> nome de quem marcou ---- */
+var GENTE=['Nathan','Calebe','Laura','João Pedro','Victória','Yasmin'];
+var MARCAS={};                                   /* estado do grupo */
+var EU=S.get('tcc5.eu')||null;                   /* quem está usando este aparelho */
+var SYNC=null;                                   /* preenchido pelo módulo do Supabase */
+try{MARCAS=JSON.parse(S.get('tcc5.cache')||'{}')||{};}catch(e){MARCAS={};}
+function salvarCache(){S.set('tcc5.cache',JSON.stringify(MARCAS));}
+
+function isDone(id){return !!MARCAS[id];}
+function quemFez(id){return MARCAS[id]||null;}
+function setDone(id,v){
+  if(!EU){abrirPortao();return;}
+  if(v)MARCAS[id]=EU;else delete MARCAS[id];
+  salvarCache();
+  if(SYNC)SYNC.gravar(id,v,EU);
+}
+function redrawAll(){
+  drawFiltros();drawErros();drawTarefas();drawFases();
+  drawChk('abntlist',ABNT,'ab');drawChk('docs',DOCS,'dc');drawChk('dadosemp',DADOS_EMP,'de');
+  updateBadge();pintaIdent();
+}
 
 /* ================= DADOS ================= */
 var TABS=[
@@ -790,6 +871,7 @@ function drawErros(){
       tg.appendChild(el('span','tag '+e.o,e.o==='nova'?'Revisão 10/08':'Revisão antiga'));
       tg.appendChild(el('span','tag k',esc(TIPOS[e.t])));
       if(e.fix)tg.appendChild(el('span','tag fix','Já resolvido em 09/08'));
+      if(d)tg.appendChild(el('span','tag quem','marcou: '+esc(quemFez(e.id))));
       b.appendChild(tg);
       row.appendChild(b);
       box.appendChild(row);
@@ -809,9 +891,14 @@ function updateBadge(){
 
 document.getElementById('btnOpen').onclick=function(){onlyOpen=!onlyOpen;this.classList.toggle('on',onlyOpen);drawErros();};
 document.getElementById('btnReset').onclick=function(){
-  if(!confirm('Isso desmarca TODAS as caixinhas do site. Continuar?'))return;
-  S.keys().slice().forEach(function(k){if(k.indexOf('tcc5:')===0)S.del(k);});
-  drawErros();drawTarefas();drawFases();drawChk('abntlist',ABNT,'ab');drawChk('docs',DOCS,'dc');drawChk('dadosemp',DADOS_EMP,'de');updateBadge();
+  if(!EU){abrirPortao();return;}
+  var minhas=Object.keys(MARCAS).filter(function(k){return MARCAS[k]===EU;});
+  if(!minhas.length){alert('Você ainda não marcou nada.');return;}
+  if(!confirm('Isso desmarca as '+minhas.length+' caixinhas que VOCÊ marcou. O grupo inteiro vai ver elas voltarem para pendente. Continuar?'))return;
+  minhas.forEach(function(k){delete MARCAS[k];});
+  salvarCache();
+  if(SYNC)SYNC.limpar(minhas);
+  redrawAll();
 };
 
 function cardChk(titulo,sub,itens,prefix,redraw){
@@ -823,7 +910,9 @@ function cardChk(titulo,sub,itens,prefix,redraw){
     var cb=el('input');cb.type='checkbox';cb.checked=d;
     cb.onchange=function(){setDone(id,cb.checked);redraw();};
     row.appendChild(cb);
-    row.appendChild(el('div',null,'<span class="ct">'+esc(it.t)+'</span>'+(it.d?'<small>'+esc(it.d)+'</small>':'')));
+    row.appendChild(el('div',null,'<span class="ct">'+esc(it.t)+'</span>'
+      +(d?'<span class="tag quem">marcou: '+esc(quemFez(id))+'</span>':'')
+      +(it.d?'<small>'+esc(it.d)+'</small>':'')));
     c.appendChild(row);
   });
   return c;
@@ -863,6 +952,87 @@ drawFiltros();drawErros();drawTarefas();drawFases();
 drawChk('abntlist',ABNT,'ab');drawChk('docs',DOCS,'dc');drawChk('dadosemp',DADOS_EMP,'de');
 updateBadge();
 (function(){var h=(location.hash||'').replace('#','');if(h){var b=document.querySelector('.tabbtn[data-tab="'+h+'"]');if(b)b.click();}})();
+
+/* ================= IDENTIDADE ================= */
+function pintaIdent(){
+  var t=document.getElementById('identTxt');
+  document.getElementById('btnTrocar').hidden=!EU;
+  if(!SYNC){t.innerHTML='<b>Sem sincronização</b> — suas marcações estão sendo salvas só neste aparelho. O grupo não vê.';return;}
+  t.innerHTML=EU
+    ? 'Você é <b>'+esc(EU)+'</b>. A marcação é do grupo: todo mundo vê e qualquer um pode desmarcar.'
+    : 'Marcação compartilhada com o grupo. Toque numa caixinha para dizer quem é você.';
+}
+function abrirPortao(){
+  var p=document.getElementById('portao');
+  p.hidden=false;
+  var b=p.querySelector('.nome'); if(b)b.focus();
+}
+(function(){
+  var lista=document.getElementById('nomes');
+  GENTE.forEach(function(nome){
+    var b=el('button','nome');b.type='button';b.textContent=nome;
+    b.onclick=function(){
+      EU=nome;S.set('tcc5.eu',nome);
+      document.getElementById('portao').hidden=true;
+      redrawAll();
+    };
+    lista.appendChild(b);
+  });
+  document.getElementById('btnOlhar').onclick=function(){document.getElementById('portao').hidden=true;pintaIdent();};
+  document.getElementById('btnTrocar').onclick=abrirPortao;
+  pintaIdent();
+  if(!EU)document.getElementById('portao').hidden=false;
+})();
+</script>
+
+<script type="module">
+/* ============ SINCRONIZAÇÃO (Supabase) ============
+   Se as chaves saírem ou o CDN cair, a página continua funcionando
+   com o cache local e avisa no cabeçalho que não está sincronizando. */
+const SUPABASE_URL      = 'https://bmvzytmnjadrqjnrfgiw.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_iHnLguC6rGsQYnnW-81ktQ_QbA77rk_';
+
+try{
+  const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+  const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const { data, error } = await sb.from('marcacoes').select('tarefa,pessoa');
+  if(error) throw error;
+
+  window.MARCAS = {};
+  data.forEach(l => { window.MARCAS[l.tarefa] = l.pessoa; });
+
+  window.SYNC = {
+    async gravar(id, marcar, pessoa){
+      const { error } = marcar
+        ? await sb.from('marcacoes').upsert({tarefa:id, pessoa, criado_em:new Date().toISOString()})
+        : await sb.from('marcacoes').delete().eq('tarefa', id);
+      if(error){
+        document.getElementById('identTxt').innerHTML='<b>Não deu para salvar</b> — confira a conexão e tente de novo.';
+      }
+    },
+    async limpar(ids){
+      const { error } = await sb.from('marcacoes').delete().in('tarefa', ids);
+      if(error) document.getElementById('identTxt').innerHTML='<b>Não deu para limpar no servidor</b> — recarregue a página.';
+    }
+  };
+
+  sb.channel('marcacoes')
+    .on('postgres_changes', {event:'*', schema:'public', table:'marcacoes'}, ev => {
+      if(ev.eventType === 'DELETE') delete window.MARCAS[ev.old.tarefa];
+      else window.MARCAS[ev.new.tarefa] = ev.new.pessoa;
+      window.salvarCache();
+      window.redrawAll();
+    })
+    .subscribe();
+
+  window.salvarCache();
+  window.redrawAll();
+}catch(e){
+  window.SYNC = null;
+  window.pintaIdent();
+  console.warn('marcações em modo local:', e);
+}
 </script>
 </body>
 </html>
