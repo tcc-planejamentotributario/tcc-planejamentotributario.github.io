@@ -204,6 +204,27 @@ footer{
   font-size:11.5px;color:var(--cacau-70);
 }
 
+/* ============ conexão: contradições, ordem e tempo verbal ============ */
+.tag.pag{background:var(--cacau);border-color:var(--cacau);color:var(--papel)}
+.card > .ch .num{
+  font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--rosa);margin-right:8px;
+}
+.ondel{
+  font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.04em;
+  color:var(--framboesa);margin-bottom:9px;
+}
+.frase{
+  margin-top:11px;padding:12px 14px;background:var(--papel-2);
+  border-left:3px solid var(--areia);border-radius:0 9px 9px 0;
+  font-size:13.5px;line-height:1.6;color:var(--cacau);
+}
+.frase .fl{
+  display:block;font-family:'Roboto Mono',monospace;font-size:9.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--cacau-70);margin-bottom:6px;
+}
+#tempotab small,#ordemtab small{display:block;margin-top:4px;color:var(--cacau-70);font-size:11.5px;line-height:1.45}
+
 /* ============ marcação compartilhada ============ */
 [hidden]{display:none!important}
 .ident{
@@ -522,9 +543,23 @@ footer{
 
 <!-- ============ CONEXÃO ============ -->
 <section id="conexao">
-  <h2 class="sec">Conexão — onde o trabalho se contradiz</h2>
-  <p class="lead">Não são erros de uma pessoa só: são seções que discordam entre si. É o tipo de coisa que a banca acha primeiro.</p>
+  <h2 class="sec">Conexão — onde o texto não se encaixa</h2>
+  <p class="lead">Não são erros de uma pessoa só: são seções que discordam entre si, se repetem ou deixam o leitor no vazio. Cada uma abaixo traz <b>onde está</b>, <b>de quem é</b>, <b>por que é problema</b> e <b>a frase pronta para colar</b>.</p>
+
+  <h3 class="grp">O nome da empresa</h3>
+  <div class="aviso warn"><b>Razão social oficial:</b> <span id="razao"></span> — é a do título do trabalho. Onde aparecer outro nome, troca por esse.</div>
+  <div id="nomelist"></div>
+
+  <h3 class="grp">As contradições, com a frase que resolve</h3>
   <div id="conflist"></div>
+
+  <h3 class="grp">Ordem que dá coesão ao trabalho</h3>
+  <p class="lead">Hoje o texto vai do detalhe tributário para o contexto geral, e o fluxo de caixa está encravado no meio do bloco de tributos. A lógica abaixo é de funil: por que microempresa quebra → como o planejamento tributário responde → qual regime → quanto custa produzir → por quanto vender → como não perder no estoque → como controlar o caixa → e finalmente a empresa estudada.</p>
+  <div class="tbwrap"><table id="ordemtab"></table></div>
+
+  <h3 class="grp">Tempo verbal — a regra combinada</h3>
+  <p class="lead">A pesquisa já foi feita, então vai no passado. A parte prática ainda vai acontecer, então vai no futuro. Conceito e lei ficam no presente, porque não têm tempo. Conferi as 37 páginas contra essa regra:</p>
+  <div class="tbwrap"><table id="tempotab"></table></div>
 </section>
 
 <footer>
@@ -586,75 +621,100 @@ var PESSOAS=['Nathan','Calebe','Laura','João Pedro','Victória','Yasmin','Todos
 var TIPOS={pesquisa:'Pesquisa',citacao:'Citação',referencia:'Referência',escrita:'Escrita',estrutura:'Estrutura',dados:'Dados',tabela:'Tabela/Gráfico'};
 
 var ERROS=[
-  {id:'nat1',p:'Nathan',o:'nova',t:'escrita',txt:'Três primeiros parágrafos dizem a mesma coisa com outras palavras',det:'Reescrever juntando tudo em um parágrafo só. Revisão de 10/08.'},
-  {id:'nat2',p:'Nathan',o:'nova',t:'citacao',txt:'Rever a citação do caso McDonald’s e a fonte',det:'Revisão de 10/08.'},
-  {id:'nat3',p:'Nathan',o:'nova',t:'escrita',txt:'Acentuação mal colocada',det:'Passar o texto no corretor antes de devolver. Revisão de 10/08.'},
-  {id:'nat4',p:'Nathan',o:'nova',t:'citacao',txt:'Rever as citações no meio do texto',det:'Citação direta precisa de autor, ano e página; citação longa (mais de 3 linhas) vai em recuo de 4 cm, fonte 10, sem aspas. Revisão de 10/08.'},
-  {id:'nat5',p:'Nathan',o:'antiga',t:'citacao',txt:'Artigo 113 do CTN citado entre aspas sem a fonte',det:'Adicionar "(BRASIL, 1966)" logo depois da citação e incluir a Lei nº 5.172/1966 na lista de referências. CONFERIDO NO ARQUIVO DE 09/08: ainda não foi feito.'},
-  {id:'nat6',p:'Nathan',o:'antiga',t:'referencia',txt:'Caso McDonald’s sem lastro — percentuais de 38,97% e 11,78%',det:'Os números vêm da CNN e de um portal de notícias. Ou se acha o acórdão do CARF que dá origem a eles, ou os percentuais saem do texto. CONFERIDO: o caso continua no arquivo.'},
-  {id:'nat7',p:'Nathan',o:'antiga',t:'referencia',txt:'Referências do bloco "Refs:" estão como links crus no meio do trabalho',det:'Os links do CARF, Conjur, Jusbrasil e Planalto estão colados em bruto, com URL quebrada em várias linhas. Precisam virar referência ABNT e ir para a lista final.'},
+  /* ---------------- NATHAN — seção 5 (p.8) e seção 11.1 (p.19-21) ---------------- */
+  {id:'nat1',p:'Nathan',o:'antiga',t:'citacao',pag:'p. 8',txt:'Citação direta do art. 113 do CTN entre aspas, sem a fonte depois',det:'O texto anuncia "consta no art. 113, § 1º, do Código Tributário Nacional" e abre aspas — mas depois das aspas não vem (BRASIL, 1966). Citação direta sem indicação de autor e ano é o item que a banca confere primeiro. Adicionar (BRASIL, 1966) logo após o fecha-aspas e a Lei nº 5.172/1966 na lista.'},
+  {id:'nat2',p:'Nathan',o:'antiga',t:'referencia',pag:'p. 8',txt:'Os percentuais 38,97% e 11,78% do caso McDonald’s se apoiam na CNN',det:'A única fonte dos dois números é (CNN Brasil, 2023) — notícia, não documento fiscal. Ou entra o acórdão do CARF que originou a reclassificação, ou os percentuais saem e fica só o raciocínio. Você já tem prática de achar acórdão: usou o 3102-002.895 na 11.1.'},
+  {id:'nat3',p:'Nathan',o:'antiga',t:'escrita',pag:'p. 8',txt:'Os quatro primeiros parágrafos definem planejamento tributário quatro vezes',det:'"é o conjunto de estratégias e práticas legais para reduzir a carga tributária" · "É a atividade de organizar operações e transações adotando práticas que minimizem o montante de tributos" · "é essencial como ferramenta para gestão estratégica" · "Essa redução tributária é efetuada após a análise de regimes". Vira um parágrafo só.'},
+  {id:'nat4',p:'Nathan',o:'nova',t:'escrita',pag:'p. 8',txt:'Usa "encargo tributário" onde o resto do trabalho usa "carga tributária"',det:'Aparece duas vezes na seção 5. O título do TCC diz "carga tributária" — o termo do título manda no trabalho inteiro.'},
+  {id:'nat5',p:'Nathan',o:'nova',t:'escrita',pag:'p. 20',txt:'Gíria no texto: "engazopar o fisco"',det:'"devido a ser um ato que busca engazopar o fisco". Trocar por "dissimular o fato gerador" ou "ocultar a ocorrência do fato gerador" — que é o termo que o próprio CTN usa no art. 116.'},
+  {id:'nat6',p:'Nathan',o:'nova',t:'escrita',pag:'p. 20-21',txt:'Primeira pessoa do plural em toda a 11.1',det:'"Podemos observar" · "observaremos mais posteriormente" · "Isto nós vemos em ordem no Art. 1º" · "como vemos na Lei 8.137/1990" · "veremos" · "entendermos". Trabalho acadêmico é impessoal: "observa-se", "verifica-se", "o art. 1º estabelece".'},
+  {id:'nat7',p:'Nathan',o:'nova',t:'referencia',pag:'p. 20-21',txt:'Quatro links azuis sublinhados colados dentro dos parágrafos',det:'"Art. 150, I, da Constituição", "Art. 71 - 73 da Lei nº 4.502/1964", "Lei 8.137/1990" e "Art. 116, Parágrafo do CTN" estão como hyperlink no corpo do texto. Viram citação normal — (BRASIL, 1988), (BRASIL, 1964), (BRASIL, 1990), (BRASIL, 1966) — e as leis vão para a lista de referências.'},
+  {id:'nat8',p:'Nathan',o:'nova',t:'escrita',pag:'p. 20',txt:'Acentuação: "De inicio", "principio da legalidade", "incidência tributaria"',det:'São "início", "princípio" e "tributária". Passar a seção no corretor antes de devolver.'},
+  {id:'nat9',p:'Nathan',o:'nova',t:'escrita',pag:'p. 21',txt:'Erros de digitação no número do acórdão e na data',det:'"acórdão nº9303-017.363envolvendo" está sem o espaço antes de "envolvendo". E "em 19 agosto de 2025" precisa do "de": "em 19 de agosto de 2025".'},
+  {id:'nat10',p:'Nathan',o:'nova',t:'escrita',pag:'p. 20',txt:'Um parágrafo único com cerca de 25 linhas',det:'O que começa em "O planejamento tributário vem com a finalidade e objetivos primários" só termina no fim da página. O modelo do professor pede parágrafos de 4 a 5 linhas. Quebrar em três: princípio da legalidade · elisão × evasão · sonegação, fraude e conluio.'},
+  {id:'nat11',p:'Nathan',o:'nova',t:'pesquisa',pag:'p. 19-21',txt:'A pesquisa entregou o monofásico mas não entregou o ICMS-ST',det:'O caso Savoy/Coty é de PIS/Cofins monofásico — está certo e bem escolhido. Mas a substituição tributária de ICMS ficou de fora, e é o que interessa numa doceria que revende bebida e chocolate industrializado. Falta um bloco de três parágrafos.'},
+  {id:'nat12',p:'Nathan',o:'nova',t:'estrutura',pag:'p. 19',txt:'O título "11.1 Regimes Especiais de Tributação" não descreve o que vem depois',det:'O conteúdo é elisão, evasão, sonegação, fraude, conluio e o caso do CARF. Nada disso é regime especial de tributação. Renomear para algo como "Limites legais do planejamento tributário: elisão, evasão e sonegação".'},
 
-  {id:'cal1',p:'Calebe',o:'nova',t:'escrita',txt:'Rever se o texto está no presente',det:'Revisão de 10/08.'},
-  {id:'cal2',p:'Calebe',o:'nova',t:'dados',txt:'Disse que muitas empresas encerram as atividades mas não provou com dados',det:'Pesquisa 1. Precisa de percentual e fonte — Sebrae ou IBGE. Revisão de 10/08.'},
-  {id:'cal3',p:'Calebe',o:'nova',t:'dados',txt:'Revisar os percentuais citados na pesquisa 1',det:'Cada número precisa de fonte e ano. Revisão de 10/08.'},
-  {id:'cal4',p:'Calebe',o:'antiga',t:'dados',txt:'Nenhum número na seção de realidade econômica das microempresas',det:'É o mesmo apontamento da revisão nova, o que mostra que ainda não foi corrigido.'},
-  {id:'cal5',p:'Calebe',o:'antiga',t:'dados',txt:'Confirmar o nome oficial da empresa',det:'O trabalho usa dois nomes diferentes. Abrir o cartão CNPJ 25.126.655/0001-31 e definir a razão social usada do começo ao fim.'},
-  {id:'cal6',p:'Calebe',o:'antiga',t:'estrutura',txt:'Escrever a seção de caracterização da empresa',det:'CNPJ, CNAE, porte, regime atual, anexo do Simples, faturamento, número de funcionários e perfil de vendas.'},
-  {id:'cal7',p:'Calebe',o:'antiga',t:'referencia',txt:'Referências da pesquisa em formato de link markdown',det:'Os links do Sebrae e do IBGE estão colados como [url](url). Precisam virar referência ABNT com autor, título, ano e data de acesso.'},
+  /* ---------------- VICTÓRIA — seção 10 (p.16) e seção 11 (p.17-19) ---------------- */
+  {id:'vic1',p:'Victória',o:'antiga',t:'citacao',pag:'p. 16',txt:'As presunções de 8% e 32% estão fundamentadas em (BRASIL, 1999) — decreto revogado',det:'(BRASIL, 1999) é o Decreto 3.000/1999, revogado pelo Decreto 9.580/2018. Duas páginas depois, na p. 18, você mesma usa o 9.580/2018 corretamente. O trabalho cita uma norma válida e uma revogada para dizer a mesma coisa.'},
+  {id:'vic2',p:'Victória',o:'antiga',t:'citacao',pag:'p. 16',txt:'A obrigatoriedade do Lucro Real está atribuída ao CFC',det:'"Conforme as diretrizes do Conselho Federal de Contabilidade (CFC, 2023), trata-se de um regime altamente complexo e obrigatório para empresas com faturamento superior a R$ 78 milhões." O CFC não define obrigatoriedade de regime tributário. A base é a Lei nº 9.718/1998, art. 14, inciso I.'},
+  {id:'vic3',p:'Victória',o:'antiga',t:'referencia',pag:'p. 16 e p. 19',txt:'Garcia aparece como 2021 na página 16 e como 2015 na página 19',det:'Na p. 16: "Conforme esclarece Garcia (2021)". Na p. 19: "(FABRETTI, 2015; GARCIA, 2015)". Na lista de referências: GARCIA, Edino Ribeiro. Contabilidade tributária. São Paulo: Atlas, 2015. Escolher o ano da edição que existe de verdade e usar o mesmo nos dois lugares.'},
+  {id:'vic4',p:'Victória',o:'antiga',t:'dados',pag:'p. 16 × p. 19',txt:'A seção 10 diz que a confeitaria é atividade híbrida; a 11 diz que nunca incide 32%',det:'p. 16: "Para atividades híbridas, como o setor de confeitaria — que engloba tanto a produção e venda de mercadorias (comércio) quanto o atendimento no local (serviço) —, as alíquotas variam, sendo estipuladas em 8% e 32%." p. 19: "deve ser tributada com base no Anexo I e, caso venha a optar pelo Lucro Presumido, sobre a margem de 8%, nunca sobre os 32%." São suas as duas. Ver a aba Conexão, contradição C1.'},
+  {id:'vic5',p:'Victória',o:'antiga',t:'referencia',pag:'p. 16',txt:'(CFC, 2023) citado no texto; na lista só existe "https://cfc.org.br"',det:'Uma URL solta não é referência: falta autor, título, ano e data de acesso. Ou vira CONSELHO FEDERAL DE CONTABILIDADE. Título. Ano. Disponível em: … Acesso em: …, ou a citação sai do texto junto com o erro do item acima.'},
+  {id:'vic6',p:'Victória',o:'antiga',t:'dados',pag:'p. 16',txt:'IRPJ e CSLL aparecem aplicados sobre a mesma presunção de 8%',det:'"aplicando as alíquotas de IRPJ e CSLL sobre essa margem estimada", logo depois de fixar 8% para comércio. No comércio a presunção da CSLL é 12% (Lei nº 9.249/1995, art. 20) — os 8% valem só para o IRPJ. Numa simulação de Lucro Presumido esse erro muda o resultado final.'},
+  {id:'vic7',p:'Victória',o:'nova',t:'escrita',pag:'p. 17-19',txt:'A seção 11 é o melhor texto do TCC e não diz o nome da empresa uma vez',det:'Fecha com "a análise do risco de regime tributário ao qual a microempresa estudada está sujeita". Trocar "a microempresa estudada" pela razão social resolve, e é o único ponto entre as páginas 8 e 32 em que a empresa quase aparece.'},
+  {id:'vic8',p:'Victória',o:'nova',t:'escrita',pag:'p. 19',txt:'Parágrafo de 18 linhas sobre a repartição constitucional de competências',det:'O que começa em "Essa fronteira entre comércio e prestação de serviços" cabe em três: competência do ICMS · competência do ISS · obrigação de dar × obrigação de fazer.'},
+  {id:'vic9',p:'Victória',o:'antiga',t:'estrutura',pag:'fora do arquivo',txt:'A Reforma Tributária continua fora do trabalho',det:'O material do dia 04/08 está pronto há uma semana e não entrou. É o que diferencia o grupo — o trabalho já cita a LC 214/2025 de passagem na p. 17 e não desenvolve. Escopo na aba Reforma.'},
 
-  {id:'lau1',p:'Laura',o:'nova',t:'escrita',txt:'Rever se o texto está no presente',det:'Revisão de 10/08.'},
-  {id:'lau2',p:'Laura',o:'nova',t:'dados',txt:'Ver se as pesquisas dela batem com os dados da Victória',det:'As duas falam de assunto relacionado e não podem se contradizer. Revisão de 10/08.'},
-  {id:'lau3',p:'Laura',o:'nova',t:'escrita',txt:'Melhorar a montagem do texto e reescrever a pesquisa 2',det:'Revisão de 10/08.'},
-  {id:'lau4',p:'Laura',o:'nova',t:'referencia',txt:'PARAR DE USAR BLOG — site de banco também não pode',det:'Trocar por livro, lei ou publicação acadêmica. Revisão de 10/08.'},
-  {id:'lau5',p:'Laura',o:'nova',t:'escrita',txt:'Texto informal',det:'Trabalho acadêmico é impessoal: nada de "a gente", "você", "muito importante". Revisão de 10/08.'},
-  {id:'lau6',p:'Laura',o:'antiga',t:'referencia',txt:'Fontes insuficientes — Caixa, Serasa e InfinitePay são sites comerciais',det:'Substituir por Assaf Neto, Gitman, Hoji ou Zdanowicz. CONFERIDO NO ARQUIVO DE 09/08: nenhum desses autores aparece ainda.'},
-  {id:'lau7',p:'Laura',o:'antiga',t:'estrutura',txt:'A seção do fluxo de caixa virou um glossário',det:'Sete definições de duas linhas cada, sem citação: regime de caixa, regime de competência, registro de receita, registro de despesas, estrutura do DFC, ciclo operacional, ciclo financeiro, princípio da entidade. O modelo do professor exige parágrafos de 4 a 5 linhas. Transformar em texto corrido.'},
-  {id:'lau8',p:'Laura',o:'antiga',t:'escrita',txt:'Duas frases confusas na seção de gestão financeira',det:'"Monitoramento de um contador evita endividamento" é vago; e a comparação entre Lucro Real e Simples está errada para uma microempresa.'},
-  {id:'lau9',p:'Laura',o:'antiga',t:'estrutura',txt:'Completar o fluxo de caixa',det:'Explicar as três atividades (operacional, investimento e financiamento) e a diferença entre método direto e indireto.'},
+  /* ---------------- YASMIN — seção 6 (p.9-10) e seção 13 (p.24-29) ---------------- */
+  {id:'yas1',p:'Yasmin',o:'antiga',t:'referencia',pag:'p. 9',txt:'Garrison, Noreen e Brewer (2013) citados e ausentes de todas as quatro listas',det:'"Essa perspectiva consultiva baseia-se nos conceitos de Garrison, Noreen e Brewer (2013)". Procurei nas quatro listas de referências do arquivo: não está em nenhuma. Ou entra a referência completa, ou a citação sai.'},
+  {id:'yas2',p:'Yasmin',o:'antiga',t:'referencia',pag:'p. 9',txt:'Padoveze (2012) citado e ausente de todas as listas',det:'"Como aponta Padoveze (2012), o profissional contábil atua como um gestor do sistema de informações de apoio à decisão." Mesmo caso do item acima.'},
+  {id:'yas3',p:'Yasmin',o:'nova',t:'escrita',pag:'p. 9',txt:'A seção 6 explica os três regimes sete páginas antes da seção que explica os três regimes',det:'"As empresas podem optar por regimes como Simples Nacional, Lucro Presumido ou Lucro Real, e essa escolha deve ser constantemente avaliada." A seção 10 (p. 16) faz isso com lei e artigo. Aqui basta anunciar que existe a escolha e apontar para a frente. Ver aba Conexão, contradição C4.'},
+  {id:'yas4',p:'Yasmin',o:'nova',t:'referencia',pag:'p. 24-29',txt:'(SEBRAE, 2026) oito vezes, mas são três obras diferentes do Sebrae em 2026',det:'A lista tem "Como definir preço de venda", "A formação de preço para o meu tipo de negócio" e a de Brasília. Quando o mesmo autor tem mais de uma obra no mesmo ano, a ABNT exige 2026a, 2026b, 2026c — no texto e na lista. Hoje o leitor não sabe qual das três está sendo citada.'},
+  {id:'yas5',p:'Yasmin',o:'nova',t:'dados',pag:'p. 25-29',txt:'As fórmulas de markup, margem e ponto de equilíbrio não têm um número aplicado',det:'MCu, MCt, MKD, MKM, PEC, PEF e PEE estão corretas e bem explicadas, mas nenhuma é resolvida com valor. Um brigadeiro com preço, custo e embalagem faz a seção inteira aterrissar — e é exatamente o que a parte prática vai precisar.'},
+  {id:'yas6',p:'Yasmin',o:'nova',t:'estrutura',pag:'p. 25-28',txt:'A seção 13 numera seus subitens como 12.1, 12.2, 12.3 e 12.4',det:'Mas 12.1 e 12.2 já existem na seção 12 do João (Terminologia Contábil Básica e Custos Diretos e Indiretos). O trabalho tem hoje dois "12.1" e dois "12.2". Renumerar os seus para 13.1 Margem de Contribuição, 13.2 Markup, 13.3 Ponto de Equilíbrio e 13.4 Componentes do Preço de Venda.'},
+  {id:'yas7',p:'Yasmin',o:'nova',t:'estrutura',pag:'p. 24-29',txt:'A seção de preços não usa o nome da empresa',det:'Diz "uma confeitaria" na p. 25, p. 27 e p. 28. É o mesmo negócio do título do trabalho.'},
 
-  {id:'joa1',p:'João Pedro',o:'nova',t:'escrita',txt:'Texto com muita repetição',det:'Revisão de 10/08.'},
-  {id:'joa2',p:'João Pedro',o:'nova',t:'referencia',txt:'Listas de referências soltas que não se conectam com o texto',det:'Referência que não é citada no corpo do trabalho não pode ficar na lista. Revisão de 10/08.'},
-  {id:'joa3',p:'João Pedro',o:'nova',t:'tabela',txt:'Adicionar gráficos e tabela',det:'Revisão de 10/08. É também a tarefa principal dele no grupo.'},
-  {id:'joa4',p:'João Pedro',o:'nova',t:'escrita',txt:'Rever se o texto está no presente',det:'Revisão de 10/08.'},
-  {id:'joa5',p:'João Pedro',o:'antiga',t:'escrita',txt:'Custos fixos e variáveis explicados duas vezes na mesma seção',det:'Mesmo conteúdo aparece em "Custos empresariais" e de novo em "Comportamento dos custos no comércio".'},
-  {id:'joa6',p:'João Pedro',o:'antiga',t:'referencia',txt:'Lista de referências no meio da seção de custos',det:'Tem um bloco "Referências" com Martins, Viceconti e CPC 16 dentro do corpo do trabalho. Tirar dali e mandar para a lista única do final.'},
-  {id:'joa7',p:'João Pedro',o:'antiga',t:'referencia',txt:'Viceconti e CPC 16 estão na lista mas não são citados no texto',det:'Ou cita no corpo, ou remove da lista.'},
-  {id:'joa8',p:'João Pedro',o:'antiga',t:'tabela',txt:'Montar a tabela do Anexo I do Simples (6 faixas) e o quadro comparativo dos 3 regimes',det:'É o mínimo que a banca espera de um TCC de contabilidade.'},
+  /* ---------------- JOÃO PEDRO — seção 12 (p.22-24) ---------------- */
+  {id:'joa1',p:'João Pedro',o:'nova',t:'citacao',pag:'p. 22',txt:'O parágrafo de abertura da seção 12 define custos empresariais sem nenhuma citação',det:'"Os custos empresariais representam todos os gastos relacionados diretamente à produção de bens ou à prestação de serviços." É afirmação técnica: precisa de fonte. O Martins que você usa no parágrafo seguinte serve aqui também.'},
+  {id:'joa2',p:'João Pedro',o:'nova',t:'estrutura',pag:'p. 23-24',txt:'"Comportamento dos Custos no Comércio" e "Métodos de Custeio" são subtítulos sem número',det:'Estão soltos no meio da 12.2, sem numeração e sem destaque. O modelo do professor exige numeração progressiva: viram 12.3 e 12.4.'},
+  {id:'joa3',p:'João Pedro',o:'antiga',t:'escrita',pag:'p. 22 e p. 23',txt:'Custos fixos e variáveis explicados duas vezes, com quase as mesmas palavras',det:'Primeira vez na abertura da seção 12 (p. 22, dois parágrafos). Segunda em "Comportamento dos Custos no Comércio" (p. 23-24). A segunda acrescenta só os exemplos de varejo — dá para fundir mantendo os exemplos.'},
+  {id:'joa4',p:'João Pedro',o:'nova',t:'referencia',pag:'p. 22 × p. 30',txt:'Martins é citado como 2023 na sua seção e como 2018 na seção do Calebe',det:'p. 22: "De acordo com Martins (2023), em sua obra Contabilidade de Custos". p. 30: "Segundo Martins (2018), os critérios de avaliação de estoques". E não existe entrada ABNT de Martins em nenhuma das quatro listas — só o link da editora e um link do repositório da USP. Vocês dois precisam combinar a edição.'},
+  {id:'joa5',p:'João Pedro',o:'antiga',t:'referencia',pag:'referências',txt:'CPC 16 está nas referências e não é citado em nenhum lugar do texto',det:'Aparece como link "cpc.org.br/CPC/Documentos-Emitidos/Pronunciamentos/Pronunciamento?Id=47", duas vezes (p. 33 e p. 37). Ou é citado no texto — cabe bem na parte de estoque do Calebe — ou sai da lista.'},
+  {id:'joa6',p:'João Pedro',o:'antiga',t:'tabela',pag:'37 páginas',txt:'O trabalho inteiro não tem uma única tabela, quadro ou gráfico',det:'Contei as 37 páginas: nenhuma. Num TCC de contabilidade isso é o primeiro comentário da banca. E há três lugares pedindo tabela em voz alta: as seis faixas do Anexo I (p. 18), a comparação dos três regimes (p. 16) e os componentes do preço de venda (p. 29).'},
+  {id:'joa7',p:'João Pedro',o:'antiga',t:'tabela',pag:'a produzir',txt:'Tabela do Anexo I com as 6 faixas e quadro comparativo dos 3 regimes',det:'A p. 18 descreve as faixas em texto corrido — "seis faixas de faturamento, com alíquotas nominais que variam de 4% a 19%" — que é exatamente o conteúdo de uma tabela. Título acima, fonte abaixo, numeradas como Quadro 1 e Quadro 2.'},
+  {id:'joa8',p:'João Pedro',o:'nova',t:'escrita',pag:'p. 23',txt:'"Em uma loja de doces" duas vezes, em vez do nome da empresa',det:'Nos parágrafos de custos diretos e de terminologia. São os dois melhores momentos do texto — é onde o conceito encosta no negócio real — e é justamente onde o nome deveria estar.'},
 
-  {id:'vic1',p:'Victória',o:'nova',t:'citacao',txt:'Corrigir lei',det:'Revisão de 10/08. Ver os itens antigos abaixo — são exatamente as leis erradas apontadas.'},
-  {id:'vic2',p:'Victória',o:'nova',t:'referencia',txt:'Conferir a data do livro citado',det:'Revisão de 10/08. É o caso do Garcia (2021 no texto, 2015 na lista).'},
-  {id:'vic3',p:'Victória',o:'nova',t:'referencia',txt:'Revisar referências',det:'Revisão de 10/08. Também é a tarefa dela no grupo — unificar as quatro listas.'},
-  {id:'vic4',p:'Victória',o:'nova',t:'escrita',txt:'Parágrafos longos demais',det:'Revisão de 10/08. Quebrar em parágrafos de 4 a 8 linhas — o modelo do professor pede no mínimo 4 a 5.'},
-  {id:'vic5',p:'Victória',o:'antiga',t:'dados',txt:'Base de cálculo da CSLL errada — usa 8% no comércio',det:'O correto é 12% (Lei nº 9.249/1995, art. 20). Os 8% valem para o IRPJ. CONFERIDO NO ARQUIVO DE 09/08: os 12% não aparecem em nenhum lugar — ainda não foi corrigido.'},
-  {id:'vic6',p:'Victória',o:'antiga',t:'citacao',txt:'Obrigatoriedade do Lucro Real atribuída ao CFC',det:'Vem da Lei nº 9.718/1998, art. 14, não de diretriz do Conselho Federal de Contabilidade. CONFERIDO: a Lei 9.718 ainda não é citada no arquivo.'},
-  {id:'vic7',p:'Victória',o:'antiga',t:'citacao',txt:'Decreto 3.000/1999 estava revogado — trocar pelo Decreto 9.580/2018',det:'CONFERIDO NO ARQUIVO DE 09/08: o Decreto 9.580/2018 já está no texto e na lista. Só falta tirar o link antigo do d3000 que ficou perdido numa das listas de referência.',fix:true},
-  {id:'vic8',p:'Victória',o:'antiga',t:'referencia',txt:'Referência do Garcia não fecha',det:'No texto aparece Garcia (2021); na lista, 2015. Confirmar qual edição existe de verdade antes de citar.'},
-  {id:'vic9',p:'Victória',o:'antiga',t:'estrutura',txt:'Colocar a Reforma Tributária no TCC',det:'O material de 04/08 está pronto e continua fora do trabalho. Agora vira tópico separado — escopo definido na aba Reforma.'},
+  /* ---------------- LAURA — seção 9 (p.13-15) ---------------- */
+  {id:'lau1',p:'Laura',o:'antiga',t:'referencia',pag:'p. 14',txt:'As três fontes da seção são banco, birô de crédito e fintech',det:'Caixa Econômica Federal (2023) citada quatro vezes, Serasa Experian (2023) duas e InfinitePay (2023) uma. Nenhuma é fonte acadêmica. Trocar por Assaf Neto, Gitman, Hoji ou Zdanowicz — qualquer um dos quatro cobre fluxo de caixa inteiro.'},
+  {id:'lau2',p:'Laura',o:'antiga',t:'referencia',pag:'p. 14',txt:'InfinitePay (2023) citada no texto e ausente das quatro listas de referências',det:'"Segundo a InfinitePay (2023), a falta desse acompanhamento pode comprometer o equilíbrio financeiro." Procurei em todas as listas: não está. Some junto com a troca de fontes do item acima.'},
+  {id:'lau3',p:'Laura',o:'antiga',t:'estrutura',pag:'p. 15',txt:'Oito definições de uma a três linhas, seguidas, sem uma única citação',det:'Regime de caixa · Regime de competência · Registro de receita · Registro de despesas · Estrutura do Demonstrativo de Fluxo de Caixa · Ciclo operacional · Ciclo financeiro · Princípio da entidade. É um glossário, não uma seção de TCC. O modelo do professor pede parágrafos de 4 a 5 linhas, cada um com fonte.'},
+  {id:'lau4',p:'Laura',o:'antiga',t:'dados',pag:'p. 14',txt:'"como Simples Nacional ou Lucro Real" — a comparação da empresa é outra',det:'A p. 16 já estabelece que "no cenário de microempresas e pequenos comércios, o Lucro Real raramente é adotado". A parte prática vai comparar Simples × Lucro Presumido. Sua frase aponta para o regime errado. Ver aba Conexão, contradição C3.'},
+  {id:'lau5',p:'Laura',o:'antiga',t:'citacao',pag:'p. 14',txt:'"o monitoramento adequado de um contador evita o endividamento" — afirmação sem fonte',det:'Vem logo depois da citação da InfinitePay, então parece que é dela, mas não é. E "evita o endividamento" é forte demais: o acompanhamento contábil reduz o risco, não elimina.'},
+  {id:'lau6',p:'Laura',o:'nova',t:'estrutura',pag:'p. 15',txt:'Os subtítulos da seção 9 não têm numeração',det:'"O Fluxo de caixa e sua importância estrutural", "Regime de caixa", "Regime de competência" e os outros cinco estão sem número. Viram 9.1 a 9.8 — ou, melhor, viram parágrafos de um texto corrido e o problema some junto com o item acima.'},
+  {id:'lau7',p:'Laura',o:'antiga',t:'estrutura',pag:'p. 15',txt:'Falta o miolo do fluxo de caixa: as três atividades e método direto × indireto',det:'"Estrutura do Demonstrativo de Fluxo de Caixa" tem duas linhas e não cita atividade operacional, de investimento e de financiamento — que é a estrutura em si. E não diferencia método direto de indireto. É o centro do produto final que vocês prometeram na metodologia.'},
+  {id:'lau8',p:'Laura',o:'nova',t:'escrita',pag:'p. 13-15',txt:'Três páginas de gestão financeira sem citar a Casa do Brigadeiro',det:'A seção fala de "empresa", "comércio" e "micro e pequenas empresas" o tempo todo. É a seção que vira a planilha da parte prática — deveria ser a mais colada na empresa.'},
 
-  {id:'yas1',p:'Yasmin',o:'nova',t:'estrutura',txt:'Arrumar ABNT',det:'Revisão de 10/08. É a tarefa dela no grupo — e só começa depois que todos entregarem as correções.'},
-  {id:'yas2',p:'Yasmin',o:'nova',t:'escrita',txt:'A seção 9 repete temas das seções 5 e 6',det:'Quatro seções explicando escolha de regime tributário. Escolher uma para aprofundar e cortar as outras. Revisão de 10/08.'},
-  {id:'yas3',p:'Yasmin',o:'nova',t:'escrita',txt:'Diminuir o texto',det:'Revisão de 10/08.'},
-  {id:'yas4',p:'Yasmin',o:'antiga',t:'estrutura',txt:'Escrever o Resumo (150 a 250 palavras) e as palavras-chave',det:'Elemento obrigatório e ainda inexistente no arquivo.'},
-  {id:'yas5',p:'Yasmin',o:'antiga',t:'estrutura',txt:'Juntar tudo num arquivo só, sem marcadores internos',det:'CONFERIDO NO ARQUIVO DE 09/08: os marcadores tipo "Pesquisa 2 — Nathan Elias" já foram removidos. Falta padronizar tempo verbal e cortar repetição.',fix:true},
+  /* ---------------- CALEBE — seções 7 e 8 (p.10-13) e seção 14 (p.30-32) ---------------- */
+  {id:'cal1',p:'Calebe',o:'antiga',t:'dados',pag:'p. 10',txt:'"muitas microempresas encerram suas atividades" — sem um número, e você tem o número',det:'A frase exata: "Segundo dados do Sebrae (2023), muitas microempresas encerram suas atividades nos primeiros anos de funcionamento devido às dificuldades financeiras." Citar o Sebrae e não trazer o percentual é o pior dos dois mundos. E a sua própria seção 8, três páginas depois, está cheia de dados do Sebrae bem usados — é só trazer o de mortalidade para cá.'},
+  {id:'cal2',p:'Calebe',o:'nova',t:'referencia',pag:'p. 10',txt:'Sebrae (2023) citado; a lista tem Sebrae 2026 e links sem ano',det:'Não existe entrada "SEBRAE, 2023" em nenhuma das quatro listas. Se o dado vier do relatório de sobrevivência de empresas, a referência é o "FAOTRES CONDICIONANTES…" da p. 33 — que está de 2004 e com o nome escrito errado.'},
+  {id:'cal3',p:'Calebe',o:'nova',t:'referencia',pag:'p. 11',txt:'"De acordo com o Sebrae (2022)" — 2022 não aparece em nenhuma lista',det:'"falhas no planejamento financeiro podem gerar falta de capital de giro". Terceiro ano diferente do Sebrae citado no trabalho (2022, 2023, 2026), e só 2026 tem referência.'},
+  {id:'cal4',p:'Calebe',o:'nova',t:'citacao',pag:'p. 11',txt:'Parágrafo inteiro sobre os desafios do empreendedor, sem fonte',det:'"Entre os principais desafios práticos enfrentados pelas microempresas estão a falta de profissionais qualificados, o pouco conhecimento contábil e tributário e o tempo reduzido do empreendedor." Três afirmações fortes, nenhuma citação. É o parágrafo com maior risco de plágio da seção.'},
+  {id:'cal5',p:'Calebe',o:'nova',t:'citacao',pag:'p. 11',txt:'"é comum a ausência de educação financeira e de cultura contábil" — sem fonte',det:'Mesma página, parágrafo seguinte. Inclui "mistura das finanças pessoais com as empresariais", que é justamente o gancho para o princípio da entidade que a Laura define na p. 15 — dá para citar e conectar de uma vez.'},
+  {id:'cal6',p:'Calebe',o:'nova',t:'estrutura',pag:'p. 10-13',txt:'As seções 7 e 8 são a mesma seção escrita duas vezes',det:'A 7 fala da importância e das dificuldades das microempresas sem dados; a 8 fala da importância das MPEs com muitos dados. Fundir: os dados da 8 preenchem exatamente os buracos da 7, e o trabalho ganha três páginas de fôlego.'},
+  {id:'cal7',p:'Calebe',o:'nova',t:'referencia',pag:'p. 30-31',txt:'Viana, Martins, Ballou e Bowersox citados sem referência ABNT',det:'Viana (2000), Martins (2018) e Ballou (2006) só existem como link numerado no fim (itens 12, 13 e 14) — link do Google Books não é referência. E Bowersox et al. (2014), citado na p. 31, não aparece nem nos links. Os quatro precisam de entrada ABNT completa.'},
+  {id:'cal8',p:'Calebe',o:'nova',t:'citacao',pag:'p. 30-31',txt:'"Segundo o SEBRAE" quatro vezes, sem ano nenhuma delas',det:'p. 30: "Segundo o SEBRAE, a aplicação do PEPS ajuda a organizar a saída das mercadorias". p. 31: "O SEBRAE destaca o uso do PEPS e do PVPS", "O SEBRAE também afirma que o controle de estoque ajuda a evitar excessos". Citação sem ano não permite achar a fonte.'},
+  {id:'cal9',p:'Calebe',o:'nova',t:'referencia',pag:'p. 31',txt:'ANVISA citada sem ano e sem referência',det:'"A Agência Nacional de Vigilância Sanitária (ANVISA) ressalta que a validade dos alimentos depende de fatores como processamento, armazenamento e acondicionamento." Existe só como link 16 no fim. Vira (BRASIL, 2018) ou ANVISA, ano, com título e acesso.'},
+  {id:'cal10',p:'Calebe',o:'nova',t:'escrita',pag:'p. 30-32',txt:'A seção de estoque não cita a Casa do Brigadeiro',det:'Três páginas sobre perecíveis, validade e perdas — o assunto mais colado numa doceria do trabalho inteiro — falando de "empresas de varejo" em geral. Um parágrafo final aplicando PEPS e PVPS ao brigadeiro e ao bolo resolve.'},
+  {id:'cal11',p:'Calebe',o:'antiga',t:'dados',pag:'com a empresa',txt:'Falar com a Casa do Brigadeiro e trazer os dados em texto',det:'Sem isso não existe estudo de caso, e a entrega de 15/09 não acontece. Lista completa do que pedir na aba Empresa.'},
+  {id:'cal12',p:'Calebe',o:'antiga',t:'estrutura',pag:'a escrever',txt:'Escrever a seção de Caracterização da Empresa',det:'Razão social, CNPJ, CNAE, porte, regime atual, anexo do Simples, faturamento, funcionários e mix de produtos. É ela que resolve, de uma vez, a maior parte das contradições da aba Conexão.'},
 
-  {id:'tod1',p:'Todos',o:'nova',t:'escrita',txt:'Usar sempre os mesmos termos no trabalho inteiro',det:'carga tributária · microempresas (ME) · comércio varejista de doces · enquadramento. Nada de trocar por sinônimo no meio do texto. Revisão de 10/08.'},
-  {id:'tod2',p:'Todos',o:'nova',t:'escrita',txt:'Ler o TCC inteiro e entender o tema',det:'Na apresentação e na parte prática vai ser cobrado conhecimento do assunto, não leitura de slide. Recado do grupo em 10/08.'},
-  {id:'tod3',p:'Todos',o:'antiga',t:'escrita',txt:'Padronizar o tempo verbal',det:'Hoje mistura passado ("constituiu", "tornou-se") com futuro na metodologia. Combinado sugerido: introdução, justificativa e metodologia no passado (como o modelo do professor pede); referencial teórico no presente.'},
+  /* ---------------- TODOS ---------------- */
+  {id:'tod1',p:'Todos',o:'nova',t:'escrita',pag:'trabalho inteiro',txt:'Usar sempre os mesmos termos',det:'carga tributária (não "encargo tributário" nem "custos fiscais") · microempresa (ME) · comércio varejista de doces (não "confeitaria" nem "loja de doces") · regime tributário para o regime e enquadramento só para ME/EPP.'},
+  {id:'tod2',p:'Todos',o:'nova',t:'escrita',pag:'trabalho inteiro',txt:'Toda seção termina com uma frase citando a empresa',det:'A Victória já faz isso no fim da seção 11. Copiar o método: seis frases resolvem o problema de a empresa sumir por 12 páginas. As frases prontas estão na aba Conexão.'},
+  {id:'tod3',p:'Todos',o:'nova',t:'escrita',pag:'trabalho inteiro',txt:'Ler o TCC inteiro antes da apresentação',det:'Na banca é cobrado conhecimento do assunto, não leitura de slide. E ninguém percebe que uma seção recomeça do zero sem ter lido as anteriores seguidas.'},
 
-  {id:'ger1',p:'Geral',o:'antiga',t:'estrutura',txt:'A empresa desaparece do trabalho',det:'A Casa do Brigadeiro é citada na introdução e na metodologia e some por quinze páginas. O trabalho promete estudo de caso e entrega pesquisa bibliográfica.'},
-  {id:'ger2',p:'Geral',o:'antiga',t:'tabela',txt:'Zero tabelas e zero gráficos',det:'Trabalho de contabilidade sem uma única tabela. Responsável: João Pedro.'},
-  {id:'ger3',p:'Geral',o:'antiga',t:'estrutura',txt:'Faltam os elementos obrigatórios',det:'Sem resumo, palavras-chave, folha de aprovação, sumário, lista de tabelas, considerações finais e apêndices.'},
-  {id:'ger4',p:'Geral',o:'antiga',t:'estrutura',txt:'Sumário desatualizado e títulos sem numeração',det:'CONFERIDO NO ARQUIVO DE 09/08: não existe sumário, e nenhum título está numerado. O modelo do professor exige 1 INTRODUÇÃO, 2 JUSTIFICATIVA, 3 OBJETIVOS, 3.1, 3.2 etc.'},
-  {id:'ger5',p:'Geral',o:'antiga',t:'referencia',txt:'Quatro listas de referências separadas no mesmo arquivo',det:'Uma no meio da seção de custos, uma com links crus, um bloco "Refs:" e a lista boa do final. CONFERIDO: continuam todas lá.'},
-  {id:'ger6',p:'Geral',o:'antiga',t:'referencia',txt:'Erro de digitação "FAOTRES" na lista de referências',det:'É "FATORES CONDICIONANTES E TAXA DE MORTALIDADE DE EMPRESAS NO BRASIL". CONFERIDO: ainda está escrito errado.'},
-  {id:'ger7',p:'Geral',o:'antiga',t:'referencia',txt:'Autores citados no texto que não estão na lista',det:'Garrison, Padoveze e InfinitePay aparecem no corpo e não constam nas referências.'},
-  {id:'ger8',p:'Geral',o:'antiga',t:'escrita',txt:'A questão-problema já assume a resposta',det:'"Como a ausência de planejamento tributário impacta negativamente os custos…" parte de uma conclusão que o trabalho ainda não testou. Reformular para uma pergunta neutra.'},
-  {id:'ger9',p:'Geral',o:'antiga',t:'escrita',txt:'A metodologia não bate com a prática',det:'O texto diz abordagem qualitativa, mas vamos fazer simulação numérica de regimes. É quali-quantitativa.'},
-  {id:'ger10',p:'Geral',o:'antiga',t:'referencia',txt:'Risco de plágio em parágrafos técnicos sem fonte',det:'A avaliação de 16/06 apontou risco grave. Cada afirmação técnica precisa de citação.'},
-  {id:'ger11',p:'Geral',o:'antiga',t:'estrutura',txt:'Redundância entre as seções de regime tributário',det:'Quatro seções diferentes explicando a mesma escolha de regime.'},
-  {id:'ger12',p:'Geral',o:'antiga',t:'estrutura',txt:'Faltam o cronograma e os resultados esperados exigidos pelo modelo',det:'O PTCC do professor tem "6 CRONOGRAMA DE DESENVOLVIMENTO" e "7 RESULTADOS ESPERADOS". Nenhum dos dois existe no nosso arquivo.'},
-  {id:'ger13',p:'Geral',o:'antiga',t:'estrutura',txt:'Referencial teórico não está no formato de quadro do modelo',det:'O modelo exige o QUADRO I com quatro colunas: Tópico · Autor e Obra · Ideia Central / Citação Chave · Por que é importante.'},
-  {id:'ger14',p:'Geral',o:'antiga',t:'estrutura',txt:'Paginação fora da regra do modelo',det:'Contar a partir da folha de rosto, mas numerar só a partir da introdução.'}
+  /* ---------------- GERAL — estrutura, ABNT e coerência ---------------- */
+  {id:'ger1',p:'Geral',o:'nova',t:'escrita',pag:'p. 1 e 2',txt:'O título da capa e da folha de rosto está com "COMERCIO" sem acento',det:'"CASA DO BRIGADEIRO COMERCIO DE DOCES SOROCABA LTDA." É a razão social e é a primeira linha que a banca lê. Corrigir para COMÉRCIO nos dois lugares. Ver a aba Conexão para a lista de onde mais o nome aparece diferente.'},
+  {id:'ger2',p:'Geral',o:'nova',t:'estrutura',pag:'p. 3',txt:'O sumário pula da seção 10 para a 12 — a seção 11 inteira não está listada',det:'"A TEORIA DA TRIBUTAÇÃO E DO ENQUADRAMENTO NO COMÉRCIO VAREJISTA" ocupa as páginas 17 a 19 e não aparece no sumário. A 11.1 também não. É a melhor seção do trabalho, invisível para quem lê o sumário.'},
+  {id:'ger3',p:'Geral',o:'nova',t:'estrutura',pag:'p. 3',txt:'O sumário lista sete subitens da seção 9 sem numeração e esquece dois',det:'Aparecem "O Fluxo de caixa", "Regime de caixa", "Regime de competência", "Registro de receita", "Registro de despesas", "Estrutura do Demonstrativo" e "Ciclo operacional" — todos sem número. E "Ciclo financeiro" e "Princípio da entidade", que existem na p. 15, ficaram de fora.'},
+  {id:'ger4',p:'Geral',o:'nova',t:'estrutura',pag:'p. 23 e 25',txt:'O trabalho tem dois "12.1" e dois "12.2"',det:'12.1 Terminologia Contábil Básica e 12.2 Custos Diretos e Indiretos (João, p. 23) convivem com 12.1 Margem de Contribuição e 12.2 Markup (Yasmin, p. 25-26), que deveriam ser 13.1 e 13.2. Numeração duplicada é erro que o sumário automático expõe na hora.'},
+  {id:'ger5',p:'Geral',o:'antiga',t:'escrita',pag:'p. 4',txt:'A questão-problema já contém a resposta',det:'"Como a ausência de planejamento tributário impacta negativamente os custos empresariais e compromete a eficiência financeira da Casa do Brigadeiro…" — assume que existe ausência e que ela é negativa, antes de coletar qualquer dado. Sugestão neutra: "De que forma a implantação de um planejamento tributário integrado ao controle de fluxo de caixa pode contribuir para a redução de custos e para a eficiência financeira da Casa do Brigadeiro Comércio de Doces Sorocaba Ltda.?"'},
+  {id:'ger6',p:'Geral',o:'antiga',t:'dados',pag:'p. 7',txt:'A metodologia diz que a abordagem será qualitativa, mas a prática é numérica',det:'"A abordagem será qualitativa, fundamentada em pesquisa bibliográfica." Só que o trabalho vai simular Simples × Lucro Presumido, calcular margem de contribuição e ponto de equilíbrio e montar fluxo de caixa de 12 meses. Isso é quali-quantitativa. Uma palavra a trocar, e ela sustenta a parte prática inteira.'},
+  {id:'ger7',p:'Geral',o:'antiga',t:'citacao',pag:'p. 4-5',txt:'Introdução e justificativa não têm uma única citação',det:'Duas páginas de afirmações sobre carga tributária, custos de confeitaria e mortalidade de empresas, sem nenhuma fonte. São as duas primeiras páginas de texto que a banca lê.'},
+  {id:'ger8',p:'Geral',o:'antiga',t:'referencia',pag:'p. 33-37',txt:'São quatro blocos de referências diferentes, e o primeiro ainda se repete no fim',det:'(1) p. 33-34: lista com títulos entre aspas e URLs. (2) p. 34: lista ABNT correta, com BRASIL, CREPALDI, FABRETTI e GARCIA — essa é a boa. (3) p. 34-35: bloco "Refs:" com sete links crus. (4) p. 35-37: Sebrae e Centro Paula Souza mais uma lista numerada de 1 a 17. E os cinco links da p. 33 reaparecem iguais na p. 37. Vira uma lista só, alfabética. Pode ocupar mais de uma página — o que não pode é estar espalhada.'},
+  {id:'ger9',p:'Geral',o:'antiga',t:'referencia',pag:'p. 33',txt:'"FAOTRES CONDICIONANTES" continua escrito errado',det:'É "FATORES CONDICIONANTES E TAXA DE MORTALIDADE DE EMPRESAS NO BRASIL". Está assim desde a primeira revisão.'},
+  {id:'ger10',p:'Geral',o:'antiga',t:'referencia',pag:'p. 33',txt:'O CTN está referenciado como "Presidência da República Casa Civil"',det:'Casa Civil é onde o texto está hospedado, não o autor. O correto é: BRASIL. Lei nº 5.172, de 25 de outubro de 1966. Dispõe sobre o Sistema Tributário Nacional. Brasília, DF: Presidência da República, 1966.'},
+  {id:'ger11',p:'Geral',o:'antiga',t:'referencia',pag:'p. 33-37',txt:'Nenhuma fonte online tem "Acesso em:"',det:'Só as entradas do Sebrae e do Centro Paula Souza da p. 35-36 trazem "Acesso em: 9 ago. 2026". Todas as outras URLs — Serasa, Caixa, Planalto, Jusbrasil, CARF, Conjur, IBGE, ANVISA, CPC, CFC — estão sem data de acesso, que é obrigatória na NBR 6023.'},
+  {id:'ger12',p:'Geral',o:'antiga',t:'referencia',pag:'p. 33',txt:'O link do Decreto 3.000/1999 continua na lista, e ele está revogado',det:'"www.planalto.gov.br/ccivil_03/decreto/d3000.htm". Sai da lista junto com a correção da citação (BRASIL, 1999) na p. 16.'},
+  {id:'ger13',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 7 a 32',txt:'A empresa desaparece por 25 páginas',det:'É citada pelo nome na introdução, justificativa, objetivos e metodologia (até a p. 7). Depois só reaparece na p. 19, e assim mesmo como "a microempresa estudada", sem nome. Da p. 19 até o fim, na p. 32, não aparece mais nenhuma vez. O trabalho promete estudo de caso e entrega pesquisa bibliográfica.'},
+  {id:'ger14',p:'Geral',o:'antiga',t:'estrutura',pag:'faltando',txt:'Faltam folha de aprovação, lista de tabelas, considerações finais e apêndices',det:'O resumo e as palavras-chave ficam para o fim, por decisão do grupo — os outros quatro não dependem do texto pronto e podem ser feitos agora. Apêndices: roteiro de entrevista e termo de autorização assinado.'},
+  {id:'ger15',p:'Geral',o:'antiga',t:'estrutura',pag:'faltando',txt:'Faltam as seções CRONOGRAMA DE DESENVOLVIMENTO e RESULTADOS ESPERADOS',det:'As duas são exigidas pelo modelo do professor e não existem no arquivo. O cronograma vira quadro (é do João); os resultados esperados são meia página dizendo o que a simulação deve mostrar.'},
+  {id:'ger16',p:'Geral',o:'antiga',t:'estrutura',pag:'formato',txt:'O referencial teórico não está no formato de quadro exigido pelo modelo',det:'O modelo pede o QUADRO I com quatro colunas: Tópico · Autor e Obra · Ideia Central ou Citação Chave · Por que é importante. Hoje o referencial é texto corrido do começo ao fim.'},
+  {id:'ger17',p:'Geral',o:'nova',t:'escrita',pag:'p. 4 a 32',txt:'O negócio tem três nomes diferentes ao longo do texto',det:'"confeitaria" (p. 4, 6, 7, 16, 25, 27, 28) · "loja de doces" (p. 23, duas vezes) · "comércio varejista de doces" (p. 19). O correto é o da seção 11, que é o que bate com o CNAE e com o Anexo I. Ver aba Conexão.'},
+  {id:'ger18',p:'Geral',o:'nova',t:'estrutura',pag:'todas',txt:'A paginação aparece em todas as páginas, inclusive na capa',det:'O modelo do professor manda contar a partir da folha de rosto e mostrar o número só a partir da introdução. Hoje a capa é a página 1 e o número está visível nela.'},
+  {id:'ger19',p:'Geral',o:'nova',t:'escrita',pag:'p. 4-7',txt:'Tempo verbal: conferido e coerente com a regra do grupo',det:'Introdução e justificativa no passado, porque a pesquisa já foi feita ("constituiu", "justificou-se", "buscou demonstrar"). Metodologia no futuro, porque a parte prática ainda vai acontecer ("será de natureza aplicada", "será desenvolvido", "será elaborada"). Referencial teórico no presente, porque conceito e lei não têm tempo. Está certo — só não deixar escapar na hora de juntar o arquivo.',fix:true},
+  {id:'ger20',p:'Geral',o:'nova',t:'pesquisa',pag:'p. 19-32',txt:'As três pesquisas 2 que faltavam entraram no arquivo',det:'Nathan: elisão, evasão e o caso do CARF, na 11.1 (p. 19-21). Yasmin: formação de preços, margem de contribuição, markup e ponto de equilíbrio, na seção 13 (p. 24-29). Calebe: PEPS, UEPS, custo médio e perecíveis, na seção 14 (p. 30-32). Falta só o ICMS-ST do Nathan.',fix:true}
 ];
 
 var TAREFAS=[
@@ -664,7 +724,7 @@ var TAREFAS=[
     {t:'Numerar todos os títulos',d:'1 INTRODUÇÃO, 2 JUSTIFICATIVA, 3 OBJETIVOS, 3.1 GERAL, 3.2 ESPECÍFICOS…'},
     {t:'Gerar o sumário',d:'Automático, depois que os títulos estiverem numerados'},
     {t:'Ajustar a paginação',d:'Contar da folha de rosto, numerar da introdução'},
-    {t:'Escrever o Resumo e as palavras-chave',d:'150 a 250 palavras'},
+    {t:'Escrever o Resumo e as palavras-chave',d:'150 a 250 palavras — só no fim, com o TCC concluído. Não é tarefa de agosto.'},
     {t:'Escrever a seção Resultados Esperados',d:'Exigida pelo modelo do professor'},
     {t:'Corrigir os próprios erros',d:'Ver aba Erros — filtro Yasmin'}
   ]},
@@ -752,11 +812,14 @@ var ABNT=[
   {t:'Citação com mais de 3 linhas: recuo 4 cm, fonte 10, sem aspas, espaço simples',d:''},
   {t:'Toda citação do texto tem referência na lista',d:'Responsável: Victória'},
   {t:'Toda referência da lista é citada no texto',d:'Responsável: Victória'},
-  {t:'Lista de referências única, em ordem alfabética',d:'Hoje são quatro listas'},
+  {t:'Lista de referências única, em ordem alfabética',d:'Hoje são quatro blocos espalhados (p. 33, 34, 34-35 e 35-37), e o primeiro ainda se repete na p. 37. Pode ocupar mais de uma página, sem problema — o que não pode é estar dividida em listas separadas.'},
   {t:'Tabelas e quadros com título acima e fonte abaixo',d:'Responsável: João'},
   {t:'Sumário gerado automaticamente',d:'Responsável: Yasmin'},
-  {t:'Resumo com 150 a 250 palavras e palavras-chave',d:''},
-  {t:'Termos padronizados no trabalho inteiro',d:'carga tributária · microempresas (ME) · comércio varejista de doces · enquadramento'}
+  {t:'Resumo com 150 a 250 palavras e palavras-chave',d:'POR ÚLTIMO, quando o TCC estiver concluído — decisão do grupo, e está certa: só dá para resumir o que já existe. Não é pendência de agosto.'},
+  {t:'Termos padronizados no trabalho inteiro',d:'carga tributária · microempresa (ME) · comércio varejista de doces · enquadramento. Lista de onde trocar na aba Conexão.'},
+  {t:'Tempo verbal conforme a regra do grupo',d:'Pesquisa já feita no passado, parte prática no futuro, conceito e lei no presente. Conferido nas 37 páginas: está correto. Tabela na aba Conexão.'},
+  {t:'Numeração sem repetição entre seções',d:'Hoje existem dois "12.1" e dois "12.2" — os subitens da seção 13 herdaram a numeração da 12.'},
+  {t:'O modelo do professor prevalece sobre qualquer regra daqui',d:'Em caso de divergência entre esta lista e o MODELO OFICIAL / PTCC ABNT, vale o do professor. Conferir antes de fechar.'}
 ];
 
 var DOCS=[
@@ -780,11 +843,112 @@ var DADOS_EMP=[
   {t:'Que controles a empresa já usa',d:'Planilha, caderno, sistema, nada'}
 ];
 
-var CONFLITOS=[
-  {t:'A empresa é comércio ou híbrida?',d:'Uma seção diz híbrida, aplicando 8% e 32%; outra diz que nunca incide 32%. É a primeira coisa que a banca questiona, porque muda o cálculo inteiro. Definir: comércio varejista de doces, Anexo I, presunção de 8%.'},
-  {t:'Qual comparação de regimes o trabalho faz?',d:'Uma seção compara Simples com Lucro Real; outra já disse que o Lucro Real é raramente adotado por microempresa e que a alternativa real é o Lucro Presumido. Escolher uma e refazer a outra.'},
-  {t:'A escolha de regime é explicada quatro vezes',d:'Seções diferentes explicam o mesmo assunto do zero. Escolher uma para aprofundar e transformar as outras em referência cruzada.'},
-  {t:'Duas bases legais para a mesma regra',d:'Uma seção citava o Decreto 3.000/1999 (revogado) e outra o 9.580/2018 (válido). O 9.580 já entrou — falta varrer o arquivo e tirar o resto do link antigo.'}
+/* razão social oficial e onde o texto usa outro nome */
+var RAZAO='Casa do Brigadeiro Comércio de Doces Sorocaba Ltda.';
+var NOMES=[
+  {onde:'p. 1 e p. 2 — capa e folha de rosto',hoje:'CASA DO BRIGADEIRO COMERCIO DE DOCES SOROCABA LTDA.',acao:'Falta o acento em COMÉRCIO. É a razão social e é a primeira linha do trabalho.'},
+  {onde:'p. 4 — introdução',hoje:'"No ramo de confeitaria"',acao:'Trocar por "No comércio varejista de doces". A seção 11 já provou que o enquadramento é comércio, não serviço.'},
+  {onde:'p. 6 — objetivos específicos',hoje:'"na gestão da confeitaria"',acao:'Trocar por "na gestão da empresa" ou pela razão social.'},
+  {onde:'p. 7 — metodologia',hoje:'"uma empresa do ramo de confeitaria"',acao:'Trocar pela razão social completa, que é a primeira aparição depois dos objetivos.'},
+  {onde:'p. 16 — seção 10',hoje:'"o setor de confeitaria… atividade híbrida"',acao:'Some junto com a correção da contradição C1: a empresa é comércio varejista.'},
+  {onde:'p. 19 — seção 11',hoje:'"a microempresa estudada"',acao:'Trocar pela razão social. É o fecho da melhor seção do trabalho e a única menção entre as páginas 8 e 32.'},
+  {onde:'p. 23 — seção 12, duas vezes',hoje:'"Em uma loja de doces"',acao:'Trocar por "Na Casa do Brigadeiro". São os dois momentos em que o conceito encosta no negócio real.'},
+  {onde:'p. 25, 27 e 28 — seção 13',hoje:'"uma confeitaria"',acao:'Trocar pela razão social na primeira e por "a empresa" nas outras duas.'},
+  {onde:'p. 30-32 — seção 14',hoje:'"empresas de varejo", "o varejo de alimentos"',acao:'Acrescentar um parágrafo final aplicando PEPS e PVPS ao brigadeiro, ao bolo e à bebida revendida.'}
+];
+
+/* onde o texto não se conecta, e a frase que resolve */
+var CONEXOES=[
+  {n:'C1',tit:'A empresa é comércio ou é atividade híbrida?',quem:'Victória — as duas seções são dela',
+   onde:'p. 16 (seção 10) contra p. 19 (seção 11)',
+   diz1:'Seção 10: "Para atividades híbridas, como o setor de confeitaria — que engloba tanto a produção e venda de mercadorias (comércio) quanto o atendimento no local (serviço) —, as alíquotas de presunção variam significativamente, sendo estipuladas em 8% para operações comerciais e 32% para a prestação de serviços."',
+   diz2:'Seção 11: "deve ser tributada com base no Anexo I do Simples Nacional e, caso venha a optar futuramente pelo Lucro Presumido, sobre a margem de presunção de 8%, nunca sobre os 32% destinados à prestação de serviços."',
+   porque:'São três páginas de distância dizendo o contrário uma da outra, com a mesma assinatura. É a primeira pergunta da banca, porque muda a base de cálculo em quatro vezes. Quem decide é o CNAE do cartão CNPJ — e o Calebe ainda não trouxe.',
+   como:'Manter a seção 11, que está certa e fundamentada, e reescrever o parágrafo da seção 10 para descrever a regra geral sem aplicar à empresa.',
+   frase:'As alíquotas de presunção variam conforme a natureza da atividade: 8% para a revenda de mercadorias e 32% para a prestação de serviços (BRASIL, 1995). A definição de qual delas se aplica a cada empresa depende do enquadramento de sua atividade principal, questão examinada em detalhe na seção seguinte.'},
+
+  {n:'C2',tit:'Duas bases legais para a mesma regra, e uma está revogada',quem:'Victória',
+   onde:'p. 16 (seção 10) contra p. 18 (seção 11)',
+   diz1:'Seção 10: as presunções de 8% e 32% estão fundamentadas em (BRASIL, 1999) — o Decreto nº 3.000/1999.',
+   diz2:'Seção 11: a mesma regra aparece fundamentada no artigo 591 do Decreto nº 9.580/2018, que é o Regulamento do Imposto de Renda em vigor.',
+   porque:'O Decreto 9.580/2018 revogou o 3.000/1999. O trabalho cita norma válida e norma revogada em páginas seguidas, para dizer a mesma coisa. E o link do d3000 continua na lista de referências da p. 33.',
+   como:'Trocar (BRASIL, 1999) por (BRASIL, 2018) na seção 10, apagar o link do d3000 da lista e conferir se sobrou alguma outra menção ao decreto antigo.',
+   frase:'…sendo estipuladas em 8% para operações comerciais e 32% para a prestação de serviços, conforme o artigo 15 da Lei nº 9.249/1995, regra hoje consolidada nos artigos 591 e 592 do Decreto nº 9.580/2018 (BRASIL, 1995; BRASIL, 2018).'},
+
+  {n:'C3',tit:'Qual comparação de regimes o trabalho vai fazer?',quem:'Laura escreveu; a resposta está na seção da Victória',
+   onde:'p. 14 (seção 9) contra p. 16 (seção 10)',
+   diz1:'Seção 9: "os dados obtidos auxiliam na escolha do regime tributário mais adequado, como Simples Nacional ou Lucro Real, favorecendo a redução legal de custos."',
+   diz2:'Seção 10: "No cenário de microempresas e pequenos comércios, o Lucro Real raramente é adotado devido ao elevado custo de conformidade."',
+   porque:'A parte prática vai comparar Simples Nacional × Lucro Presumido. A frase da seção 9 aponta para um regime que o próprio trabalho descarta duas páginas depois, e que a empresa nunca vai adotar.',
+   como:'Trocar Lucro Real por Lucro Presumido na seção 9 e aproveitar para amarrar o fluxo de caixa à decisão tributária.',
+   frase:'Os dados obtidos no acompanhamento do fluxo de caixa auxiliam na escolha do regime tributário mais adequado — no caso das microempresas do comércio varejista, a comparação relevante ocorre entre o Simples Nacional e o Lucro Presumido —, favorecendo a redução legal de custos.'},
+
+  {n:'C4',tit:'A seção 6 explica os regimes sete páginas antes da seção que explica os regimes',quem:'Yasmin escreveu a 6; Victória escreveu a 10',
+   onde:'p. 9 (seção 6) contra p. 16 (seção 10)',
+   diz1:'Seção 6: "As empresas podem optar por regimes como Simples Nacional, Lucro Presumido ou Lucro Real, e essa escolha deve ser constantemente avaliada. […] No caso do Lucro Real, por exemplo, empresas que apresentam prejuízo podem ter redução ou até ausência de cobrança de IRPJ e CSLL."',
+   diz2:'Seção 10: faz a mesma explicação com lei, artigo, limite de faturamento e anexo.',
+   porque:'Quando o leitor chega na seção 10, já leu isso. E a versão da seção 6 é a mais fraca das duas, sem base legal. O leitor sente que o texto está recomeçando.',
+   como:'Encolher o parágrafo da seção 6 para uma frase que anuncia o assunto e aponta para a frente, deixando o desenvolvimento onde ele está fundamentado.',
+   frase:'Entre as decisões de maior impacto financeiro conduzidas pela contabilidade está a escolha do regime tributário, cujas modalidades, limites legais e critérios de enquadramento são examinados adiante, na seção 10.'},
+
+  {n:'C5',tit:'As seções 7 e 8 são a mesma seção escrita duas vezes',quem:'Calebe — as duas são dele',
+   onde:'p. 10-11 (seção 7) e p. 11-13 (seção 8)',
+   diz1:'Seção 7: importância das microempresas para a economia, dificuldades para permanecer ativas, carga tributária, falta de planejamento — tudo sem um número.',
+   diz2:'Seção 8: importância das MPEs na economia e no emprego, com dados do Sebrae e do IBGE em praticamente todo parágrafo.',
+   porque:'São o mesmo tema com qualidades opostas: a 7 tem o argumento e não tem prova; a 8 tem prova de sobra. Separadas, uma expõe a fraqueza da outra.',
+   como:'Fundir numa seção só, usando a estrutura da 7 (importância → dificuldades → por que o planejamento tributário responde a isso) e enchendo cada afirmação com os dados que já estão na 8.',
+   frase:'As microempresas respondem por cerca de 95% das empresas ativas no Brasil e por 26,5% do Produto Interno Bruto nacional (SEBRAE, 2026). Essa participação, contudo, convive com alta taxa de encerramento nos primeiros anos de atividade, o que evidencia a distância entre a relevância econômica do segmento e sua capacidade de se manter em operação.'},
+
+  {n:'C6',tit:'A empresa desaparece por 25 páginas',quem:'de todo mundo — cada seção some do estudo de caso',
+   onde:'citada até a p. 7, reaparece só na p. 19 sem nome, e some de vez até a p. 32',
+   diz1:'A razão social aparece na introdução, na justificativa, nos cinco objetivos específicos e na metodologia — tudo até a página 7.',
+   diz2:'Da página 8 até a 32, a única aparição é "a microempresa estudada", na p. 19. As seções 12, 13 e 14 falam de "uma loja de doces", "uma confeitaria" e "empresas de varejo".',
+   porque:'O trabalho se apresenta como estudo de caso e entrega 25 páginas de pesquisa bibliográfica. Isso é o que a banca chama de trabalho descolado do objeto — e é o problema mais grave da lista, porque não é um erro pontual, é o desenho do texto.',
+   como:'Uma frase no fim de cada seção ligando o conteúdo à empresa. Seis frases resolvem. A Victória já faz isso no fim da 11 — é só copiar o método.',
+   frase:'Esses conceitos sustentam a análise da estrutura de custos da Casa do Brigadeiro Comércio de Doces Sorocaba Ltda., apresentada na parte prática deste trabalho.'},
+
+  {n:'C7',tit:'Martins é 2023 numa seção e 2018 na outra',quem:'João Pedro e Calebe',
+   onde:'p. 22 (seção 12) contra p. 30 (seção 14)',
+   diz1:'Seção 12: "De acordo com Martins (2023), em sua obra Contabilidade de Custos, a correta classificação dos custos é essencial…"',
+   diz2:'Seção 14: "Segundo Martins (2018), os critérios de avaliação de estoques são essenciais para determinar os valores das mercadorias…"',
+   porque:'É o mesmo autor e provavelmente o mesmo livro, com duas edições diferentes citadas no mesmo trabalho — e nenhuma das duas tem entrada em formato ABNT em nenhuma das quatro listas. Só existem o link da editora e um link do repositório da USP.',
+   como:'Vocês dois combinam uma edição, conferem que ela existe de verdade e usam o mesmo ano nas duas seções.',
+   frase:'MARTINS, Eliseu. Contabilidade de custos. 11. ed. São Paulo: Atlas, 2018. — conferir a edição que vocês realmente consultaram antes de fechar.'},
+
+  {n:'C8',tit:'A numeração 12.1 e 12.2 existe duas vezes no trabalho',quem:'João Pedro e Yasmin',
+   onde:'p. 23 (seção 12) e p. 25-26 (seção 13)',
+   diz1:'Seção 12: 12.1 Terminologia Contábil Básica · 12.2 Custos Diretos e Custos Indiretos.',
+   diz2:'Seção 13: 12.1 Margem De Contribuição · 12.2 Markup · 12.3 Ponto de Equilíbrio · 12.4 Componentes do Preço de Venda.',
+   porque:'Os subitens da seção 13 herdaram a numeração da 12. Quando a Yasmin gerar o sumário automático, vão aparecer dois 12.1 e dois 12.2 — e o sumário fica impossível de conferir.',
+   como:'Renumerar os quatro subitens da seção 13 para 13.1, 13.2, 13.3 e 13.4. E aproveitar para numerar os subtítulos soltos: "Comportamento dos Custos no Comércio" vira 12.3 e "Métodos de Custeio" vira 12.4.',
+   frase:'Não precisa de frase: é renumeração. Fazer antes de gerar o sumário, senão gera duas vezes.'}
+];
+
+/* ordem que dá coesão — do contexto para o caso */
+var ORDEM=[
+  {novo:'1',sec:'Introdução, justificativa, objetivos e metodologia',autor:'grupo',obs:'Sem mudança. Corrigir só a questão-problema e a abordagem.'},
+  {novo:'2',sec:'Realidade econômica das microempresas',autor:'Calebe',obs:'Hoje é a 7 + a 8, fundidas. Abre o funil: por que microempresa quebra.'},
+  {novo:'3',sec:'Fundamentos do planejamento tributário',autor:'Nathan',obs:'Era a 5. Depois do problema, a ferramenta que responde a ele.'},
+  {novo:'4',sec:'Limites legais: elisão, evasão e sonegação',autor:'Nathan',obs:'Era a 11.1, com título novo. Fica colada na seção anterior, que é sua continuação natural.'},
+  {novo:'5',sec:'Regimes tributários no Brasil',autor:'Victória',obs:'Era a 10. Agora vem depois de o leitor saber o que é planejamento tributário.'},
+  {novo:'6',sec:'Teoria da tributação e enquadramento no comércio varejista',autor:'Victória',obs:'Era a 11. Fica junto da 10, que é o mesmo assunto — hoje estão separadas por nada.'},
+  {novo:'7',sec:'Papel da contabilidade no planejamento tributário',autor:'Yasmin',obs:'Era a 6. Sai da frente do bloco tributário: faz mais sentido depois de o leitor saber o que a contabilidade vai administrar.'},
+  {novo:'8',sec:'Custos empresariais e terminologia',autor:'João Pedro',obs:'Era a 12. Começa o bloco de gestão: quanto custa produzir.'},
+  {novo:'9',sec:'Formação do preço de venda no varejo',autor:'Yasmin',obs:'Era a 13. Vem logo depois dos custos, que é o que a seção 12 promete no último parágrafo.'},
+  {novo:'10',sec:'Controle de estoque e PEPS em produtos alimentícios',autor:'Calebe',obs:'Era a 14. Fecha o custo: o que se perde antes de vender.'},
+  {novo:'11',sec:'Gestão financeira e fluxo de caixa',autor:'Laura',obs:'Era a 9, hoje encravada no meio do bloco tributário. Aqui ela vira a ponte para a parte prática.'},
+  {novo:'12',sec:'Reforma Tributária',autor:'Victória',obs:'Pronta desde 04/08, nunca inserida. Fecha o referencial olhando para a frente.'},
+  {novo:'13',sec:'Caracterização da empresa',autor:'Calebe',obs:'A escrever. Encerra o funil: da economia brasileira até a Casa do Brigadeiro.'},
+  {novo:'14',sec:'Resultados esperados e cronograma de desenvolvimento',autor:'Yasmin e João',obs:'Exigidos pelo modelo do professor e inexistentes no arquivo.'}
+];
+
+/* a regra de tempo verbal combinada pelo grupo */
+var TEMPOS=[
+  {parte:'Introdução e justificativa',tempo:'Passado',pag:'p. 4-5',ex:'"a carga tributária constituiu", "a presente pesquisa justificou-se", "o estudo buscou demonstrar"',ok:true,nota:'A pesquisa bibliográfica já foi feita. Está correto no arquivo.'},
+  {parte:'Objetivos',tempo:'Infinitivo',pag:'p. 6',ex:'"Desenvolver uma proposta", "Identificar os impactos", "Propor uma ferramenta"',ok:true,nota:'Verbo no infinitivo é a forma padrão de objetivo. Está correto.'},
+  {parte:'Metodologia',tempo:'Futuro',pag:'p. 7',ex:'"a pesquisa será de natureza aplicada", "será desenvolvido um estudo de caso", "será elaborada uma ferramenta prática"',ok:true,nota:'A parte prática ainda vai acontecer. Está correto — não mexer.'},
+  {parte:'Referencial teórico (seções 5 a 14)',tempo:'Presente',pag:'p. 8-32',ex:'"o planejamento tributário é", "os custos fixos permanecem constantes", "a lei estabelece"',ok:true,nota:'Conceito e lei não têm tempo. Está correto.'},
+  {parte:'Resultados e considerações finais',tempo:'Passado',pag:'a escrever',ex:'"a simulação demonstrou", "os dados coletados indicaram"',ok:false,nota:'Quando forem escritos, em setembro, já serão fato consumado.'}
 ];
 
 /* ================= RENDER ================= */
@@ -870,6 +1034,7 @@ function drawErros(){
       var tg=el('div','etags');
       tg.appendChild(el('span','tag '+e.o,e.o==='nova'?'Revisão 10/08':'Revisão antiga'));
       tg.appendChild(el('span','tag k',esc(TIPOS[e.t])));
+      if(e.pag)tg.appendChild(el('span','tag pag',esc(e.pag)));
       if(e.fix)tg.appendChild(el('span','tag fix','Já resolvido em 09/08'));
       if(d)tg.appendChild(el('span','tag quem','marcou: '+esc(quemFez(e.id))));
       b.appendChild(tg);
@@ -901,11 +1066,17 @@ document.getElementById('btnReset').onclick=function(){
   redrawAll();
 };
 
+/* id derivado do texto do item, não da posição: inserir ou reordenar
+   itens não desloca mais a marcação de ninguém. */
+function slug(t){
+  return String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,44);
+}
 function cardChk(titulo,sub,itens,prefix,redraw){
   var c=el('div','card');
   c.appendChild(el('div','ch',esc(titulo)+(sub?'<span class="who">'+esc(sub)+'</span>':'')));
   itens.forEach(function(it,i){
-    var id=prefix+i,d=isDone(id);
+    var id=prefix+slug(it.t),d=isDone(id);
     var row=el('label','chk'+(d?' done':''));
     var cb=el('input');cb.type='checkbox';cb.checked=d;
     cb.onchange=function(){setDone(id,cb.checked);redraw();};
@@ -933,13 +1104,51 @@ function drawChk(hostId,arr,prefix){
   h.appendChild(cardChk(hostId==='abntlist'?'Checklist de formatação':(hostId==='docs'?'Documentos':'Dados'),'',arr,prefix,function(){drawChk(hostId,arr,prefix);}));
 }
 (function(){
-  var h=document.getElementById('conflist');
-  CONFLITOS.forEach(function(c){
+  document.getElementById('razao').textContent=RAZAO;
+
+  var hn=document.getElementById('nomelist');
+  NOMES.forEach(function(n){
     var d=el('div','card');
-    d.appendChild(el('div','ch',esc(c.t)));
-    d.appendChild(el('div','cb','<p>'+esc(c.d)+'</p>'));
-    h.appendChild(d);
+    d.appendChild(el('div','ch',esc(n.onde)));
+    d.appendChild(el('div','cb','<p><b>Está assim:</b> '+esc(n.hoje)+'</p><p>'+esc(n.acao)+'</p>'));
+    hn.appendChild(d);
   });
+
+  var hc=document.getElementById('conflist');
+  CONEXOES.forEach(function(c){
+    var d=el('div','card');
+    d.appendChild(el('div','ch','<span class="num">'+c.n+'</span>'+esc(c.tit)+'<span class="who">'+esc(c.quem)+'</span>'));
+    var b=el('div','cb');
+    b.appendChild(el('div','ondel',esc(c.onde)));
+    b.appendChild(el('p',null,'<b>Uma diz:</b> '+esc(c.diz1)));
+    b.appendChild(el('p',null,'<b>A outra diz:</b> '+esc(c.diz2)));
+    b.appendChild(el('p',null,'<b>Por que é problema:</b> '+esc(c.porque)));
+    b.appendChild(el('p',null,'<b>Como resolver:</b> '+esc(c.como)));
+    b.appendChild(el('div','frase','<span class="fl">Frase pronta para colar</span>'+esc(c.frase)));
+    d.appendChild(b);
+    hc.appendChild(d);
+  });
+
+  var t=document.getElementById('ordemtab');
+  t.innerHTML='<thead><tr><th>Nova ordem</th><th>Seção</th><th>Autor</th><th>Por quê</th></tr></thead>';
+  var tb=el('tbody');
+  ORDEM.forEach(function(o){
+    var tr=el('tr');
+    tr.innerHTML='<td class="mono">'+o.novo+'</td><td><b>'+esc(o.sec)+'</b></td><td>'+esc(o.autor)+'</td><td>'+esc(o.obs)+'</td>';
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+
+  var tv=document.getElementById('tempotab');
+  tv.innerHTML='<thead><tr><th>Parte</th><th>Tempo</th><th>Onde</th><th>Como está hoje</th></tr></thead>';
+  var tvb=el('tbody');
+  TEMPOS.forEach(function(x){
+    var tr=el('tr');
+    tr.innerHTML='<td><b>'+esc(x.parte)+'</b></td><td><span class="tag '+(x.ok?'fix':'k')+'">'+esc(x.tempo)+'</span></td>'
+      +'<td class="mono">'+esc(x.pag)+'</td><td>'+esc(x.ex)+'<br><small>'+esc(x.nota)+'</small></td>';
+    tvb.appendChild(tr);
+  });
+  tv.appendChild(tvb);
 })();
 (function(){
   function dias(a){var h=new Date();h.setHours(0,0,0,0);var x=new Date(a);x.setHours(0,0,0,0);return Math.round((x-h)/86400000);}

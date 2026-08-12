@@ -13,14 +13,21 @@ checklist ABNT, documentos a pedir para a empresa e quem escreveu cada seção.
 
 O site atualiza sozinho em cerca de 40 segundos, no mesmo link.
 
-## Regra dos ids das tarefas
+## Regra dos ids — a única coisa que dá para quebrar sem perceber
 
-Cada checkbox tem um `data-id` fixo, tipo `plano-nathan-02`. É por ele que a marcação
-é guardada.
+A marcação de cada caixinha é guardada por um id.
 
-- Editar o **texto** de uma tarefa pode, à vontade.
-- **Nunca renumere** um id que já existe — quem tinha marcado perde a marcação.
-- Tarefa nova ganha o próximo número livre daquele grupo (ex.: `plano-nathan-05`).
+**Na aba Erros**, o id é o campo `id` de cada item do array `ERROS` (`nat1`, `vic5`, `ger12`).
+Editar o `txt` e o `det` à vontade. Mas:
+
+- **Nunca reaproveite um id para outro erro.** Se `yas4` era "escrever o resumo" e virar
+  "conferir as referências do Sebrae", quem tinha marcado o primeiro aparece marcando o
+  segundo. Erro que sai não devolve o id: o próximo ganha número novo.
+- Erro novo do Nathan entra como `nat13`, não como `nat1` reaproveitado.
+
+**Nas outras listas** (Tarefas, Fases, ABNT, Documentos, Dados) o id é gerado a partir do
+texto do item. Reordenar e inserir itens é seguro. Reescrever o título de um item zera a
+marcação **daquele item só** — o resto não se mexe.
 
 ## Marcações
 
