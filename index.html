@@ -204,6 +204,9 @@ footer{
   font-size:11.5px;color:var(--cacau-70);
 }
 
+.card.urgente > .ch{background:var(--framboesa)}
+.card.urgente > .ch .who{color:#FFD9E5}
+
 /* ============ conexão: contradições, ordem e tempo verbal ============ */
 .tag.pag{background:var(--cacau);border-color:var(--cacau);color:var(--papel)}
 .card > .ch .num{
@@ -318,10 +321,24 @@ footer{
     <b>Regra combinada:</b> a formatação final em normas ABNT só começa depois que <b>todos</b> os integrantes corrigirem os erros das próprias pesquisas. Enquanto tiver texto sendo reescrito, o arquivo geral não é fechado.
   </div>
 
+  <div class="aviso warn">
+    <b>O que mudou no arquivo de 12/08.</b> Corrigidos: a questão-problema ficou neutra, os títulos ganharam numeração e o sumário foi criado. Mas <b>o produto final mudou</b> — a metodologia não promete mais uma ferramenta de fluxo de caixa, promete um <b>relatório diagnóstico</b>, e passou a prometer também a Reforma Tributária. Isso muda o papel da Laura e transforma a Reforma em obrigação. <b>Confirmem se foi decisão de todo mundo.</b>
+  </div>
+
+  <h3 class="grp">As três coisas que travam o resto</h3>
+  <div class="grid">
+    <div class="card urgente"><div class="ch">Perguntar o tempo verbal ao professor<span class="who">yasmin</span></div>
+      <div class="cb"><p>O modelo dele pede a introdução no <b>passado</b>; a revisão de 12/08 trocou para o <b>presente</b>. São trinta segundos de pergunta em aula que evitam refazer duas páginas duas vezes. Enquanto não tiver resposta, ninguém mexe no tempo verbal.</p></div></div>
+    <div class="card urgente"><div class="ch">Confirmar o CNAE no cartão CNPJ<span class="who">calebe</span></div>
+      <div class="cb"><p>Deve ser <b>4721-1/04</b>, comércio varejista de doces, balas e bombons. É ele que decide o anexo do Simples. Se for outro, a seção de enquadramento inteira precisa ser revista — é a peça de que mais coisa depende.</p></div></div>
+    <div class="card urgente"><div class="ch">Pôr a empresa dentro do texto<span class="who">todos</span></div>
+      <div class="cb"><p>A Casa do Brigadeiro é citada <b>6 vezes, todas antes da página 8</b>. Depois disso, nenhuma. O trabalho promete estudo de caso e entrega pesquisa bibliográfica. Seis frases prontas na aba <b>Conexão</b> resolvem.</p></div></div>
+  </div>
+
   <h3 class="grp">A fila de trabalho</h3>
   <div class="grid">
     <div class="card"><div class="ch">1 · Cada um corrige o próprio erro<span class="who">todos</span></div>
-      <div class="cb"><p>Aba <b>Erros</b>. Está tudo lá, separado por pessoa — não precisa mais caçar no grupo. Prazo: fim de semana (16/08).</p></div></div>
+      <div class="cb"><p>Aba <b>Erros</b>: 94 itens com a <b>página</b> e o trecho exato do arquivo de 12/08, separados por pessoa. Prazo: fim de semana (16/08).</p></div></div>
     <div class="card"><div class="ch">2 · Reforma vira tópico próprio<span class="who">victória</span></div>
       <div class="cb"><p>Material do dia 04/08 já está pronto, só falta virar seção e entrar no arquivo. Escopo fechado na aba <b>Reforma</b>.</p></div></div>
     <div class="card"><div class="ch">3 · Tabelas e gráficos<span class="who">joão</span></div>
@@ -376,8 +393,11 @@ footer{
   <h2 class="sec">Modelo do professor — o que falta no nosso arquivo</h2>
   <p class="lead">Comparação item a item entre o <b>MODELO DE PROJETO DE TCC (PTCC ABNT)</b> que o professor mandou seguir e o <b>MODELO OFICIAL TCC editado 12/08</b> que temos hoje.</p>
 
+  <div class="aviso good">
+    <b>Resolvido em 12/08:</b> os títulos passaram a ser numerados, com a numeração automática do Word, e a hierarquia de <code>3 OBJETIVOS</code> → <code>3.1</code> → <code>3.2</code> está correta. O sumário também foi criado.
+  </div>
   <div class="aviso bad">
-    <b>O achado mais importante:</b> nossos títulos <b>não estão numerados</b>. O modelo exige <code>1 INTRODUÇÃO</code>, <code>2 JUSTIFICATIVA</code>, <code>3 OBJETIVOS</code>, <code>3.1 GERAL</code>, <code>3.2 OBJETIVOS ESPECÍFICOS</code> e assim por diante. No nosso arquivo os títulos estão como <code>INTRODUÇÃO</code>, <code>JUSTIFICATIVA</code>… sem número nenhum. Isso quebra o sumário automático e é a primeira coisa que salta aos olhos numa correção.
+    <b>Mas a numeração foi feita em oito listas separadas.</b> Os quatro subitens da seção de preços começam contagem própria em vez de continuar a da seção que os contém, e cerca de 25 parágrafos comuns entraram na numeração de nível de seção — dois trechos no meio da seção de enquadramento, os incisos do art. 71 do CTN, os cinco componentes do preço de venda e 17 URLs da lista de referências. Todos vão aparecer numerados como se fossem seções. <b>E o sumário foi digitado à mão</b>, não é campo automático: cada correção de texto obriga a refazer tudo de novo. No Word: Referências → Sumário → Sumário Automático.
   </div>
 
   <h3 class="grp">Estrutura exigida pelo modelo</h3>
@@ -385,15 +405,15 @@ footer{
     <tr><th>Item do modelo</th><th>Situação hoje</th><th>O que fazer</th><th>Quem</th></tr>
     <tr><td>Capa (logo Etec, nomes, título, cidade, ano)</td><td class="st-ok">Existe</td><td>Conferir se o logo da Etec Fernando Prestes está na capa</td><td>Yasmin</td></tr>
     <tr><td>Folha de rosto com nota de apresentação e orientador</td><td class="st-ok">Existe</td><td>Confere: "Projeto apresentado ao Curso Técnico em Contabilidade… Orientador(a): Claudinei Meira e Regina Brito"</td><td>Yasmin</td></tr>
-    <tr><td>SUMÁRIO</td><td class="st-no">Não existe</td><td>Criar. Só funciona depois que os títulos virarem Título 1 / Título 2 numerados</td><td>Yasmin</td></tr>
-    <tr><td>1 INTRODUÇÃO</td><td class="st-mid">Existe, sem número</td><td>Numerar. Modelo pede 2 a 3 parágrafos com contextualização + questão-problema</td><td>Yasmin</td></tr>
-    <tr><td>2 JUSTIFICATIVA</td><td class="st-mid">Existe, sem número</td><td>Numerar</td><td>Yasmin</td></tr>
-    <tr><td>3 OBJETIVOS / 3.1 / 3.2</td><td class="st-mid">Sem número e sem hierarquia</td><td>Numerar e rebaixar 3.1 e 3.2 para Título 2 (hoje estão como Título 1)</td><td>Yasmin</td></tr>
-    <tr><td>4 METODOLOGIA</td><td class="st-mid">Existe, sem número</td><td>Numerar</td><td>Yasmin</td></tr>
+    <tr><td>SUMÁRIO</td><td class="st-mid">Existe, feito à mão</td><td>Trocar por sumário automático. O atual está sem a seção de enquadramento, sem Regimes Especiais, sem Ciclo financeiro, sem Princípio da entidade e sem os 4 subitens de preços</td><td>Yasmin</td></tr>
+    <tr><td>1 INTRODUÇÃO</td><td class="st-ok">Existe e numerada</td><td>3 parágrafos com contextualização + questão-problema, como o modelo pede. Ver o alerta de tempo verbal abaixo</td><td>Yasmin</td></tr>
+    <tr><td>2 JUSTIFICATIVA</td><td class="st-ok">Existe e numerada</td><td>Falta um dado com fonte para sustentar a relevância do setor</td><td>Yasmin</td></tr>
+    <tr><td>3 OBJETIVOS / 3.1 / 3.2</td><td class="st-ok">Numerados e com hierarquia</td><td>Falta um objetivo específico para a comparação Simples × Presumido, que a metodologia promete</td><td>Yasmin</td></tr>
+    <tr><td>4 METODOLOGIA</td><td class="st-mid">Existe e numerada</td><td>Trocar "qualitativa" por "quali-quantitativa", citar Gil e Yin, e dizer "doze meses" no lugar de "período mais recente"</td><td>Yasmin</td></tr>
     <tr><td>5 REFERENCIAL TEÓRICO em QUADRO I</td><td class="st-no">Não existe nesse formato</td><td>Modelo pede quadro com 4 colunas: Tópico (Conceito) · Autor e Obra · Ideia Central/Citação Chave · Por que é importante</td><td>João + Victória</td></tr>
     <tr><td>6 CRONOGRAMA DE DESENVOLVIMENTO</td><td class="st-no">Não existe</td><td>Montar o Quadro 1 com os meses de 2026 e X nas atividades</td><td>João</td></tr>
     <tr><td>7 RESULTADOS ESPERADOS</td><td class="st-no">Não existe</td><td>Escrever. É seção obrigatória no modelo</td><td>Yasmin</td></tr>
-    <tr><td>REFERÊNCIAS</td><td class="st-mid">Existem 4 listas soltas</td><td>Unificar em uma única lista alfabética</td><td>Victória</td></tr>
+    <tr><td>REFERÊNCIAS</td><td class="st-mid">3 blocos soltos</td><td>Unificar em uma lista alfabética. Pode ocupar mais de uma página — só não pode estar dividida</td><td>Victória</td></tr>
     <tr><td>ANEXOS (quadro de critérios)</td><td class="st-no">Não existe</td><td>Colar o quadro de critérios do modelo (Atividades I, II, III e IV — 0 de 100)</td><td>Yasmin</td></tr>
   </table></div>
 
@@ -401,13 +421,13 @@ footer{
   <div class="grid">
     <div class="card"><div class="ch">Paginação</div><div class="cb"><p>Contar as páginas <b>a partir da folha de rosto</b>, mas <b>numerar só a partir da introdução</b>. É regra explícita do modelo e hoje o arquivo não faz isso.</p></div></div>
     <div class="card"><div class="ch">Tamanho de parágrafo</div><div class="cb"><p>Mínimo de <b>4 a 5 linhas</b>. Nada de frase solta nem parágrafo de uma linha. Isso pega em cheio a seção do fluxo de caixa (Laura), que hoje é uma lista de definições de duas linhas.</p></div></div>
-    <div class="card"><div class="ch">Citações na introdução</div><div class="cb"><p>O modelo sugere <b>não usar citação na introdução</b>, salvo se o trabalho for baseado em um autor específico. Conferir se a nossa introdução obedece.</p></div></div>
-    <div class="card"><div class="ch">Objetivo geral</div><div class="cb"><p>O modelo formula como "Desenvolver um plano de negócio inovador para solucionar o problema de…". O nosso está como "Desenvolver uma proposta de planejamento tributário e financeiro estruturado" — compatível, mas vale confirmar se ele quer a fórmula dele.</p></div></div>
+    <div class="card"><div class="ch">Citações na introdução</div><div class="cb"><p>O modelo sugere <b>não usar citação na introdução</b>, salvo se o trabalho for baseado em um autor específico. A revisão de 12/08 foi no sentido contrário: acrescentou menções ao <b>IBPT</b> e ao <b>SEBRAE</b>. Como estão sem ano e sem referência, e o modelo prefere introdução sem citação, o caminho mais simples é <b>tirar as duas menções</b> — resolve a pendência de referência e obedece ao modelo de uma vez.</p></div></div>
+    <div class="card"><div class="ch">Objetivo geral</div><div class="cb"><p>O modelo formula como "Desenvolver um plano de negócio inovador para solucionar o problema de…". O nosso diz "Desenvolver uma <b>proposta</b> de planejamento tributário e financeiro estruturado" — compatível em forma. O problema é outro: o objetivo específico 5 e a metodologia falam em <b>relatório diagnóstico</b>. São entregas diferentes com nomes diferentes. Escolher uma palavra e usar nos três lugares.</p></div></div>
   </div>
 
-  <div class="aviso warn">
-    <b>Atenção — conflito de tempo verbal.</b> O modelo do professor diz, sobre a <b>introdução</b>: "é muito importante que os verbos utilizados estejam expressos no <b>passado</b>, pois indicam fatos que já ocorreram". Já a revisão de 10/08 mandou vários integrantes "rever se o texto está no <b>presente</b>".<br><br>
-    <b>Como resolver sem briga:</b> introdução, justificativa e metodologia em <b>passado</b> (como o modelo pede); referencial teórico e as pesquisas em <b>presente</b> (é assim que se descreve teoria e legislação vigente). Confirmar com o Claudinei numa aula pra não levar corte depois.
+  <div class="aviso bad">
+    <b>ATENÇÃO — a revisão de 12/08 pode ter ido contra o modelo.</b> O modelo do professor diz, sobre a introdução: "é muito importante que os verbos utilizados estejam expressos no <b>passado</b>, pois indicam fatos que já ocorreram". No arquivo de 11/08 a introdução estava no passado. Na revisão de 12/08 ela foi trocada para o <b>presente</b> — "constitui", "torna-se", "justifica-se", "surge a questão-problema".<br><br>
+    Pelo padrão acadêmico de projeto, presente na contextualização e futuro na metodologia é uma combinação correta. <b>Mas quem corrige é o professor, e o modelo dele pede passado.</b> Antes de investir tempo mexendo nisso de novo: perguntar ao Claudinei em aula qual das duas ele quer. É pergunta de trinta segundos que evita refazer duas páginas duas vezes.
   </div>
 
   <h3 class="grp">Uma observação sobre o formato</h3>
@@ -417,12 +437,12 @@ footer{
 
   <h3 class="grp">O que ainda falta para o TCC final</h3>
   <ul class="li">
-    <li><b>Resumo</b> de 150 a 250 palavras + <b>palavras-chave</b> — Yasmin</li>
+    <li><b>Resumo</b> de 150 a 250 palavras + <b>palavras-chave</b> — Yasmin, <b>por último</b>, com o trabalho concluído</li>
     <li><b>Folha de aprovação</b> — Yasmin</li>
     <li><b>Lista de tabelas / lista de quadros</b> — depende das tabelas do João</li>
     <li><b>Considerações finais</b> — a definir</li>
     <li><b>Apêndices</b> (termo de autorização da empresa, planilhas da simulação) — Calebe + João</li>
-    <li><b>Caracterização da empresa</b> — a Casa do Brigadeiro some do trabalho depois da metodologia — Calebe</li>
+    <li><b>Caracterização da empresa</b> — a empresa é citada 6 vezes e todas as 6 antes da página 8 — Calebe</li>
   </ul>
 </section>
 
@@ -430,6 +450,9 @@ footer{
 <section id="reforma">
   <h2 class="sec">Reforma Tributária — tópico separado</h2>
   <p class="lead">Decisão do grupo: em vez de espalhar a reforma pelo trabalho inteiro, ela vira <b>um tópico próprio</b>, com escopo fechado.</p>
+  <div class="aviso bad">
+    <b>Mudou de status em 12/08: virou obrigação.</b> A metodologia agora diz que o relatório vai analisar "como a organização pode se preparar para a Reforma Tributária". Antes era diferencial; agora é promessa escrita. Se não entrar, o trabalho promete e não entrega — que é o pior tipo de erro para a banca. O material da Victória está pronto desde 04/08.
+  </div>
 
   <div class="aviso good">
     <b>Escopo do tópico — só isto:</b> explicar o que é a reforma tributária e mostrar <b>como a escolha do regime afeta a emissão da guia</b>, comparando o modelo antigo com o novo. Nada além disso.
@@ -501,7 +524,7 @@ footer{
 <!-- ============ CADA UM ============ -->
 <section id="cadaum">
   <h2 class="sec">Divisão de tarefas</h2>
-  <p class="lead">Atualizada em 11/08. Além das tarefas abaixo, <b>todo mundo</b> corrige os próprios erros na aba Erros.</p>
+  <p class="lead">Atualizada em 12/08. Além das tarefas abaixo, <b>todo mundo</b> corrige os próprios erros na aba Erros.</p>
   <div class="aviso">
     <b>Regra que resolve o problema do arquivo sem dono:</b> agora ele tem. <b>Yasmin monta e arruma a formatação.</b> <b>Victória cuida das referências.</b> Ninguém mais mexe no arquivo geral direto — manda o texto para a Yasmin.
   </div>
@@ -694,8 +717,8 @@ var ERROS=[
   {id:'cal12',p:'Calebe',o:'antiga',t:'estrutura',pag:'a escrever',txt:'Escrever a seção de Caracterização da Empresa',det:'Razão social, CNPJ, CNAE, porte, regime atual, anexo do Simples, faturamento, funcionários e mix de produtos. É ela que resolve, de uma vez, a maior parte das contradições da aba Conexão.'},
 
   /* ---------------- TODOS ---------------- */
-  {id:'ger25',p:'Geral',o:'nova',t:'referencia',pag:'p. 3',txt:'NOVO em 12/08 — o IBPT entrou na introdução sem virar citação nem referência',det:'"cenário frequentemente alertado por entidades como o Instituto Brasileiro de Planejamento e Tributação (IBPT)". Mencionar a instituição pelo nome não é citar: falta (IBPT, ano) e falta a entrada na lista. Como foi acrescentado agora, dá para resolver junto: ou entra a referência do estudo do IBPT sobre carga tributária, ou a menção sai.'},
-  {id:'ger26',p:'Geral',o:'nova',t:'referencia',pag:'p. 3',txt:'NOVO em 12/08 — o SEBRAE entrou na introdução sem ano e sem referência',det:'"uma prática recomendada por instituições como o Serviço Brasileiro de Apoio às Micro e Pequenas Empresas (SEBRAE) para diminuir licitamente os custos operacionais". Mesmo caso do IBPT. A introdução continua sem uma única citação em formato ABNT — agora com duas instituições citadas informalmente.'},
+  {id:'ger25',p:'Geral',o:'nova',t:'referencia',pag:'p. 3',txt:'NOVO em 12/08 — o IBPT entrou na introdução sem virar citação nem referência',det:'"cenário frequentemente alertado por entidades como o Instituto Brasileiro de Planejamento e Tributação (IBPT)". Mencionar a instituição pelo nome não é citar: falta (IBPT, ano) e falta a entrada na lista. RECOMENDAÇÃO: tirar a menção. O modelo do professor pede introdução sem citação, então tirar resolve os dois problemas de uma vez — a pendência de referência e a regra do modelo.'},
+  {id:'ger26',p:'Geral',o:'nova',t:'referencia',pag:'p. 3',txt:'NOVO em 12/08 — o SEBRAE entrou na introdução sem ano e sem referência',det:'"uma prática recomendada por instituições como o Serviço Brasileiro de Apoio às Micro e Pequenas Empresas (SEBRAE) para diminuir licitamente os custos operacionais". Mesmo caso do IBPT, e mesma recomendação: tirar. O dado do SEBRAE tem lugar melhor — a justificativa, que hoje afirma a relevância do setor sem nenhum número.'},
   {id:'ger27',p:'Geral',o:'nova',t:'estrutura',pag:'p. 5',txt:'O objetivo específico 4 não tem nenhuma seção que o sustente',det:'"Verificar como o crescimento do faturamento da empresa pode exigir a revisão do regime tributário adotado." Nenhuma seção do referencial trata de faixas do Anexo I, RBT12, alíquota efetiva ou ponto de virada para o Lucro Presumido. É o único objetivo específico sem lastro no texto. É a proposta de tema novo para a Yasmin, na aba Cada um.'},
   {id:'ger28',p:'Geral',o:'nova',t:'estrutura',pag:'p. 5 × p. 6',txt:'A metodologia entrega uma comparação de regimes que nenhum objetivo pede',det:'A metodologia promete "analisando se seria vantajosa a mudança de regime tributário para diminuir custos". Os cinco objetivos específicos falam de identificar impactos, analisar controle financeiro, demonstrar fluxo de caixa, verificar crescimento e propor relatório — nenhum diz comparar Simples com Lucro Presumido, que é o coração da parte prática. Falta um objetivo específico, ou sobra uma promessa.'},
   {id:'ger29',p:'Geral',o:'nova',t:'citacao',pag:'p. 6',txt:'A metodologia não cita nenhum autor de metodologia',det:'Classifica a pesquisa como aplicada, qualitativa, exploratória, descritiva e estudo de caso — cinco classificações, nenhuma fonte. É pergunta clássica de banca: "com base em quem vocês classificaram assim?". Gil para tipologia de pesquisa e Yin para estudo de caso resolvem com duas citações.'},
@@ -732,91 +755,109 @@ var ERROS=[
   {id:'ger16',p:'Geral',o:'antiga',t:'estrutura',pag:'formato',txt:'O referencial teórico não está no formato de quadro exigido pelo modelo',det:'O modelo pede o QUADRO I com quatro colunas: Tópico · Autor e Obra · Ideia Central ou Citação Chave · Por que é importante. Hoje o referencial é texto corrido do começo ao fim.'},
   {id:'ger17',p:'Geral',o:'nova',t:'escrita',pag:'p. 4 a 32',txt:'O negócio tem três nomes diferentes ao longo do texto',det:'Melhorou em 12/08: "comércio varejista de doces" passou de 1 para 5 ocorrências, inclusive num objetivo específico. Mas ainda convivem "confeitaria" (7 vezes) e "loja de doces" (3 vezes). Faltam esses 10. Lista de onde trocar na aba Conexão.'},
   {id:'ger18',p:'Geral',o:'nova',t:'estrutura',pag:'todas',txt:'A paginação aparece em todas as páginas, inclusive na capa',det:'O modelo do professor manda contar a partir da folha de rosto e mostrar o número só a partir da introdução. Hoje a capa é a página 1 e o número está visível nela.'},
-  {id:'ger19',p:'Geral',o:'nova',t:'escrita',pag:'p. 3-6',txt:'CORRIGIDO em 12/08 — o tempo verbal ficou coerente do começo ao fim',det:'Introdução e justificativa saíram do passado e foram para o presente ("constitui", "justifica-se", "busca demonstrar", "surge a questão-problema"). Metodologia continua no futuro ("será de natureza aplicada", "será desenvolvido", "será elaborado"). Referencial no presente. Como a folha de rosto diz "Projeto apresentado ao Curso Técnico em Contabilidade", contexto no presente e plano no futuro é exatamente o padrão. Nada a fazer — só manter na hora de juntar o arquivo.',fix:true},
+  {id:'ger19',p:'Geral',o:'nova',t:'escrita',pag:'p. 3-4',txt:'PERGUNTAR AO PROFESSOR — a introdução foi para o presente, e o modelo dele pede passado',det:'Em 11/08 a introdução estava no passado ("constituiu", "tornou-se", "observou-se"). Em 12/08 foi trocada para o presente ("constitui", "torna-se", "justifica-se", "surge a questão-problema"). O modelo do professor é explícito: sobre a introdução, "é muito importante que os verbos utilizados estejam expressos no passado, pois indicam fatos que já ocorreram". Pelo padrão acadêmico de projeto, presente na contextualização e futuro na metodologia está correto — mas quem corrige é ele. Trinta segundos de pergunta em aula evitam refazer duas páginas duas vezes. Não mexer até ter a resposta.'},
   {id:'ger20',p:'Geral',o:'nova',t:'pesquisa',pag:'p. 19-32',txt:'As três pesquisas 2 que faltavam entraram no arquivo',det:'Nathan: elisão, evasão e o caso do CARF, na 11.1 (p. 19-21). Yasmin: formação de preços, margem de contribuição, markup e ponto de equilíbrio, na seção 13 (p. 24-29). Calebe: PEPS, UEPS, custo médio e perecíveis, na seção 14 (p. 30-32). Falta só o ICMS-ST do Nathan.',fix:true}
 ];
 
 var TAREFAS=[
-  {nome:'Yasmin Pereira',papel:'arquivo geral',itens:[
-    {t:'Montar o arquivo geral',d:'Juntar as partes de todo mundo depois que entregarem as correções'},
-    {t:'Arrumar espaçamento, margens, fonte e alinhamento',d:'Padrão ABNT — só depois das correções'},
-    {t:'Numerar todos os títulos',d:'1 INTRODUÇÃO, 2 JUSTIFICATIVA, 3 OBJETIVOS, 3.1 GERAL, 3.2 ESPECÍFICOS…'},
-    {t:'Gerar o sumário',d:'Automático, depois que os títulos estiverem numerados'},
-    {t:'Ajustar a paginação',d:'Contar da folha de rosto, numerar da introdução'},
-    {t:'Escrever o Resumo e as palavras-chave',d:'150 a 250 palavras — só no fim, com o TCC concluído. Não é tarefa de agosto.'},
-    {t:'Escrever a seção Resultados Esperados',d:'Exigida pelo modelo do professor'},
+  {nome:'Yasmin Pereira',papel:'arquivo geral + tema novo',itens:[
+    {t:'Perguntar ao professor o tempo verbal da introdução',d:'O modelo dele pede passado; a revisão de 12/08 trocou para presente. Pergunta de 30 segundos que evita refazer duas páginas duas vezes. FAZER PRIMEIRO — trava o resto.'},
+    {t:'Trocar o sumário manual por sumário automático',d:'Referências → Sumário → Sumário Automático. O atual foi digitado à mão e já está sem a seção de enquadramento, sem Regimes Especiais, sem Ciclo financeiro, sem Princípio da entidade e sem os 4 subitens de preços'},
+    {t:'Consertar a numeração automática',d:'Foi criada em 8 listas separadas. Os subitens de preços começam contagem própria, e ~25 parágrafos comuns e URLs entraram como se fossem seções. Aplicar estilo de título nos subtítulos e "Remover formatação de lista" no resto'},
+    {t:'Trocar o tema da própria seção',d:'Sai "Papel da contabilidade", entra "Crescimento do faturamento e revisão do regime: faixas do Anexo I, RBT12 e ponto de virada". Proposta completa no bloco de temas acima'},
+    {t:'Acertar a metodologia',d:'Trocar "qualitativa" por "quali-quantitativa", trocar "período mais recente" por "os doze meses anteriores", citar Gil e Yin, e reescrever "erros e acertos" para linguagem acadêmica'},
+    {t:'Alinhar o nome do produto nos três lugares',d:'Objetivo geral diz "proposta"; objetivo 5 e metodologia dizem "relatório diagnóstico". Escolher um'},
+    {t:'Criar o objetivo específico que falta',d:'A metodologia promete comparar Simples com Lucro Presumido e nenhum objetivo pede isso'},
+    {t:'Montar o arquivo geral',d:'Só depois que todos entregarem as correções'},
+    {t:'Escrever a seção Resultados Esperados',d:'Exigida pelo modelo do professor e inexistente'},
+    {t:'Escrever o Resumo e as palavras-chave',d:'POR ÚLTIMO, com o trabalho concluído. Não é tarefa de agosto'},
     {t:'Corrigir os próprios erros',d:'Ver aba Erros — filtro Yasmin'}
   ]},
   {nome:'Victória Caroline',papel:'referências + reforma',itens:[
-    {t:'Unificar as quatro listas de referências em uma só',d:'Ordem alfabética, padrão ABNT'},
-    {t:'Conferir se toda citação do texto tem referência na lista',d:'Garrison, Padoveze e InfinitePay estão citados e não constam'},
-    {t:'Conferir se toda referência da lista é citada no texto',d:'Viceconti e CPC 16 estão na lista sem aparecer no corpo'},
-    {t:'Transformar os links crus em referência ABNT',d:'Blocos "Refs:" e os links markdown do Sebrae e IBGE'},
-    {t:'Corrigir o erro "FAOTRES"',d:'É "FATORES CONDICIONANTES…"'},
-    {t:'Escrever o tópico da Reforma Tributária',d:'Escopo fechado na aba Reforma'},
-    {t:'Corrigir os próprios erros',d:'CSLL 12%, Lei 9.718/98, data do Garcia, parágrafos longos'}
+    {t:'Escrever o tópico da Reforma Tributária',d:'VIROU OBRIGAÇÃO: a metodologia de 12/08 promete "como a organização pode se preparar para a Reforma Tributária". O material do dia 04/08 está pronto há mais de uma semana. Escopo na aba Reforma'},
+    {t:'Corrigir o parágrafo do Lucro Presumido',d:'Quatro erros num parágrafo só: Garcia 2021→2015, CSLL 12% no comércio, (BRASIL,1999)→(BRASIL,1995;2018) e a obrigatoriedade do Lucro Real que é da Lei 9.718/98, não do CFC. Texto pronto para substituir na aba Erros'},
+    {t:'Tirar a contradição da atividade híbrida',d:'A seção de regimes chama a confeitaria de atividade híbrida com 8% e 32%; a de enquadramento diz "nunca sobre os 32%". Sai junto com a correção acima'},
+    {t:'Pôr o nome da empresa no fecho da seção de enquadramento',d:'Trocar "a microempresa estudada" pela razão social. É a única aparição da empresa em 25 páginas'},
+    {t:'Quebrar os parágrafos de 18 linhas',d:'O modelo pede 4 a 5 linhas. Pontos de corte marcados na aba Erros'},
+    {t:'Unificar as referências em uma lista só',d:'Hoje são 3 blocos e o primeiro se repete no fim. Pode ocupar mais de uma página — só não pode estar dividida'},
+    {t:'Resolver as citações órfãs',d:'Garrison, Padoveze, InfinitePay e Bowersox citados e ausentes das listas. Viceconti e CPC 16 listados e não citados'},
+    {t:'Corrigir FAOTRES e o autor do CTN',d:'É FATORES. E o CTN é BRASIL. Lei nº 5.172/1966, não "Presidência da República Casa Civil"'},
+    {t:'Pôr "Acesso em:" em todas as fontes online',d:'Só as entradas do Sebrae e do Centro Paula Souza têm. As outras 20 e poucas, não'}
   ]},
-  {nome:'Calebe',papel:'contato com a empresa',itens:[
-    {t:'Falar com a Casa do Brigadeiro',d:'Prazo: esta semana'},
-    {t:'Mandar os dados da empresa em texto no grupo',d:'Lista completa na aba Empresa'},
-    {t:'Pedir os documentos',d:'Contrato social, cartão CNPJ, PGDAS-D, DAS dos últimos 12 meses, termo de autorização'},
-    {t:'Confirmar a razão social oficial',d:'O trabalho usa dois nomes diferentes'},
-    {t:'Escrever a seção de caracterização da empresa',d:'Depois de ter os dados em mãos'},
-    {t:'Corrigir os próprios erros',d:'Percentuais sem fonte na pesquisa 1, tempo verbal'}
+  {nome:'Daniel Calebe',papel:'empresa + seção do segmento',itens:[
+    {t:'Falar com a Casa do Brigadeiro',d:'CRÍTICO — sem isso não existe estudo de caso e a entrega de 15/09 não acontece. Prazo: esta semana'},
+    {t:'Confirmar o CNAE no cartão CNPJ',d:'Deve ser 4721-1/04, comércio varejista de doces, balas e bombons. É o CNAE que decide o anexo do Simples e derruba ou confirma a seção de enquadramento inteira'},
+    {t:'Pedir os documentos',d:'Contrato social, cartão CNPJ, PGDAS-D e DAS dos 12 meses, termo de autorização. Lista completa na aba Empresa'},
+    {t:'Fundir as duas seções numa só, focada em doces',d:'"O comércio varejista de doces no Brasil: relevância econômica e desafios de gestão". O que manter, o que cortar e o que acrescentar está no bloco de temas acima'},
+    {t:'Achar o percentual de mortalidade com fonte e ano',d:'Hoje o texto diz "muitas microempresas encerram suas atividades" citando o Sebrae e não traz número nenhum'},
+    {t:'Acrescentar a sazonalidade do setor',d:'Páscoa, Dia das Mães, festas juninas e Natal. É o gancho que liga a sua seção ao fluxo de caixa, ao estoque de perecíveis e à faixa do Simples'},
+    {t:'Pôr Viana, Martins, Ballou e Bowersox em formato ABNT',d:'Hoje só existem como link numerado. Bowersox nem isso'},
+    {t:'Escrever a Caracterização da Empresa',d:'Depois de ter os dados em mãos'}
   ]},
-  {nome:'João Pedro',papel:'tabelas e gráficos',itens:[
-    {t:'Tabela do Anexo I do Simples Nacional',d:'As 6 faixas com alíquota nominal e parcela a deduzir'},
+  {nome:'João Pedro',papel:'tabelas e quadros',itens:[
+    {t:'Tabela do Anexo I do Simples Nacional',d:'As 6 faixas com alíquota nominal e parcela a deduzir. A seção de enquadramento descreve isso em texto corrido — é literalmente uma tabela escrita como parágrafo'},
     {t:'Quadro comparativo dos três regimes',d:'Simples × Lucro Presumido × Lucro Real'},
-    {t:'Tabela comparativa da Reforma',d:'Modelo antigo × modelo novo — base pronta na aba Reforma'},
-    {t:'Gráficos da simulação',d:'Depois que o Calebe mandar os dados da empresa'},
-    {t:'Quadro do cronograma de desenvolvimento',d:'Exigido pelo modelo do professor (Quadro 1)'},
-    {t:'Lista de tabelas e lista de quadros',d:'Elemento pré-textual, depende das tabelas prontas'},
-    {t:'Corrigir os próprios erros',d:'Repetição, referências soltas, tempo verbal'}
+    {t:'Quadro do cronograma de desenvolvimento',d:'Exigido pelo modelo do professor (Quadro 1), com os meses de 2026'},
+    {t:'Quadro I do referencial teórico',d:'Quatro colunas: Tópico · Autor e Obra · Ideia Central ou Citação Chave · Por que é importante. Exigência direta do modelo'},
+    {t:'Numerar os subtítulos soltos da seção de custos',d:'"Comportamento dos Custos no Comércio" e "Métodos de Custeio" estão sem número'},
+    {t:'Cortar a repetição de custos fixos e variáveis',d:'Explicados duas vezes, com quase as mesmas palavras'},
+    {t:'Combinar a edição do Martins com o Calebe',d:'Você cita 2023, ele cita 2018, e não existe entrada ABNT de nenhum dos dois'},
+    {t:'Trocar "loja de doces" pelo nome da empresa',d:'Duas ocorrências, e são os dois melhores momentos do seu texto'},
+    {t:'Lista de tabelas e lista de quadros',d:'Depois das tabelas prontas'}
   ]},
   {nome:'Nathan Elias',papel:'própria pesquisa',itens:[
-    {t:'Reescrever os três primeiros parágrafos repetidos',d:'Juntar em um só'},
-    {t:'Resolver o caso McDonald’s',d:'Achar o acórdão do CARF ou tirar os percentuais'},
-    {t:'Corrigir a citação do art. 113 do CTN',d:'Adicionar (BRASIL, 1966) e a Lei 5.172/1966 nas referências'},
-    {t:'Rever as citações no meio do texto e a acentuação',d:''}
+    {t:'Acrescentar o ICMS-ST',d:'A pesquisa entregou o monofásico de PIS/Cofins pelo caso do CARF, mas a substituição tributária ficou de fora — e é o que interessa numa doceria que revende bebida e chocolate industrializado'},
+    {t:'Renomear "Regimes Especiais de Tributação"',d:'O conteúdo é elisão, evasão, sonegação e o caso do CARF. Nada disso é regime especial'},
+    {t:'Tirar a gíria e a primeira pessoa',d:'"engazopar o fisco" · "Podemos observar" · "nós vemos" · "veremos". Trabalho acadêmico é impessoal'},
+    {t:'Transformar os quatro links azuis em citação',d:'Art. 150 da Constituição, Art. 71-73 da Lei 4.502/1964, Lei 8.137/1990 e Art. 116 do CTN estão como hyperlink no corpo do texto'},
+    {t:'Pôr (BRASIL, 1966) na citação do art. 113 do CTN',d:'A citação direta está entre aspas sem a fonte depois'},
+    {t:'Resolver o caso McDonald’s',d:'Achar o acórdão do CARF ou tirar os percentuais de 38,97% e 11,78%. Você já sabe fazer isso: usou o acórdão 3102-002.895 na sua outra seção'},
+    {t:'Quebrar o parágrafo de 25 linhas',d:'Em três: princípio da legalidade · elisão × evasão · sonegação, fraude e conluio'},
+    {t:'Corrigir acentuação e digitação',d:'"De inicio", "principio", "tributaria", "nº9303-017.363envolvendo" e "em 19 agosto de 2025"'}
   ]},
-  {nome:'Laura Roque',papel:'própria pesquisa',itens:[
-    {t:'Transformar a seção do fluxo de caixa em texto corrido',d:'Hoje é uma lista de definições de duas linhas'},
-    {t:'Trocar as fontes',d:'Sair de Serasa, Caixa e InfinitePay; entrar Assaf Neto, Gitman, Hoji ou Zdanowicz'},
-    {t:'Reescrever a pesquisa 2',d:'Sem blog, sem site de banco, sem linguagem informal'},
-    {t:'Completar o fluxo de caixa',d:'Três atividades e método direto × indireto'},
-    {t:'Conferir se os dados batem com os da Victória',d:''}
+  {nome:'Laura Roque',papel:'fluxo de caixa',itens:[
+    {t:'CONFIRMAR o que você entrega agora',d:'A metodologia mudou em 12/08: não é mais "ferramenta prática baseada no fluxo de caixa", é "relatório diagnóstico". Não é mais montar planilha, é escrever diagnóstico. Confirmar com o grupo se foi decisão de todo mundo'},
+    {t:'Transformar o glossário em texto corrido',d:'Oito definições de uma a três linhas seguidas, sem uma única citação. O modelo pede parágrafos de 4 a 5 linhas com fonte'},
+    {t:'Trocar as fontes',d:'Sair Caixa, Serasa e InfinitePay; entrar Assaf Neto, Gitman, Hoji ou Zdanowicz. Qualquer um dos quatro cobre fluxo de caixa inteiro'},
+    {t:'Completar a estrutura do fluxo de caixa',d:'As três atividades — operacional, investimento e financiamento — e método direto × indireto. Hoje "Estrutura do Demonstrativo" tem duas linhas'},
+    {t:'Trocar "Simples Nacional ou Lucro Real" por "Simples ou Lucro Presumido"',d:'A comparação real da empresa é essa, e o próprio trabalho já diz que Lucro Real raramente é adotado por microempresa'},
+    {t:'Tirar a afirmação sem fonte sobre o contador',d:'"o monitoramento adequado de um contador evita o endividamento" — sem fonte e forte demais'},
+    {t:'Citar a empresa pelo menos uma vez',d:'Três páginas de gestão financeira sem mencionar a Casa do Brigadeiro'}
   ]}
+
 ];
 
 var FASES=[
-  {nome:'Fase 1 — Correções individuais',prazo:'11/08 a 16/08',itens:[
+  {nome:'Fase 1 — Correções individuais',prazo:'12/08 a 16/08',itens:[
+    'Yasmin pergunta ao professor o tempo verbal da introdução — trava as outras correções, fazer primeiro',
+    'Calebe fala com a Casa do Brigadeiro e confirma o CNAE no cartão CNPJ',
     'Cada integrante corrige os erros da própria pesquisa (aba Erros)',
-    'Calebe fala com a empresa e manda os dados em texto',
-    'Victória escreve o tópico da Reforma Tributária',
-    'João monta as tabelas e os gráficos',
-    'Todos padronizam os termos combinados'
+    'Victória escreve o tópico da Reforma Tributária, que agora é promessa da metodologia',
+    'Yasmin troca o tema da seção e Calebe funde as duas dele, focando em doces',
+    'João monta a tabela do Anexo I e o quadro comparativo dos três regimes'
   ]},
   {nome:'Fase 2 — Montagem do arquivo',prazo:'17/08 a 19/08',itens:[
     'Yasmin junta tudo num arquivo só',
-    'Corte da repetição entre as seções de regime tributário',
-    'Victória unifica as quatro listas de referências',
-    'Numeração dos títulos e geração do sumário',
+    'Yasmin conserta a numeração automática e troca o sumário manual pelo automático',
+    'Victória unifica as três listas de referências em uma alfabética',
+    'Seis frases de costura ligando cada seção à empresa (aba Conexão)',
     'ENTREGA PARCIAL — 19/08'
   ]},
   {nome:'Fase 3 — Estrutura que falta',prazo:'20/08 a 31/08',itens:[
-    'Resumo, palavras-chave e folha de aprovação',
-    'Seção de caracterização da empresa',
-    'Cronograma de desenvolvimento e Resultados Esperados (exigidos pelo modelo)',
-    'Referencial teórico no formato QUADRO I',
-    'Anexos com o quadro de critérios de avaliação'
+    'Caracterização da empresa, com os dados que o Calebe trouxer',
+    'Cronograma de desenvolvimento e Resultados Esperados, exigidos pelo modelo',
+    'Referencial teórico no formato QUADRO I do modelo',
+    'Folha de aprovação, lista de tabelas e anexos com o quadro de critérios',
+    'Coleta e tabulação dos 12 meses de PGDAS-D e DAS'
   ]},
-  {nome:'Fase 4 — ABNT e revisão final',prazo:'01/09 a 15/09',itens:[
-    '🔒 Só começa com as fases 1 a 3 fechadas',
-    'Formatação ABNT completa (Yasmin) e referências finais (Victória)',
-    'Leitura pelas pessoas com experiência na área',
-    'Ajustes finais e considerações finais',
+  {nome:'Fase 4 — Simulação, ABNT e fechamento',prazo:'01/09 a 15/09',itens:[
+    'Simulação Simples × Lucro Presumido com os dados reais',
+    'Relatório diagnóstico — o produto final, conforme a metodologia de 12/08',
+    'Gráficos da simulação (João) e formatação ABNT completa (Yasmin)',
+    'Resumo, palavras-chave e considerações finais — só agora, com o trabalho pronto',
     'VERSÃO PRONTA — 15/09'
   ]}
+
 ];
 
 var ABNT=[
