@@ -148,6 +148,7 @@ h3.grp:first-of-type{margin-top:10px}
 
 .elist{border:1px solid var(--linha);border-top:none;border-radius:0 0 11px 11px;background:#fff;overflow:hidden}
 .err{display:flex;gap:11px;align-items:flex-start;padding:12px 15px;border-bottom:1px dashed var(--linha)}
+.err input:disabled{opacity:1;cursor:default}
 .err:last-child{border-bottom:none}
 .err.done{background:var(--papel);}
 .err.done .etxt{text-decoration:line-through;opacity:.5}
@@ -672,14 +673,15 @@ var ERROS=[
   {id:'nat12',p:'Nathan',o:'nova',t:'estrutura',pag:'p. 19',txt:'O título "11.1 Regimes Especiais de Tributação" não descreve o que vem depois',det:'O conteúdo é elisão, evasão, sonegação, fraude, conluio e o caso do CARF. Nada disso é regime especial de tributação. Renomear para algo como "Limites legais do planejamento tributário: elisão, evasão e sonegação".'},
 
   /* ---------------- VICTÓRIA — seção 10 (p.16) e seção 11 (p.17-19) ---------------- */
-  {id:'vic1',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16',fix:true,txt:'CORRIGIDO em 12/08 — o Decreto 3.000/1999 saiu do texto',det:'Agora o parágrafo cita os artigos 15 e 20 da Lei nº 9.249/1995 e os artigos 591 e 592 do Decreto nº 9.580/2018. O link do d3000 também saiu da lista de referências.'},
-  {id:'vic2',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16',fix:true,txt:'CORRIGIDO em 12/08 — a obrigatoriedade do Lucro Real ganhou a base legal certa',det:'Saiu "conforme as diretrizes do Conselho Federal de Contabilidade (CFC, 2023)". Entrou o artigo 14 da Lei nº 9.718/1998, com a referência na lista.'},
-  {id:'vic3',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16 e p. 19',fix:true,txt:'CORRIGIDO em 12/08 — Garcia agora é 2015 nas duas seções',det:'Bate com a lista de referências e com a citação (FABRETTI, 2015; GARCIA, 2015) da seção de enquadramento.'},
-  {id:'vic4',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16 × p. 19',fix:true,txt:'CORRIGIDO em 12/08 — a contradição da atividade híbrida acabou',det:'O trecho "atividades híbridas, como o setor de confeitaria… 8% e 32%" saiu. A seção de regimes agora descreve a regra geral sem aplicá-la à empresa, e a de enquadramento continua dizendo que é comércio varejista, Anexo I, presunção de 8%.'},
-  {id:'vic5',p:'Victória',o:'antiga',t:'referencia',pag:'p. 16',txt:'(CFC, 2023) citado no texto; na lista só existe "https://cfc.org.br"',det:'Uma URL solta não é referência: falta autor, título, ano e data de acesso. Ou vira CONSELHO FEDERAL DE CONTABILIDADE. Título. Ano. Disponível em: … Acesso em: …, ou a citação sai do texto junto com o erro do item acima.'},
-  {id:'vic6',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16',fix:true,txt:'CORRIGIDO em 12/08 — a CSLL entrou com 12%',det:'"presume-se a margem de 8% para o IRPJ e de 12% para a CSLL", com os artigos 15 e 20 da Lei 9.249/1995. Sem esse ajuste a simulação de Lucro Presumido daria errado.'},
-  {id:'vic7',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 17-19',fix:true,txt:'CORRIGIDO em 12/08 — a empresa entrou na seção de enquadramento',det:'"a microempresa estudada" virou "a Casa do Brigadeiro Comércio de Doces Sorocaba Ltda." no fecho da seção.'},
-  {id:'vic8',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 19',fix:true,txt:'CORRIGIDO em 12/08 — os parágrafos longos foram quebrados',det:'Os dois de 18 linhas viraram quatro, dentro das 4 a 5 linhas que o modelo pede. Os travessões que a numeração automática tinha comido também voltaram.'},
+  {id:'vic1',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16',fix:true,txt:'As presunções de 8% e 32% estavam fundamentadas no Decreto 3.000/1999, revogado',det:'Agora o parágrafo cita os artigos 15 e 20 da Lei nº 9.249/1995 e os artigos 591 e 592 do Decreto nº 9.580/2018. O link do d3000 também saiu da lista de referências.'},
+  {id:'vic2',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16',fix:true,txt:'A obrigatoriedade do Lucro Real estava atribuída ao CFC',det:'Saiu "conforme as diretrizes do Conselho Federal de Contabilidade (CFC, 2023)". Entrou o artigo 14 da Lei nº 9.718/1998, com a referência na lista.'},
+  {id:'vic3',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16 e p. 19',fix:true,txt:'Garcia aparecia como 2021 numa seção e como 2015 na outra',det:'Bate com a lista de referências e com a citação (FABRETTI, 2015; GARCIA, 2015) da seção de enquadramento.'},
+  {id:'vic4',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16 × p. 19',fix:true,txt:'Uma seção dizia que a confeitaria é atividade híbrida; a outra, que nunca incide 32%',det:'O trecho "atividades híbridas, como o setor de confeitaria… 8% e 32%" saiu. A seção de regimes agora descreve a regra geral sem aplicá-la à empresa, e a de enquadramento continua dizendo que é comércio varejista, Anexo I, presunção de 8%.'},
+  {id:'vic5',p:'Victória',o:'antiga',t:'referencia',pag:'p. 16',fix:true,txt:'(CFC, 2023) citado no texto e só "https://cfc.org.br" na lista',det:'Resolvido junto com a correção da base legal: a citação do CFC saiu do texto e a URL solta saiu da lista de referências.'},
+  {id:'vic6',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 16',fix:true,txt:'IRPJ e CSLL apareciam aplicados sobre a mesma presunção de 8%',det:'"presume-se a margem de 8% para o IRPJ e de 12% para a CSLL", com os artigos 15 e 20 da Lei 9.249/1995. Sem esse ajuste a simulação de Lucro Presumido daria errado.'},
+  {id:'vic7',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 17-19',fix:true,txt:'A seção de enquadramento não dizia o nome da empresa',det:'"a microempresa estudada" virou "a Casa do Brigadeiro Comércio de Doces Sorocaba Ltda." no fecho da seção.'},
+  {id:'vic8',p:'Victória',o:'antiga',t:'estrutura',pag:'p. 19',fix:true,txt:'Parágrafos de 18 linhas na seção de enquadramento',det:'Os dois de 18 linhas viraram quatro, dentro das 4 a 5 linhas que o modelo pede. Os travessões que a numeração automática tinha comido também voltaram.'},
+  {id:'vic10',p:'Victória',o:'nova',t:'escrita',pag:'seções 10 e 11',fix:true,txt:'Cinco frases suas estavam partidas no meio, em parágrafos separados',det:'Sobra da conversão do PDF para Word: "A própria Lei Complementar nº 123/2006 define esse conceito em seu artigo 3º," terminava ali, e o resto da frase virava outro parágrafo. Acontecia em cinco pontos das suas duas seções. Todas remontadas, e os travessões que a numeração automática tinha comido voltaram.'},
   {id:'vic9',p:'Victória',o:'antiga',t:'estrutura',pag:'fora do arquivo',txt:'A Reforma Tributária virou promessa da metodologia e continua fora do trabalho',det:'Mudou de status em 12/08: a metodologia agora diz que o relatório vai analisar "como a organização pode se preparar para a Reforma Tributária". Deixou de ser diferencial e virou obrigação. O material do dia 04/08 está pronto há mais de uma semana. O trabalho já cita a LC 214/2025 de passagem na seção de enquadramento e não desenvolve.'},
 
   /* ---------------- YASMIN — seção 6 (p.9-10) e seção 13 (p.24-29) ---------------- */
@@ -738,9 +740,9 @@ var ERROS=[
   {id:'ger33',p:'Geral',o:'nova',t:'dados',pag:'p. 4',txt:'A justificativa afirma a relevância do setor sem apresentar um dado',det:'"em razão da relevância do setor de comércio varejista de doces para a economia local". É a frase que justifica a escolha da empresa, e ela não traz número nem fonte. Os dados do comércio varejista de alimentos que o Calebe já levantou servem exatamente para isso.'},
   {id:'ger34',p:'Geral',o:'nova',t:'escrita',pag:'p. 5',txt:'"Ltda" sem ponto no primeiro objetivo específico',det:'"nos custos da Casa do Brigadeiro Comércio de Doces Sorocaba Ltda;" — em todas as outras seis ocorrências do trabalho está "Ltda.". Falta o ponto da abreviatura antes do ponto e vírgula.'},
   {id:'ger35',p:'Geral',o:'nova',t:'escrita',pag:'p. 5',txt:'"Demonstrar a importância do fluxo de caixa" não é um objetivo verificável',det:'Demonstrar importância é ensaio, não pesquisa: não dá para dizer se foi ou não alcançado. Sugestão: "Analisar o comportamento do fluxo de caixa da empresa ao longo de doze meses, identificando períodos de maior pressão tributária". Aí vira algo que a parte prática entrega e a banca confere.'},
-  {id:'ger39',p:'Geral',o:'nova',t:'estrutura',pag:'arquivo inteiro',fix:true,txt:'FEITO em 12/08 — a formatação ABNT foi aplicada no arquivo inteiro',det:'Margens 3/3/2/2, Arial 12, entrelinha 1,5, recuo de 1,25 cm, texto justificado, referências em espaço simples. As 37 quebras de seção — que tinham quatro margens diferentes entre si e faziam o texto dançar de página em página — viraram 3. Cada seção primária começa em página nova. Zero páginas em branco. O arquivo passou de 41 para 48 páginas, que é o esperado ao aplicar 1,5 de entrelinha.'},
+  {id:'ger39',p:'Geral',o:'nova',t:'estrutura',pag:'arquivo inteiro',fix:true,txt:'O arquivo não estava formatado em ABNT',det:'Margens 3/3/2/2, Arial 12, entrelinha 1,5, recuo de 1,25 cm, texto justificado, referências em espaço simples. As 37 quebras de seção — que tinham quatro margens diferentes entre si e faziam o texto dançar de página em página — viraram 3. Cada seção primária começa em página nova. Zero páginas em branco. O arquivo passou de 41 para 48 páginas, que é o esperado ao aplicar 1,5 de entrelinha.'},
   {id:'ger36',p:'Geral',o:'nova',t:'referencia',pag:'referências',txt:'24 marcadores [CONFERIR] nas referências, esperando quem citou',det:'São dados que não existem em lugar nenhum do arquivo e que ninguém pode inventar. Cada um confere o seu: Yasmin (Garrison, Noreen e Brewer 2013 · Padoveze 2012) · João e Calebe (a edição do Martins, que um cita como 2023 e o outro como 2018) · Calebe (Viana 2000 · Ballou 2006 · Bowersox et al. 2014) · Laura (InfinitePay, que não tem nem URL). Faltam também os anos de IBGE, Observatório Sebrae, Agência Sebrae, Caixa e Serasa. No Word: Ctrl+F em [CONFERIR e acha os 24 de uma vez.'},
-  {id:'ger37',p:'Geral',o:'nova',t:'referencia',pag:'fim do arquivo',txt:'Bloco "A DECIDIR" com 6 fontes que não são citadas em lugar nenhum',det:'Jusbrasil, R1 Notícias, o artigo do Intertemas, o CPC 16, o Conjur e a CNN. Ficaram separadas no fim do arquivo, cada uma dizendo o que fazer. Nenhuma pode entrar na lista final assim — referência não citada é erro que a banca confere. A da CNN é a mais delicada: é a única fonte dos percentuais de 38,97% e 11,78% do caso McDonald’s.'},
+  {id:'ger37',p:'Geral',o:'nova',t:'referencia',pag:'fim do arquivo',txt:'Bloco "A DECIDIR": 6 fontes não citadas, e uma delas sem autor nem ano',det:'Jusbrasil, R1 Notícias, Intertemas, CPC 16, Conjur e CNN. Nenhuma é citada no corpo do texto, então nenhuma pode entrar na lista final. A pior é "O REFLEXO DA TRIBUTAÇÃO NAS MICROEMPRESAS… DE PRESIDENTE PRUDENTE": entra pelo título porque não tem autor, e também não tem ano — faltam os dois. Jusbrasil, R1 Notícias e CPC 16 estão sem ano. Como nenhuma das seis é citada, a saída de todas resolve os dois problemas de uma vez. A da CNN é a única que exige decisão: é a fonte dos percentuais de 38,97% e 11,78% do caso McDonald’s, na seção do Nathan.'},
   {id:'ger38',p:'Geral',o:'nova',t:'estrutura',pag:'organização',txt:'ATENÇÃO — o arquivo corrigido precisa virar o arquivo oficial do grupo',det:'O arquivo com as correções e a formatação ABNT é o "TCC 12-08 - ABNT + partes da Victoria.docx". Se alguém continuar editando a versão antiga, todo esse trabalho se perde no caminho — que é exatamente o problema número 1 que este site existe para resolver. Combinar agora: a Yasmin sobe o arquivo novo no drive, todo mundo apaga a cópia velha, e daqui pra frente ninguém edita o arquivo geral direto.'},
   {id:'ger23',p:'Geral',o:'nova',t:'estrutura',pag:'p. 6-7',txt:'ATENÇÃO — o produto final do TCC mudou em 12/08',det:'A metodologia não promete mais "uma ferramenta prática baseada no fluxo de caixa". Agora promete "um relatório apontando os erros e acertos da empresa, analisando se seria vantajosa a mudança de regime tributário e como a organização pode se preparar para a Reforma Tributária". O objetivo específico 5 foi alinhado junto: "Propor um relatório diagnóstico". Isso muda o que o grupo entrega em setembro e muda o papel da Laura — não é mais montar planilha, é escrever diagnóstico. Confirmem se foi decisão de todo mundo.'},
   {id:'ger24',p:'Geral',o:'nova',t:'estrutura',pag:'p. 7',txt:'A metodologia passou a prometer a Reforma Tributária — e ela continua fora do trabalho',det:'"como a organização pode se preparar para a Reforma Tributária" agora está escrito na metodologia. Antes a Reforma era um bônus; agora é promessa formal. Se o material da Victória não entrar, o trabalho promete e não entrega — que é o pior tipo de erro para a banca.'},
@@ -750,25 +752,25 @@ var ERROS=[
 
   /* ---------------- GERAL — estrutura, ABNT e coerência ---------------- */
   {id:'ger1',p:'Geral',o:'nova',t:'escrita',pag:'p. 1 e 2',txt:'O título da capa e da folha de rosto está com "COMERCIO" sem acento',det:'"CASA DO BRIGADEIRO COMERCIO DE DOCES SOROCABA LTDA." É a razão social e é a primeira linha que a banca lê. Corrigir para COMÉRCIO nos dois lugares. Ver a aba Conexão para a lista de onde mais o nome aparece diferente.'},
-  {id:'ger2',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 3',fix:true,txt:'CORRIGIDO em 12/08 — o sumário foi refeito e ficou completo',det:'Ganhou o título SUMÁRIO que a ABNT exige e as seis entradas que faltavam: a seção 11 inteira, a 11.1 e os quatro subitens de preços. A numeração não pula mais do 10 para o 12.'},
-  {id:'ger3',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 3',fix:true,txt:'CORRIGIDO em 12/08 — os números de página do sumário batem com a realidade',det:'Foram medidos no arquivo renderizado, não digitados. Continua sendo sumário manual: se o texto mudar, precisa medir de novo — ou trocar por Referências → Sumário Automático.'},
-  {id:'ger4',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 23 e 25',fix:true,txt:'CORRIGIDO em 12/08 — os "12.1" e "12.2" duplicados sumiram',det:'Os subitens da seção de preços deixaram de ter número digitado e passaram a usar a numeração automática do Word. O problema virou outro, no item ger21 abaixo.'},
-  {id:'ger21',p:'Geral',o:'antiga',t:'estrutura',pag:'arquivo inteiro',fix:true,txt:'CORRIGIDO em 12/08 — as oito listas de numeração viraram uma',det:'Os subitens de preços passaram a continuar a numeração da seção que os contém: agora são 13.1, 13.2, 13.3 e 13.4.'},
-  {id:'ger22',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 19, 20, 29 e 34-36',fix:true,txt:'CORRIGIDO em 12/08 — os parágrafos que viraram seção voltaram ao lugar',det:'Os cinco componentes do preço são a) b) c) d) e) de novo, os incisos do CTN saíram do nível de seção e os 17 URLs sumiram junto com as referências antigas.'},
-  {id:'ger5',p:'Geral',o:'antiga',t:'escrita',pag:'p. 4',fix:true,txt:'CORRIGIDO em 12/08 — a questão-problema ficou neutra',det:'Agora está: "Como a atual gestão tributária impacta os custos empresariais e a eficiência financeira da Casa do Brigadeiro Comércio de Doces Sorocaba Ltda.?" Saíram o "ausência de" e o "negativamente" — a pergunta não assume mais a resposta. O objetivo específico 1 foi alinhado junto. Nada a fazer.'},
+  {id:'ger2',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 3',fix:true,txt:'O sumário não tinha a seção de enquadramento nem os subitens de preços',det:'Ganhou o título SUMÁRIO que a ABNT exige e as seis entradas que faltavam: a seção 11 inteira, a 11.1 e os quatro subitens de preços. A numeração não pula mais do 10 para o 12.'},
+  {id:'ger3',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 3',fix:true,txt:'O sumário era digitado à mão, com os números de página errados',det:'Foram medidos no arquivo renderizado, não digitados. Continua sendo sumário manual: se o texto mudar, precisa medir de novo — ou trocar por Referências → Sumário Automático.'},
+  {id:'ger4',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 23 e 25',fix:true,txt:'O trabalho tinha dois "12.1" e dois "12.2"',det:'Os subitens da seção de preços deixaram de ter número digitado e passaram a usar a numeração automática do Word. O problema virou outro, no item ger21 abaixo.'},
+  {id:'ger21',p:'Geral',o:'antiga',t:'estrutura',pag:'arquivo inteiro',fix:true,txt:'A numeração automática estava dividida em oito listas independentes',det:'Os subitens de preços passaram a continuar a numeração da seção que os contém: agora são 13.1, 13.2, 13.3 e 13.4.'},
+  {id:'ger22',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 19, 20, 29 e 34-36',fix:true,txt:'Parágrafos comuns e URLs viraram itens numerados de nível de seção',det:'Os cinco componentes do preço são a) b) c) d) e) de novo, os incisos do CTN saíram do nível de seção e os 17 URLs sumiram junto com as referências antigas.'},
+  {id:'ger5',p:'Geral',o:'antiga',t:'escrita',pag:'p. 4',fix:true,txt:'A questão-problema já continha a resposta',det:'Agora está: "Como a atual gestão tributária impacta os custos empresariais e a eficiência financeira da Casa do Brigadeiro Comércio de Doces Sorocaba Ltda.?" Saíram o "ausência de" e o "negativamente" — a pergunta não assume mais a resposta. O objetivo específico 1 foi alinhado junto. Nada a fazer.'},
   {id:'ger6',p:'Geral',o:'antiga',t:'dados',pag:'p. 7',txt:'A metodologia diz que a abordagem será qualitativa, mas a prática é numérica',det:'"A abordagem será qualitativa, fundamentada em pesquisa bibliográfica." Só que o trabalho vai simular Simples × Lucro Presumido, calcular margem de contribuição e ponto de equilíbrio e montar fluxo de caixa de 12 meses. Isso é quali-quantitativa. Uma palavra a trocar, e ela sustenta a parte prática inteira.'},
   {id:'ger7',p:'Geral',o:'antiga',t:'citacao',pag:'p. 4-5',txt:'Introdução e justificativa não têm uma única citação',det:'Duas páginas de afirmações sobre carga tributária, custos de confeitaria e mortalidade de empresas, sem nenhuma fonte. São as duas primeiras páginas de texto que a banca lê.'},
-  {id:'ger8',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33-37',fix:true,txt:'CORRIGIDO em 12/08 — os blocos de referências viraram uma lista só',det:'44 entradas em ordem alfabética, NBR 6023. Sumiram os 100 parágrafos antigos, os 17 URLs soltos e a repetição do primeiro bloco no fim.'},
-  {id:'ger9',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33',fix:true,txt:'CORRIGIDO em 12/08 — o FAOTRES virou FATORES',det:'SEBRAE. Fatores condicionantes e taxa de mortalidade de empresas no Brasil. 2004.'},
-  {id:'ger10',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33',fix:true,txt:'CORRIGIDO em 12/08 — o CTN saiu de "Presidência da República Casa Civil"',det:'Agora é BRASIL. Lei nº 5.172, de 25 de outubro de 1966, com o texto oficial da ementa.'},
-  {id:'ger11',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33-37',fix:true,txt:'CORRIGIDO em 12/08 — todas as fontes online ganharam "Acesso em:"',det:'Antes só duas tinham. Agora as trinta e poucas trazem Acesso em: 12 ago. 2026.'},
-  {id:'ger12',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33',fix:true,txt:'CORRIGIDO em 12/08 — o link do Decreto 3.000/1999 saiu da lista',det:'Saiu junto com a correção da citação no texto.'},
+  {id:'ger8',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33-37',fix:true,txt:'Quatro blocos de referências diferentes, e o primeiro repetido no fim',det:'44 entradas em ordem alfabética, NBR 6023. Sumiram os 100 parágrafos antigos, os 17 URLs soltos e a repetição do primeiro bloco no fim.'},
+  {id:'ger9',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33',fix:true,txt:'"FAOTRES CONDICIONANTES" escrito errado na lista de referências',det:'SEBRAE. Fatores condicionantes e taxa de mortalidade de empresas no Brasil. 2004.'},
+  {id:'ger10',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33',fix:true,txt:'O CTN referenciado como "Presidência da República Casa Civil"',det:'Agora é BRASIL. Lei nº 5.172, de 25 de outubro de 1966, com o texto oficial da ementa.'},
+  {id:'ger11',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33-37',fix:true,txt:'Nenhuma fonte online tinha "Acesso em:"',det:'Antes só duas tinham. Agora as trinta e poucas trazem Acesso em: 12 ago. 2026.'},
+  {id:'ger12',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 33',fix:true,txt:'O link do Decreto 3.000/1999 continuava na lista, revogado',det:'Saiu junto com a correção da citação no texto.'},
   {id:'ger13',p:'Geral',o:'antiga',t:'estrutura',pag:'p. 7 a 32',txt:'A empresa é citada 6 vezes, e todas as 6 antes da página 8',det:'Contei no arquivo de 12/08: "Casa do Brigadeiro" aparece na questão-problema, na justificativa, no objetivo geral, num objetivo específico e duas vezes na metodologia. Da metodologia até a última página do referencial: nenhuma vez. Sobrou só "a microempresa estudada", uma vez, na seção de enquadramento. O trabalho promete estudo de caso e entrega 25 páginas de pesquisa bibliográfica. É o problema mais grave da lista.'},
   {id:'ger14',p:'Geral',o:'antiga',t:'estrutura',pag:'faltando',txt:'Faltam folha de aprovação, lista de tabelas, considerações finais e apêndices',det:'O resumo e as palavras-chave ficam para o fim, por decisão do grupo — os outros quatro não dependem do texto pronto e podem ser feitos agora. Apêndices: roteiro de entrevista e termo de autorização assinado.'},
   {id:'ger15',p:'Geral',o:'antiga',t:'estrutura',pag:'faltando',txt:'Faltam as seções CRONOGRAMA DE DESENVOLVIMENTO e RESULTADOS ESPERADOS',det:'As duas são exigidas pelo modelo do professor e não existem no arquivo. O cronograma vira quadro (é do João); os resultados esperados são meia página dizendo o que a simulação deve mostrar.'},
   {id:'ger16',p:'Geral',o:'antiga',t:'estrutura',pag:'formato',txt:'O referencial teórico não está no formato de quadro exigido pelo modelo',det:'O modelo pede o QUADRO I com quatro colunas: Tópico · Autor e Obra · Ideia Central ou Citação Chave · Por que é importante. Hoje o referencial é texto corrido do começo ao fim.'},
   {id:'ger17',p:'Geral',o:'nova',t:'escrita',pag:'p. 4 a 32',txt:'O negócio tem três nomes diferentes ao longo do texto',det:'Melhorou em 12/08: "comércio varejista de doces" passou de 1 para 5 ocorrências, inclusive num objetivo específico. Mas ainda convivem "confeitaria" (7 vezes) e "loja de doces" (3 vezes). Faltam esses 10. Lista de onde trocar na aba Conexão.'},
-  {id:'ger18',p:'Geral',o:'antiga',t:'estrutura',pag:'todas',fix:true,txt:'CORRIGIDO em 12/08 — a paginação seguiu a regra do modelo',det:'Número no canto superior direito, contagem a partir da folha de rosto e exibição só a partir da introdução. A capa não é contada.'},
+  {id:'ger18',p:'Geral',o:'antiga',t:'estrutura',pag:'todas',fix:true,txt:'A paginação aparecia em todas as páginas, inclusive na capa',det:'Número no canto superior direito, contagem a partir da folha de rosto e exibição só a partir da introdução. A capa não é contada.'},
   {id:'ger19',p:'Geral',o:'nova',t:'escrita',pag:'p. 3-4',txt:'PERGUNTAR AO PROFESSOR — a introdução foi para o presente, e o modelo dele pede passado',det:'Em 11/08 a introdução estava no passado ("constituiu", "tornou-se", "observou-se"). Em 12/08 foi trocada para o presente ("constitui", "torna-se", "justifica-se", "surge a questão-problema"). O modelo do professor é explícito: sobre a introdução, "é muito importante que os verbos utilizados estejam expressos no passado, pois indicam fatos que já ocorreram". Pelo padrão acadêmico de projeto, presente na contextualização e futuro na metodologia está correto — mas quem corrige é ele. Trinta segundos de pergunta em aula evitam refazer duas páginas duas vezes. Não mexer até ter a resposta.'},
   {id:'ger20',p:'Geral',o:'nova',t:'pesquisa',pag:'p. 19-32',txt:'As três pesquisas 2 que faltavam entraram no arquivo',det:'Nathan: elisão, evasão e o caso do CARF, na 11.1 (p. 19-21). Yasmin: formação de preços, margem de contribuição, markup e ponto de equilíbrio, na seção 13 (p. 24-29). Calebe: PEPS, UEPS, custo médio e perecíveis, na seção 14 (p. 30-32). Falta só o ICMS-ST do Nathan.',fix:true}
 ];
@@ -1095,7 +1097,7 @@ function drawErros(){
     if(fP!=='todos'&&e.p!==fP)return false;
     if(fT!=='todos'&&e.t!==fT)return false;
     if(fO!=='todos'&&e.o!==fO)return false;
-    if(onlyOpen&&isDone(e.id))return false;
+    if(onlyOpen&&(isDone(e.id)||e.fix))return false;
     return true;
   });
   if(!lista.length){host.appendChild(el('div','aviso good','Nada aqui com esses filtros. 👏'));return;}
@@ -1103,7 +1105,7 @@ function drawErros(){
     var g=lista.filter(function(e){return e.p===pessoa});
     if(!g.length)return;
     var all=ERROS.filter(function(e){return e.p===pessoa});
-    var feitos=all.filter(function(e){return isDone(e.id)}).length;
+    var feitos=all.filter(function(e){return isDone(e.id)||e.fix}).length;
     var pct=Math.round(feitos/all.length*100);
     var cab=el('div','pcab');
     cab.appendChild(el('div','nm',esc(pessoa==='Geral'?'Trabalho (geral)':pessoa)));
@@ -1115,10 +1117,11 @@ function drawErros(){
     host.appendChild(cab);
     var box=el('div','elist');
     g.forEach(function(e){
-      var d=isDone(e.id);
+      var d=isDone(e.id)||!!e.fix;
       var row=el('label','err'+(d?' done':''));
       var cb=el('input');cb.type='checkbox';cb.checked=d;
-      cb.onchange=function(){setDone(e.id,cb.checked);drawErros();updateBadge();};
+      if(e.fix){cb.disabled=true;cb.title='Conferido no arquivo — não dá para desmarcar';}
+      else cb.onchange=function(){setDone(e.id,cb.checked);drawErros();updateBadge();};
       row.appendChild(cb);
       var b=el('div','ebody');
       b.appendChild(el('div','etxt',esc(e.txt)));
@@ -1127,8 +1130,8 @@ function drawErros(){
       tg.appendChild(el('span','tag '+e.o,e.o==='nova'?'Revisão 10/08':'Revisão antiga'));
       tg.appendChild(el('span','tag k',esc(TIPOS[e.t])));
       if(e.pag)tg.appendChild(el('span','tag pag',esc(e.pag)));
-      if(e.fix)tg.appendChild(el('span','tag fix','Já resolvido em 09/08'));
-      if(d)tg.appendChild(el('span','tag quem','marcou: '+esc(quemFez(e.id))));
+      if(e.fix)tg.appendChild(el('span','tag fix','Resolvido no arquivo'));
+      if(d&&!e.fix)tg.appendChild(el('span','tag quem','marcou: '+esc(quemFez(e.id))));
       b.appendChild(tg);
       row.appendChild(b);
       box.appendChild(row);
@@ -1138,7 +1141,7 @@ function drawErros(){
 }
 
 function updateBadge(){
-  var feitos=ERROS.filter(function(e){return isDone(e.id)}).length;
+  var feitos=ERROS.filter(function(e){return isDone(e.id)||e.fix}).length;
   var abertos=ERROS.length-feitos;
   var b=document.getElementById('navBadge');
   if(b)b.textContent=abertos;
