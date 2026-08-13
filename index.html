@@ -506,6 +506,10 @@ footer{
     <b>Regra que resolve o problema do arquivo sem dono:</b> agora ele tem. <b>Yasmin monta e arruma a formatação.</b> <b>Victória cuida das referências.</b> Ninguém mais mexe no arquivo geral direto — manda o texto para a Yasmin.
   </div>
   <div id="tarefas"></div>
+
+  <h3 class="grp">Mudanças de tema propostas</h3>
+  <p class="lead">Duas seções do referencial não estão puxando o peso delas. Abaixo, o problema de cada uma, o tema novo sugerido e o que fazer com o texto que já existe.</p>
+  <div id="temas"></div>
 </section>
 
 <!-- ============ CRONOGRAMA ============ -->
@@ -600,7 +604,7 @@ function setDone(id,v){
   if(SYNC)SYNC.gravar(id,v,EU);
 }
 function redrawAll(){
-  drawFiltros();drawErros();drawTarefas();drawFases();
+  drawFiltros();drawErros();drawTarefas();drawTemas();drawFases();
   drawChk('abntlist',ABNT,'ab');drawChk('docs',DOCS,'dc');drawChk('dadosemp',DADOS_EMP,'de');
   updateBadge();pintaIdent();
 }
@@ -649,7 +653,7 @@ var ERROS=[
   /* ---------------- YASMIN — seção 6 (p.9-10) e seção 13 (p.24-29) ---------------- */
   {id:'yas1',p:'Yasmin',o:'antiga',t:'referencia',pag:'p. 9',txt:'Garrison, Noreen e Brewer (2013) citados e ausentes de todas as quatro listas',det:'"Essa perspectiva consultiva baseia-se nos conceitos de Garrison, Noreen e Brewer (2013)". Procurei nas quatro listas de referências do arquivo: não está em nenhuma. Ou entra a referência completa, ou a citação sai.'},
   {id:'yas2',p:'Yasmin',o:'antiga',t:'referencia',pag:'p. 9',txt:'Padoveze (2012) citado e ausente de todas as listas',det:'"Como aponta Padoveze (2012), o profissional contábil atua como um gestor do sistema de informações de apoio à decisão." Mesmo caso do item acima.'},
-  {id:'yas3',p:'Yasmin',o:'nova',t:'escrita',pag:'p. 9',txt:'A seção 6 explica os três regimes sete páginas antes da seção que explica os três regimes',det:'"As empresas podem optar por regimes como Simples Nacional, Lucro Presumido ou Lucro Real, e essa escolha deve ser constantemente avaliada." A seção 10 (p. 16) faz isso com lei e artigo. Aqui basta anunciar que existe a escolha e apontar para a frente. Ver aba Conexão, contradição C4.'},
+  {id:'yas3',p:'Yasmin',o:'nova',t:'estrutura',pag:'p. 8-9',txt:'A seção do papel da contabilidade repete o que vem depois — proposta de troca de tema na aba Cada um',det:'"As empresas podem optar por regimes como Simples Nacional, Lucro Presumido ou Lucro Real, e essa escolha deve ser constantemente avaliada." A seção 10 (p. 16) faz isso com lei e artigo. Aqui basta anunciar que existe a escolha e apontar para a frente. Ver aba Conexão, contradição C4.'},
   {id:'yas4',p:'Yasmin',o:'nova',t:'referencia',pag:'p. 24-29',txt:'(SEBRAE, 2026) oito vezes, mas são três obras diferentes do Sebrae em 2026',det:'A lista tem "Como definir preço de venda", "A formação de preço para o meu tipo de negócio" e a de Brasília. Quando o mesmo autor tem mais de uma obra no mesmo ano, a ABNT exige 2026a, 2026b, 2026c — no texto e na lista. Hoje o leitor não sabe qual das três está sendo citada.'},
   {id:'yas5',p:'Yasmin',o:'nova',t:'dados',pag:'p. 25-29',txt:'As fórmulas de markup, margem e ponto de equilíbrio não têm um número aplicado',det:'MCu, MCt, MKD, MKM, PEC, PEF e PEE estão corretas e bem explicadas, mas nenhuma é resolvida com valor. Um brigadeiro com preço, custo e embalagem faz a seção inteira aterrissar — e é exatamente o que a parte prática vai precisar.'},
   {id:'yas6',p:'Yasmin',o:'nova',t:'estrutura',pag:'p. 25-28',txt:'A seção 13 numera seus subitens como 12.1, 12.2, 12.3 e 12.4',det:'Mas 12.1 e 12.2 já existem na seção 12 do João (Terminologia Contábil Básica e Custos Diretos e Indiretos). O trabalho tem hoje dois "12.1" e dois "12.2". Renumerar os seus para 13.1 Margem de Contribuição, 13.2 Markup, 13.3 Ponto de Equilíbrio e 13.4 Componentes do Preço de Venda.'},
@@ -690,6 +694,17 @@ var ERROS=[
   {id:'cal12',p:'Calebe',o:'antiga',t:'estrutura',pag:'a escrever',txt:'Escrever a seção de Caracterização da Empresa',det:'Razão social, CNPJ, CNAE, porte, regime atual, anexo do Simples, faturamento, funcionários e mix de produtos. É ela que resolve, de uma vez, a maior parte das contradições da aba Conexão.'},
 
   /* ---------------- TODOS ---------------- */
+  {id:'ger25',p:'Geral',o:'nova',t:'referencia',pag:'p. 3',txt:'NOVO em 12/08 — o IBPT entrou na introdução sem virar citação nem referência',det:'"cenário frequentemente alertado por entidades como o Instituto Brasileiro de Planejamento e Tributação (IBPT)". Mencionar a instituição pelo nome não é citar: falta (IBPT, ano) e falta a entrada na lista. Como foi acrescentado agora, dá para resolver junto: ou entra a referência do estudo do IBPT sobre carga tributária, ou a menção sai.'},
+  {id:'ger26',p:'Geral',o:'nova',t:'referencia',pag:'p. 3',txt:'NOVO em 12/08 — o SEBRAE entrou na introdução sem ano e sem referência',det:'"uma prática recomendada por instituições como o Serviço Brasileiro de Apoio às Micro e Pequenas Empresas (SEBRAE) para diminuir licitamente os custos operacionais". Mesmo caso do IBPT. A introdução continua sem uma única citação em formato ABNT — agora com duas instituições citadas informalmente.'},
+  {id:'ger27',p:'Geral',o:'nova',t:'estrutura',pag:'p. 5',txt:'O objetivo específico 4 não tem nenhuma seção que o sustente',det:'"Verificar como o crescimento do faturamento da empresa pode exigir a revisão do regime tributário adotado." Nenhuma seção do referencial trata de faixas do Anexo I, RBT12, alíquota efetiva ou ponto de virada para o Lucro Presumido. É o único objetivo específico sem lastro no texto. É a proposta de tema novo para a Yasmin, na aba Cada um.'},
+  {id:'ger28',p:'Geral',o:'nova',t:'estrutura',pag:'p. 5 × p. 6',txt:'A metodologia entrega uma comparação de regimes que nenhum objetivo pede',det:'A metodologia promete "analisando se seria vantajosa a mudança de regime tributário para diminuir custos". Os cinco objetivos específicos falam de identificar impactos, analisar controle financeiro, demonstrar fluxo de caixa, verificar crescimento e propor relatório — nenhum diz comparar Simples com Lucro Presumido, que é o coração da parte prática. Falta um objetivo específico, ou sobra uma promessa.'},
+  {id:'ger29',p:'Geral',o:'nova',t:'citacao',pag:'p. 6',txt:'A metodologia não cita nenhum autor de metodologia',det:'Classifica a pesquisa como aplicada, qualitativa, exploratória, descritiva e estudo de caso — cinco classificações, nenhuma fonte. É pergunta clássica de banca: "com base em quem vocês classificaram assim?". Gil para tipologia de pesquisa e Yin para estudo de caso resolvem com duas citações.'},
+  {id:'ger30',p:'Geral',o:'nova',t:'dados',pag:'p. 6',txt:'"o período mais recente de funcionamento da empresa" é vago demais',det:'A parte prática inteira depende de doze meses de PGDAS-D e DAS — é o que permite calcular RBT12 e comparar regimes. Trocar por "os doze meses anteriores à coleta" fecha a metodologia com a lista de documentos da aba Empresa.'},
+  {id:'ger31',p:'Geral',o:'nova',t:'escrita',pag:'p. 6',txt:'"um relatório apontando os erros e acertos da empresa" — linguagem de avaliação, não de pesquisa',det:'Além de coloquial para um trabalho acadêmico, soa como julgamento de uma empresa que assinou autorização para ser estudada. Sugestão: "um relatório diagnóstico que identifique oportunidades de redução da carga tributária e pontos de melhoria no controle financeiro".'},
+  {id:'ger32',p:'Geral',o:'nova',t:'estrutura',pag:'p. 5 × p. 6',txt:'O objetivo geral promete "uma proposta"; o objetivo 5 e a metodologia prometem "um relatório"',det:'Objetivo geral: "Desenvolver uma proposta de planejamento tributário e financeiro estruturado". Objetivo específico 5 e metodologia: "relatório diagnóstico". Não são a mesma entrega. Escolher uma palavra e usar nos três lugares — proposta é mais ambicioso, relatório é mais honesto com o que dá para fazer até 15/09.'},
+  {id:'ger33',p:'Geral',o:'nova',t:'dados',pag:'p. 4',txt:'A justificativa afirma a relevância do setor sem apresentar um dado',det:'"em razão da relevância do setor de comércio varejista de doces para a economia local". É a frase que justifica a escolha da empresa, e ela não traz número nem fonte. Os dados do comércio varejista de alimentos que o Calebe já levantou servem exatamente para isso.'},
+  {id:'ger34',p:'Geral',o:'nova',t:'escrita',pag:'p. 5',txt:'"Ltda" sem ponto no primeiro objetivo específico',det:'"nos custos da Casa do Brigadeiro Comércio de Doces Sorocaba Ltda;" — em todas as outras seis ocorrências do trabalho está "Ltda.". Falta o ponto da abreviatura antes do ponto e vírgula.'},
+  {id:'ger35',p:'Geral',o:'nova',t:'escrita',pag:'p. 5',txt:'"Demonstrar a importância do fluxo de caixa" não é um objetivo verificável',det:'Demonstrar importância é ensaio, não pesquisa: não dá para dizer se foi ou não alcançado. Sugestão: "Analisar o comportamento do fluxo de caixa da empresa ao longo de doze meses, identificando períodos de maior pressão tributária". Aí vira algo que a parte prática entrega e a banca confere.'},
   {id:'ger23',p:'Geral',o:'nova',t:'estrutura',pag:'p. 6-7',txt:'ATENÇÃO — o produto final do TCC mudou em 12/08',det:'A metodologia não promete mais "uma ferramenta prática baseada no fluxo de caixa". Agora promete "um relatório apontando os erros e acertos da empresa, analisando se seria vantajosa a mudança de regime tributário e como a organização pode se preparar para a Reforma Tributária". O objetivo específico 5 foi alinhado junto: "Propor um relatório diagnóstico". Isso muda o que o grupo entrega em setembro e muda o papel da Laura — não é mais montar planilha, é escrever diagnóstico. Confirmem se foi decisão de todo mundo.'},
   {id:'ger24',p:'Geral',o:'nova',t:'estrutura',pag:'p. 7',txt:'A metodologia passou a prometer a Reforma Tributária — e ela continua fora do trabalho',det:'"como a organização pode se preparar para a Reforma Tributária" agora está escrito na metodologia. Antes a Reforma era um bônus; agora é promessa formal. Se o material da Victória não entrar, o trabalho promete e não entrega — que é o pior tipo de erro para a banca.'},
   {id:'tod1',p:'Todos',o:'nova',t:'escrita',pag:'trabalho inteiro',txt:'Usar sempre os mesmos termos',det:'carga tributária (não "encargo tributário" nem "custos fiscais") · microempresa (ME) · comércio varejista de doces (não "confeitaria" nem "loja de doces") · regime tributário para o regime e enquadramento só para ME/EPP.'},
@@ -717,7 +732,7 @@ var ERROS=[
   {id:'ger16',p:'Geral',o:'antiga',t:'estrutura',pag:'formato',txt:'O referencial teórico não está no formato de quadro exigido pelo modelo',det:'O modelo pede o QUADRO I com quatro colunas: Tópico · Autor e Obra · Ideia Central ou Citação Chave · Por que é importante. Hoje o referencial é texto corrido do começo ao fim.'},
   {id:'ger17',p:'Geral',o:'nova',t:'escrita',pag:'p. 4 a 32',txt:'O negócio tem três nomes diferentes ao longo do texto',det:'Melhorou em 12/08: "comércio varejista de doces" passou de 1 para 5 ocorrências, inclusive num objetivo específico. Mas ainda convivem "confeitaria" (7 vezes) e "loja de doces" (3 vezes). Faltam esses 10. Lista de onde trocar na aba Conexão.'},
   {id:'ger18',p:'Geral',o:'nova',t:'estrutura',pag:'todas',txt:'A paginação aparece em todas as páginas, inclusive na capa',det:'O modelo do professor manda contar a partir da folha de rosto e mostrar o número só a partir da introdução. Hoje a capa é a página 1 e o número está visível nela.'},
-  {id:'ger19',p:'Geral',o:'nova',t:'escrita',pag:'p. 4-7',txt:'Tempo verbal: conferido e coerente com a regra do grupo',det:'Introdução e justificativa no passado, porque a pesquisa já foi feita ("constituiu", "justificou-se", "buscou demonstrar"). Metodologia no futuro, porque a parte prática ainda vai acontecer ("será de natureza aplicada", "será desenvolvido", "será elaborada"). Referencial teórico no presente, porque conceito e lei não têm tempo. Está certo — só não deixar escapar na hora de juntar o arquivo.',fix:true},
+  {id:'ger19',p:'Geral',o:'nova',t:'escrita',pag:'p. 3-6',txt:'CORRIGIDO em 12/08 — o tempo verbal ficou coerente do começo ao fim',det:'Introdução e justificativa saíram do passado e foram para o presente ("constitui", "justifica-se", "busca demonstrar", "surge a questão-problema"). Metodologia continua no futuro ("será de natureza aplicada", "será desenvolvido", "será elaborado"). Referencial no presente. Como a folha de rosto diz "Projeto apresentado ao Curso Técnico em Contabilidade", contexto no presente e plano no futuro é exatamente o padrão. Nada a fazer — só manter na hora de juntar o arquivo.',fix:true},
   {id:'ger20',p:'Geral',o:'nova',t:'pesquisa',pag:'p. 19-32',txt:'As três pesquisas 2 que faltavam entraram no arquivo',det:'Nathan: elisão, evasão e o caso do CARF, na 11.1 (p. 19-21). Yasmin: formação de preços, margem de contribuição, markup e ponto de equilíbrio, na seção 13 (p. 24-29). Calebe: PEPS, UEPS, custo médio e perecíveis, na seção 14 (p. 30-32). Falta só o ICMS-ST do Nathan.',fix:true}
 ];
 
@@ -948,11 +963,29 @@ var ORDEM=[
 
 /* a regra de tempo verbal combinada pelo grupo */
 var TEMPOS=[
-  {parte:'Introdução e justificativa',tempo:'Passado',pag:'p. 4-5',ex:'"a carga tributária constituiu", "a presente pesquisa justificou-se", "o estudo buscou demonstrar"',ok:true,nota:'A pesquisa bibliográfica já foi feita. Está correto no arquivo.'},
+  {parte:'Introdução e justificativa',tempo:'Presente',pag:'p. 3-4',ex:'"a carga tributária constitui", "a pesquisa justifica-se", "o estudo busca demonstrar", "surge a seguinte questão-problema"',ok:true,nota:'MUDOU em 12/08: estava no passado, virou presente — e ficou melhor. Como o documento é um PROJETO de TCC (é o que diz a folha de rosto), contexto no presente e plano no futuro é a combinação certa.'},
   {parte:'Objetivos',tempo:'Infinitivo',pag:'p. 6',ex:'"Desenvolver uma proposta", "Identificar os impactos", "Propor uma ferramenta"',ok:true,nota:'Verbo no infinitivo é a forma padrão de objetivo. Está correto.'},
-  {parte:'Metodologia',tempo:'Futuro',pag:'p. 7',ex:'"a pesquisa será de natureza aplicada", "será desenvolvido um estudo de caso", "será elaborada uma ferramenta prática"',ok:true,nota:'A parte prática ainda vai acontecer. Está correto — não mexer.'},
+  {parte:'Metodologia',tempo:'Futuro',pag:'p. 6',ex:'"a pesquisa será de natureza aplicada", "será desenvolvido um estudo de caso", "será elaborada uma ferramenta prática"',ok:true,nota:'A parte prática ainda vai acontecer. Está correto e agora casa com a introdução no presente.'},
   {parte:'Referencial teórico (seções 5 a 14)',tempo:'Presente',pag:'p. 8-32',ex:'"o planejamento tributário é", "os custos fixos permanecem constantes", "a lei estabelece"',ok:true,nota:'Conceito e lei não têm tempo. Está correto.'},
   {parte:'Resultados e considerações finais',tempo:'Passado',pag:'a escrever',ex:'"a simulação demonstrou", "os dados coletados indicaram"',ok:false,nota:'Quando forem escritos, em setembro, já serão fato consumado.'}
+];
+
+var TEMAS=[
+ {quem:'Yasmin',secao:'Papel da contabilidade no planejamento tributário',
+  problema:'Ela mesma diz que o texto é inútil, e a leitura confirma: a seção descreve o que um contador faz, sem lei, sem número e sem a empresa. Pior, antecipa os três regimes sete páginas antes da seção que os explica com base legal — vira repetição. E as duas únicas citações da seção, Garrison e Padoveze, não estão nas referências.',
+  novo:'Crescimento do faturamento e revisão do regime: as faixas do Anexo I, o RBT12 e o ponto de virada do Simples para o Lucro Presumido',
+  porque:'O objetivo específico 4 diz "Verificar como o crescimento do faturamento da empresa pode exigir a revisão do regime tributário adotado". Nenhuma seção do trabalho sustenta esse objetivo hoje — é o único objetivo nessa situação. E o tema é a espinha da parte prática: é exatamente a simulação que vocês vão rodar em setembro.',
+  conteudo:'As seis faixas do Anexo I e como a alíquota efetiva sobe dentro de cada uma · o que é RBT12 e por que é calculado sobre os doze meses anteriores · a fórmula da alíquota efetiva, com a parcela a deduzir · o degrau: quanto custa passar de faixa · quando o Lucro Presumido passa a ser mais barato que o Simples, e por quê · o sublimite estadual de ICMS.',
+  liga:'Encaixa depois da seção de enquadramento da Victória e antes da sua própria seção de formação de preços — porque a alíquota efetiva é um dos componentes do preço que ela já lista. E gera as duas tabelas que o João precisa montar.',
+  resto:'O texto atual não vai para o lixo: o parágrafo sobre ICMS, IPI e substituição tributária afetando o custo da mercadoria é gancho para a pesquisa do Nathan, e a distinção entre contabilidade tributária e gerencial cabe em três linhas na abertura do bloco tributário. O resto sai.'},
+
+ {quem:'Daniel Calebe',secao:'Realidade econômica das microempresas + Impacto das MPEs no comércio e alimentação',
+  problema:'São duas seções sobre o mesmo assunto, com defeitos opostos: a primeira tem o argumento e nenhum dado; a segunda tem dados demais e quase nenhum sobre doces. Juntas ocupam quatro páginas falando de microempresas em geral — MEIs, PIB, salários do país inteiro — quando o trabalho é sobre uma doceria em Sorocaba.',
+  novo:'O comércio varejista de doces no Brasil: relevância econômica e desafios de gestão',
+  porque:'Uma seção só, focada no segmento. Tudo que não for comércio varejista de alimentos vira contexto de abertura, em dois parágrafos no máximo. O funil precisa começar largo e fechar rápido — hoje começa largo e fica largo.',
+  conteudo:'MANTER, porque já é do segmento: os 736,7 mil trabalhadores e 907 mil empresas do comércio varejista de produtos alimentícios, bebidas e fumo · os 86% dos empregados concentrados em MPEs nesse grupo · os 234 mil empregados e 316 mil empresas do comércio de alimentos e bebidas, com o crescimento de 2,21% · os 70% dos empregos formais do comércio em MPEs. CORTAR ou reduzir a uma linha: 26,5% do PIB, 95% das empresas ativas, R$ 51 bilhões em salários, 4,6 milhões de novos negócios, 14,6 milhões de MEIs, os 1.222.972 empregos de 2024, os 11,7% da pesquisa de serviços — nada disso é sobre doces.',
+  liga:'ACRESCENTAR o que falta e é específico: o CNAE do comércio varejista de doces, balas, bombons e semelhantes (confirmar no cartão CNPJ — deve ser 4721-1/04) · o percentual de mortalidade de microempresas com fonte e ano, que hoje aparece como "muitas microempresas encerram suas atividades" sem número nenhum · a sazonalidade do setor, que é a marca da doceria: Páscoa, Dia das Mães, festas juninas e Natal concentram receita.',
+  resto:'A sazonalidade é o melhor gancho que vocês têm: liga a sua seção à do fluxo de caixa da Laura, à de estoque de perecíveis que você mesmo escreveu e à faixa do Simples, porque um mês de pico empurra o RBT12 para cima.'}
 ];
 
 /* ================= RENDER ================= */
@@ -1093,6 +1126,22 @@ function cardChk(titulo,sub,itens,prefix,redraw){
   return c;
 }
 
+function drawTemas(){
+  var h=document.getElementById('temas');h.innerHTML='';
+  TEMAS.forEach(function(x){
+    var c=el('div','card');
+    c.appendChild(el('div','ch',esc(x.secao)+'<span class="who">'+esc(x.quem)+'</span>'));
+    var b=el('div','cb');
+    b.appendChild(el('p',null,'<b>O que está errado hoje:</b> '+esc(x.problema)));
+    b.appendChild(el('div','frase','<span class="fl">Tema sugerido</span>'+esc(x.novo)));
+    b.appendChild(el('p',null,'<b>Por que esse:</b> '+esc(x.porque)));
+    b.appendChild(el('p',null,'<b>O que entra:</b> '+esc(x.conteudo)));
+    b.appendChild(el('p',null,'<b>O que acrescentar:</b> '+esc(x.liga)));
+    b.appendChild(el('p',null,'<b>O texto que já existe:</b> '+esc(x.resto)));
+    c.appendChild(b);
+    h.appendChild(c);
+  });
+}
 function drawTarefas(){
   var h=document.getElementById('tarefas');h.innerHTML='';
   TAREFAS.forEach(function(p,i){h.appendChild(cardChk(p.nome,p.papel,p.itens,'tf'+i+'_',drawTarefas));});
@@ -1161,7 +1210,7 @@ function drawChk(hostId,arr,prefix){
   document.getElementById('d2').textContent=txt(dias('2026-09-15T12:00:00'));
 })();
 
-drawFiltros();drawErros();drawTarefas();drawFases();
+drawFiltros();drawErros();drawTarefas();drawTemas();drawFases();
 drawChk('abntlist',ABNT,'ab');drawChk('docs',DOCS,'dc');drawChk('dadosemp',DADOS_EMP,'de');
 updateBadge();
 (function(){var h=(location.hash||'').replace('#','');if(h){var b=document.querySelector('.tabbtn[data-tab="'+h+'"]');if(b)b.click();}})();
